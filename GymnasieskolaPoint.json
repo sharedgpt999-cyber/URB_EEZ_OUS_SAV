@@ -1,0 +1,75 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.190120038700334, 57.780008642723729]
+      },
+      "properties": {
+        "FID": 4,
+        "category": "Gymnasieskola",
+        "name": "Erik Dahlbergsgymnasiet",
+        "descr": "Kommunal gymnasieskola",
+        "address": "Föreningsgatan 2, 553 21 Jönköping",
+        "phone": "036-106312",
+        "website": "https://www.edgymnasiet.se"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.165079366943697, 57.780938564805929]
+      },
+      "properties": {
+        "FID": 6,
+        "category": "Gymnasieskola",
+        "name": "Per Brahegymnasiet",
+        "descr": "Kommunal gymnasieskola",
+        "address": "Residensgatan 7, 553 16 Jönköping",
+        "phone": "036-105691",
+        "website": "https://www.perbrahe.se"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.232118500758835, 57.780501961833743]
+      },
+      "properties": {
+        "FID": 8,
+        "category": "Gymnasieskola",
+        "name": "Praktiska Gymnasiet Jönköping",
+        "descr": "Fristående gymnasieskola",
+        "address": "Ekhagsringen 17, 554 56 Jönköping",
+        "phone": "036-301520",
+        "email": "jonkoping@praktiska.se",
+        "website": "https://praktiska.se/jonkoping/"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.164753575710312, 57.783655353381604]
+      },
+      "properties": {
+        "FID": 14,
+        "category": "Gymnasieskola",
+        "name": "JENSEN Gymnasium Jönköping",
+        "descr": "Fristående gymnasieskola",
+        "address": "Hovrättsparken 5, 553 21 Jönköping",
+        "phone": "036-2902250",
+        "email": "jonkoping@jensengymnasium.se",
+        "website": "https://www.jensengymnasium.se/jonkoping"
+      }
+    }
+  ]
+}

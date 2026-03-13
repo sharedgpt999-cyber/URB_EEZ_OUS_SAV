@@ -1,0 +1,3399 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Savantest1 – merged fixed v5</title>
+
+  <link rel="stylesheet" href="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.3/maptiler-sdk.css">
+  <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.3/maptiler-sdk.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.10.0/proj4.min.js"></script>
+
+  <!-- 3D models (GLB) via Three.js -->
+  <script src="https://unpkg.com/three@0.159.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.159.0/examples/js/loaders/GLTFLoader.js"></script>
+
+  
+  <!-- OSRM för routing (öppen källkod, gratis) -->
+  <script src="https://cdn.jsdelivr.net/npm/@mapbox/polyline@1.1.1/src/polyline.js"></script>
+
+  <style>
+    :root{
+      --bg: #0b0c0f;
+      --panel: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.65);
+      --shadow: 0 18px 55px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --radius2: 14px;
+    }
+    html, body { height:100%; margin:0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    #map { position: absolute; inset: 0; }
+
+    .sidebar{
+      position:absolute; top:14px; left:14px;
+      width: 420px; max-height: calc(100% - 28px);
+      overflow:auto; padding: 14px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 10;
+    }
+    .topbar{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+    .title{ display:flex; flex-direction:column; gap:2px; }
+    .title h1{ font-size:14px; margin:0; color:var(--text); letter-spacing:.2px; }
+    .title .sub{ font-size:12px; color:var(--muted); }
+
+    .pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 10px;
+      border-radius:999px; border:1px solid var(--border); background: rgba(255,255,255,0.06);
+      color: var(--text); font-size:12px; cursor:pointer; user-select:none;
+    }
+    .pill:hover{ background: rgba(255,255,255,0.10); }
+
+    .card{ margin-top:10px; padding:12px; border-radius: var(--radius2);
+      border:1px solid var(--border); background: rgba(255,255,255,0.06);
+    }
+    .card h2{ margin:0 0 10px 0; font-size:13px; color:var(--text); letter-spacing:.2px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .row{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding: 8px 0; }
+    .row label{ color: var(--text); font-size: 12.5px; user-select:none; }
+    .row small{ color: var(--muted); font-size: 12px; }
+
+    .btnrow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .btn{
+      appearance:none; border:1px solid var(--border); background: rgba(29, 163, 118, 0.08);
+      color: var(--text); padding: 9px 10px; font-size: 12px; border-radius: 12px;
+      cursor:pointer; user-select:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.12); }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary {
+      background: rgba(59, 130, 246, 0.3);
+      border-color: #3b82f6;
+    }
+    .btn-primary:hover { background: rgba(59, 130, 246, 0.5); }
+
+    select, input[type="text"]{
+      width: 100%; padding:10px 12px; border-radius:12px; border:1px solid var(--border);
+      background: rgba(0,0,0,0.25); color: var(--text); outline:none; font-size: 13px;
+    }
+    input[type="range"]{ width: 100%; }
+    .divider{ height:1px; background: var(--border); margin: 10px 0; }
+
+    .results{ margin-top:10px; display:flex; flex-direction:column; gap:8px; }
+    .result{
+      padding: 10px 10px; border-radius: 12px; border:1px solid var(--border);
+      background: rgba(255,255,255,0.06); cursor:pointer;
+    }
+    .result:hover{ background: rgba(255,255,255,0.10); }
+    .result strong{ display:block; color:var(--text); font-size:12.5px; }
+    .result span{ display:block; color:var(--muted); font-size:12px; margin-top:2px; }
+
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; color: var(--muted); font-size: 12px; line-height:1.35; }
+
+    .toast{
+      position:absolute; left:14px; bottom:14px; width:380px;
+      padding:10px 12px; border-radius:14px; border:1px solid var(--border);
+      background: rgba(0,0,0,0.35); color: var(--text); box-shadow: var(--shadow);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      display:none; font-size: 12px; line-height: 1.35;
+      z-index: 1000;
+    }
+    @media (max-width: 720px){ .sidebar, .toast{ width: calc(100% - 28px); } }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      color: var(--text);
+      margin-left: 8px;
+    }
+
+    /* När kartstilen är ljus (t.ex. Streets/Topo) gör vi sidopanelen mörkare för kontrast */
+    body.lightmap .sidebar{
+      background: rgba(10, 12, 16, 0.82);
+      border-color: rgba(255,255,255,0.14);
+    }
+    body.lightmap .card,
+    body.lightmap .pill,
+    body.lightmap .result,
+    body.lightmap .toast{
+      background: rgba(0,0,0,0.40);
+      border-color: rgba(255,255,255,0.14);
+    }
+    body.lightmap select,
+    body.lightmap input[type="text"]{
+      background: rgba(0,0,0,0.42);
+    }
+    body.lightmap .btn{ background: rgba(0,0,0,0.30); }
+    body.lightmap .btn:hover{ background: rgba(0,0,0,0.42); }
+    
+    /* Navigeringsmarkörer */
+    .marker-start, .marker-end {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .marker-start { background: #22c55e; }
+    .marker-end { background: #ef4444; }
+    
+    .route-info {
+      background: rgba(0,0,0,0.5);
+      padding: 8px;
+      border-radius: 8px;
+      margin-top: 8px;
+      font-size: 12px;
+      border-left: 3px solid #3b82f6;
+      color: var(--text);
+
+    }
+  
+
+/* ---------- IFC Modal Overlay ---------- */
+.ifc-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+.ifc-modal.is-open{ display: block; }
+.ifc-modal__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+.ifc-modal__panel{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: min(1100px, calc(100vw - 28px));
+  height: min(720px, calc(100vh - 28px));
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border, rgba(255,255,255,0.12));
+  background: rgba(15, 18, 24, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+}
+.ifc-modal__topbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.12));
+}
+.ifc-modal__title{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--text, #e9eefc);
+}
+.ifc-modal__subtitle{
+  font-size: 12px;
+  opacity: 0.75;
+}
+.ifc-modal__frame{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #0b0f19;
+}
+
+
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:9999;}
+.modal.hidden{display:none;}
+.modal-card{position:relative;background:#0b1220;color:#e5e7eb;max-width:520px;width:92%;border-radius:14px;padding:14px 14px 16px;box-shadow:0 18px 60px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.08);}
+.modal-card h3{margin:4px 34px 10px 4px;font-size:18px;}
+.modal-close{position:absolute;top:10px;right:10px;background:transparent;border:0;color:#e5e7eb;font-size:18px;cursor:pointer;}
+
+.weather-banner{margin-top:10px;padding:12px 12px 10px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(8px);}
+.weather-main{display:flex;align-items:center;gap:12px;}
+.weather-temp{font-size:32px;font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--text);}
+.weather-time{font-size:16px;font-weight:700;color:var(--text);}
+.weather-place{font-size:12px;color:var(--muted);margin-top:2px;}
+.weather-desc{margin-top:8px;font-size:12px;color:var(--muted);}
+body.lightmap .weather-banner{background:rgba(15,23,42,.78);border-color:rgba(15,23,42,.35);}
+.modal-body-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.modal-img{width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.10);background:#0f172a;max-height:320px;object-fit:cover;}
+.modal-kv{font-size:13px;line-height:1.35;opacity:.95;}
+.modal-kv b{opacity:1;}
+
+    /* Busshållplats popup: svart text på vit popup */
+    .popup-bus { color:#000 !important; }
+    .popup-bus a { color:#0ea5e9 !important; }
+
+  
+    details.compact-card{margin-top:10px;border-radius:var(--radius2);background:linear-gradient(180deg, rgba(15,23,42,.92), rgba(15,23,42,.82));border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 24px rgba(0,0,0,.22);overflow:hidden;}
+    details.compact-card > summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:700;color:var(--text);font-size:13px;user-select:none;}
+    details.compact-card > summary::-webkit-details-marker{display:none;}
+    details.compact-card > summary::after{content:"▾";font-size:12px;opacity:.8;transition:transform .18s ease;}
+    details.compact-card[open] > summary::after{transform:rotate(180deg);}
+    details.compact-card .compact-body{padding:0 12px 12px 12px;border-top:1px solid rgba(255,255,255,.06);}
+    details.compact-card .compact-note{margin:8px 0 0 0;font-size:11px;opacity:.82;}
+
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <aside class="sidebar">
+    <div class="topbar">
+      <div class="title">
+        <h1>Öxnehaga Dashboard <span class="badge">10+ lager + navigering</span></h1>
+        <div class="sub">Kompakt lagerpanel + navigering</div>
+      </div>
+      <div class="pill" id="btnResetView" title="Återställ vy">Reset</div>
+    </div>
+
+    <div class="card">
+      <h2>Kartstil <span id="styleHint" class="mono">custom</span></h2>
+      <select id="styleSelect">
+        <option value="custom">Din MapTiler-karta (custom)</option>
+        <option value="streets">MapTiler Streets</option>
+        <option value="topo">MapTiler Topo</option>
+        <option value="satellite">MapTiler Satellite</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h2>☁️ Väder & luft</h2>
+      <div class="row" style="display:none" aria-hidden="true"><label><input type="checkbox" id="lyWeather"> Väder / regn</label><small id="weatherStatus">off</small></div>
+      <div class="row"><label><input type="checkbox" id="lyAir"> Luftkvalitet (overlay)</label><small id="airStatus">off</small></div>
+      <div class="divider"></div>
+      <div class="weather-banner">
+        <div class="weather-main">
+          <div id="mapTemp" class="weather-temp">--°C</div>
+          <div class="weather-meta">
+            <div id="mapTime" class="weather-time">--:--</div>
+            <div id="mapPlace" class="weather-place">Kartans mittpunkt</div>
+          </div>
+        </div>
+        <div id="mapWeatherDesc" class="weather-desc mono">Flytta kartan för lokal temperatur</div>
+      </div>
+      <p class="mono">Temperatur och lokal tid hämtas för området du tittar på. Luftkvalitet visas som ett transparent färglager.</p>
+    </div>
+
+    <div class="card">
+      <h2>2D / 3D</h2>
+
+      <div class="btnrow">
+        <button class="btn" id="btn2D3D">3D</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row">
+        <label><input type="checkbox" id="toggleBuildings"> 3D buildings</label>
+        <small id="buildingsStatus">off</small>
+      </div>
+      <p id="buildingsDebug" class="mono">Tips: Streets/Topo har bäst buildings-data.</p>
+
+      <div class="divider"></div>
+
+      <div class="row">
+        <label><input type="checkbox" id="toggleTerrain"> 3D terrain</label>
+        <small id="terrainStatus">off</small>
+      </div>
+      <p class="mono" id="terrainFixed">Terrain multiplier: 1x</p>
+    </div>
+
+    <!-- NY SEKTION: Gångavstånd & Vägvisning & Vägvisning (100% ny, inget borttaget) -->
+    <div class="card" style="border-left: 3px solid #3b82f6;">
+      <h2>🚶 Gångavstånd & Vägvisning</h2>
+      
+      <div class="row">
+        <label>Startpunkt (A)</label>
+        <button class="btn btn-primary" id="btnSetStart">Välj på kartan</button>
+      </div>
+      <div class="row">
+        <label>Målpunkt (B)</label>
+        <button class="btn btn-primary" id="btnSetEnd">Välj på kartan</button>
+      </div>
+      
+      <div class="row">
+        <label>Färdmedel</label>
+        <select id="routeProfile">
+          <option value="foot">🚶 Gång</option>
+          <option value="bike">🚲 Cykel</option>
+          <option value="car">🚗 Bil</option>
+        </select>
+      </div>
+      
+      <div class="btnrow">
+        <button class="btn btn-primary" id="btnCalculateRoute">🔄 Beräkna väg</button>
+        <button class="btn" id="btnSwapPoints">⇄ Byt A/B</button>
+        <button class="btn" id="btnClearRoute">Rensa</button>
+      </div>
+      <div class="divider"></div>
+      <div class="mono" style="margin-top:6px; font-size:11px; opacity:.9;">
+        Snabbmål (väljer närmaste från din startpunkt A)
+      </div>
+      <div class="btnrow">
+        <button class="btn" id="btnNearestPolice">🚓 Närmaste polis</button>
+        <button class="btn" id="btnNearestHospital">🏥 Närmaste akutmottagning</button>
+        <button class="btn" id="btnNearestFire">🚒 Närmaste brandstation</button>
+      </div>
+
+      
+      <div id="routeResult" class="route-info" style="display: none;">
+        <span id="routeDistance"></span> • <span id="routeTime"></span>
+      </div>
+      
+      <div class="mono" style="margin-top:8px; font-size:11px;" id="routeStatus">
+        Klicka på "Välj på kartan" för att sätta punkter
+      </div>
+    </div>
+
+    <!-- Alla dina befintliga sektioner - HELT ORÖRDA -->
+    <details class="compact-card">
+      <summary>🌳 Natur & miljö</summary>
+      <div class="compact-body">
+        <div class="row"><label><input type="checkbox" id="lyTrees"> Enstaka träd</label><small><button class="btn" data-zoom="trees">Zoom</button></small></div>
+      </div>
+    </details>
+
+    <details class="compact-card">
+      <summary>🏥 Vård & skola</summary>
+      <div class="compact-body">
+        <div class="row"><label><input type="checkbox" id="lyVard"> Vårdcentraler</label><small><button class="btn" data-zoom="vard">Zoom</button></small></div>
+        <div class="row"><label><input type="checkbox" id="lyGrund"> Grundskolor</label><small><button class="btn" data-zoom="grund">Zoom</button></small></div>
+        <div class="row"><label><input type="checkbox" id="lyGymn"> Gymnasieskolor</label><small><button class="btn" data-zoom="gymn">Zoom</button></small></div>
+      </div>
+    </details>
+
+    <details class="compact-card">
+      <summary>🚌 Kollektivtrafik</summary>
+      <div class="compact-body">
+        <div class="row"><label><input type="checkbox" id="lyBus"> Busshållplatser</label><small><button class="btn" data-zoom="bus">Zoom</button></small></div>
+        <div class="row"><label><input type="checkbox" id="lyTrain"> Tågstationer</label><small><button class="btn" data-zoom="train">Zoom</button></small></div>
+      </div>
+    </details>
+
+    <details class="compact-card">
+      <summary>🚌 JLT busslinjer <span class="pill">beta</span></summary>
+      <div class="compact-body">
+        <div class="mono compact-note" style="margin-bottom:8px;">Experimentellt overlay från publika JLT-linjesidor.</div>
+        <div class="row"><label><input type="checkbox" id="lyJlt1"> Linje 1</label><small><span class="pill" style="background:#ef4444;color:#fff;">1</span></small></div>
+        <div class="row"><label><input type="checkbox" id="lyJlt2"> Linje 2</label><small><span class="pill" style="background:#f59e0b;color:#111;">2</span></small></div>
+        <div class="row"><label><input type="checkbox" id="lyJlt3"> Linje 3</label><small><span class="pill" style="background:#10b981;color:#fff;">3</span></small></div>
+        <div class="row"><label><input type="checkbox" id="lyJlt4"> Linje 4</label><small><span class="pill" style="background:#0ea5e9;color:#fff;">4</span></small></div>
+        <div class="row"><label><input type="checkbox" id="lyJlt11"> Linje 11</label><small><span class="pill" style="background:#7c3aed;color:#fff;">11</span></small></div>
+        <div class="mono compact-note">Följer vägnätet där dina vägar finns och faller tillbaka till raka segment där vägdata saknas.</div>
+      </div>
+    </details>
+
+    <details class="compact-card">
+      <summary>🧭 Extra lager</summary>
+      <div class="compact-body">
+        <div class="row"><label><input type="checkbox" id="lyBryggor"> Bryggor</label><small><button class="btn" data-zoom="bryggor">Zoom</button></small></div>
+        <div class="row"><label><input type="checkbox" id="lyNaturreservat"> Naturreservat</label><small><button class="btn" data-zoom="naturreservat">Zoom</button></small></div>
+        <div class="row"><label><input type="checkbox" id="lyStorasjaar"> Stora sjöar</label><small><button class="btn" data-zoom="storasjaar">Zoom</button></small></div>
+        <div class="row"><label><input type="checkbox" id="lyTagspar"> Tågspår</label><small><button class="btn" data-zoom="tagspar">Zoom</button></small></div>
+        <div class="row"><label><input type="checkbox" id="lyTomtar"> Tomtgränser</label><small><button class="btn" data-zoom="tomtar">Zoom</button></small></div>
+        <div class="row"><label><input type="checkbox" id="lyVagbommar"> Vägbommar</label><small><button class="btn" data-zoom="vagbommar">Zoom</button></small></div>
+      </div>
+    </details>
+
+    <details class="compact-card" open>
+      <summary>📍 Sök & navigera</summary>
+      <div class="compact-body">
+        <input id="searchBox" type="text" placeholder="Sök efter plats, adress eller namn…">
+        <div class="results" id="results"></div>
+        <div class="btnrow">
+          <button class="btn" id="btnFitAll">Visa alla punkter</button>
+        </div>
+      </div>
+    </details>
+
+    <details class="compact-card">
+      <summary>ℹ️ Info</summary>
+      <div class="compact-body">
+        <div id="info" class="mono">Klicka på en punkt eller välj från sök.</div>
+      </div>
+    </details>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // =========================
+    // KONFIGURATION - UTÖKAD MED FLER LAGER
+    // =========================
+    const KEY = "x7QrMoCowTncSrc8Do8E";
+    const OPENWEATHER_KEY = "193cfed977cdbfd4730010eb7754c0e9"; // https://home.openweathermap.org/api_keys
+    
+    // PNG paths (must be in same folder as Savantest1.html)
+    const TREE_PNG_PATH = "./tree.png";
+    
+    const VAGBOMMAR_PNG_PATH = "./Vagbommar.png";
+// POI icons
+    const POI_FILE = "./poi.geojson";
+    const POI_ICON_DIR = "./poi_icons/"; // folder with many png icons
+    const POI_DEFAULT_PNG = "./poi.png"; // fallback icon
+
+    const OSM_MAIN = "./map.osm";
+    const OSM_RANGE = { start: 1, end: 20 }; // läser även map(1).osm .. map(20).osm
+
+    // OSM detail icons (add these PNGs in same folder)
+    const ICON_PATHS = {
+      // Point icons in your folder
+      tree: "./tree.png",
+      bus: "./bus.png",
+      hospital: "./hospital.png",
+      school: "./school.png",
+      highschool: "./highschool.png",
+      barrier: "./vagbomm.png",
+
+      // OSM-details icons (same folder)
+      chimney: "./chimney.png",
+      crane: "./crane.png",
+      fountain: "./fountain.png",
+      flag: "./flag.png",
+      statue: "./statue.png"
+    };
+
+    // Per-icon zoom scaling (EDIT THESE INDIVIDUALLY)
+    // Format: ["interpolate", ["linear"], ["zoom"], z1, s1, z2, s2, ...]
+    const ICON_SIZE = {
+// Tree scale (keep as-is)
+      tree: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.05, 20, 0.2, 40, 0.6],
+
+      // You can change each of these independently:
+      bus: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.5, 20, 1, 40, 2],
+      hospital: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.05, 20, 1, 40, 2],
+      school: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.05, 20, 1, 40, 2],
+      highschool: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.05, 20, 1, 40, 2],
+      barrier: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.05, 20, 1, 40, 2],
+
+      chimney: ["interpolate", ["linear"], ["zoom"], 14, 1, 15, 2, 20, 2, 40, 2],
+      crane: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.05, 20, 0.2, 40, 0.6],
+      fountain: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.05, 20, 1, 40, 1],
+      flag: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.05, 20, 0.2, 40, 0.6],
+      statue: ["interpolate", ["linear"], ["zoom"], 14, 0.08, 15, 0.08, 20, 2, 40, 1],
+      // Extra POI icons (optional) – add matching PNGs in folder to activate
+      amenity: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.35, 20, 0.9, 40, 1.8],
+      shop: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.35, 20, 0.9, 40, 1.8],
+      tourism: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.35, 20, 0.9, 40, 1.8],
+      street_lamp: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.45, 20, 1.1, 40, 2.2],
+      parking: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      traffic_signal: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      crossing: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      bicycle_parking: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      drinking_water: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      toilets: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      atm: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      post_box: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      playground: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      cafe: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      restaurant: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      fast_food: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      pharmacy: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0],
+      supermarket: ["interpolate", ["linear"], ["zoom"], 14, 0.05, 15, 0.40, 20, 1.0, 40, 2.0]
+
+    };
+const MAP_ID = "019c2d8c-0883-7fd3-9fb8-ca1705ba9a75";
+    const CUSTOM_STYLE_URL = `https://api.maptiler.com/maps/${MAP_ID}/style.json?key=${KEY}`;
+
+    const START = { lng: 14.25792, lat: 57.77188, zoom: 14.1, pitch: 45, bearing: -10 };
+
+    // ALLA GEOJSON-FILER - både gamla och nya lager
+    const FILES = {
+      // Original
+      trees: "trees.geojson",
+      vard:  "VardcentralPoin_PairwiseClip.json",
+      grund: "GrundskolaPoint_PairwiseClip.json",
+      gymn:  "GymnasieskolaPoint.json",
+      
+      // NYA LAGER - Natur & miljö
+      parks: null,
+      playgrounds: "Lekplatser_PairwiseClip.json",
+      grill: "Grillplatser_PairwiseClip.json",
+      
+      // NYA LAGER - Service
+      bibliotek: "Bibliotek_PairwiseClip.json",
+      simhall: "Simhall_Idrott_PairwiseClip.json",
+      
+      // NYA LAGER - Kollektivtrafik
+      bus: "BusStops_Jonkoping.geojson",
+      train: null,
+      
+      // NYA LAGER - Boende
+      hyres: "Hyresratter_PairwiseClip.json",
+      bostads: "Bostadsratter_PairwiseClip.json",
+      villor: "Villor_Radhus_PairwiseClip.json",
+      poi: "poi.geojson", // NEW: POI bundle
+
+      // EXTRA LAGER (Edwin)
+      bryggor: "bryggor.geojson",
+      naturreservat: "Naturreservat.geojson",
+      storasjaar: "storasjaar.geojson",
+      tagspar: "tagspar.geojson",
+      tagstationer: "tagstationer.geojson",
+      tagstationer_points: "Tagstationer_Points.geojson",
+      sjoar_namn: "Sjoar_Namn.geojson",
+      tomtar: "Tomtaroxnehaga.geojson",
+      vagbommar: "Vagbommar.geojson",
+
+    };
+
+    // Source-ID:n för alla lager
+    const SRC = {
+            osm_fountain:"src_osm_fountain",
+      osm_crane:"src_osm_crane",
+      osm_lamp:"src_osm_lamp",
+      osm_chimney:"src_osm_chimney",
+      osm_wind:"src_osm_wind",
+      osm_oil:"src_osm_oil",
+      osm_flag:"src_osm_flag",
+      osm_statue:"src_osm_statue",
+trees:"src_trees", vard:"src_vard", grund:"src_grund", gymn:"src_gymn",
+      parks:"src_parks", playgrounds:"src_playgrounds", grill:"src_grill",
+      bibliotek:"src_bibliotek", simhall:"src_simhall",
+      bus:"src_bus", train:"src_train",
+      hyres:"src_hyres", bostads:"src_bostads", villor:"src_villor",
+      terrain:"terrain-dem",
+      poi:"src_poi",
+
+      bryggor:"src_bryggor",
+      naturreservat:"src_naturreservat",
+      storasjaar:"src_storasjaar",
+      tagspar:"src_tagspar",
+      tagstationer:"src_tagstationer",
+      tagstationer_points:"src_tagstationer_points",
+      sjoar_namn:"src_sjoar_namn",
+      tomtar:"src_tomtar",
+      vagbommar:"src_vagbommar",
+      jltlines:"src_jltlines",
+
+    };
+
+    // Layer-ID:n för alla lager
+    const LYR = {
+      trees_points:"ly_trees_points",
+            trees_png:"ly_trees_png",
+trees_cluster:"ly_trees_cluster",
+      trees_cluster_count:"ly_trees_cluster_count",
+      vard_points:"ly_vard_points",
+      grund_points:"ly_grund_points",
+      gymn_points:"ly_gymn_points",
+      
+      parks_points:"ly_parks_points",
+      playgrounds_points:"ly_playgrounds_points",
+      grill_points:"ly_grill_points",
+      
+      bibliotek_points:"ly_bibliotek_points",
+      simhall_points:"ly_simhall_points",
+      
+      bus_points:"ly_bus_points",
+      train_points:"ly_train_points",
+      
+      bryggor_line:"ly_bryggor_line",
+      naturreservat_line:"ly_naturreservat_line",
+      storasjaar_fill:"ly_storasjaar_fill",
+      storasjaar_line:"ly_storasjaar_line",
+      sjoar_namn_points:"ly_sjoar_namn_points",
+      tagspar_line:"ly_tagspar_line",
+      tagstationer_line:"ly_tagstationer_line",
+      tagstationer_points:"ly_tagstationer_points",
+      tomtar_line:"ly_tomtar_line",
+      vagbommar_points:"ly_vagbommar_points",
+      jlt_line_casing:"ly_jlt_line_casing",
+      jlt_line_1:"ly_jlt_line_1",
+      jlt_line_2:"ly_jlt_line_2",
+      jlt_line_3:"ly_jlt_line_3",
+      jlt_line_4:"ly_jlt_line_4",
+      jlt_line_11:"ly_jlt_line_11",
+
+      hyres_points:"ly_hyres_points",
+      bostads_points:"ly_bostads_points",
+      villor_points:"ly_villor_points",
+      
+      bld3d:"ly_3d_buildings",
+      sky:"ly_sky",
+      
+      // NYA LAGER för routing
+      route_line:"ly_route_line",
+      route_start:"ly_route_start",
+      route_end:"ly_route_end"
+    ,
+      // OSM-details (always visible)
+      osm_fountain:"ly_osm_fountain",
+      osm_crane:"ly_osm_crane",
+      osm_lamp:"ly_osm_lamp",
+      osm_chimney:"ly_osm_chimney",
+      osm_wind:"ly_osm_wind",
+      osm_oil:"ly_osm_oil",
+      osm_flag:"ly_osm_flag",
+      osm_statue:"ly_osm_statue",
+      poi:"ly_poi",
+
+};
+
+    const $ = (id) => document.getElementById(id);
+    const toast = $("toast");
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.style.display = "block";
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.style.display = "none", 4500);
+    }
+
+function absUrl(rel){
+  return new URL(rel, window.location.href).toString();
+}
+
+async function fetchText(rel) {
+  const url = absUrl(rel);
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`${rel} (${res.status})`);
+  return await res.text();
+}
+
+async function ensurePngImage(imageName, relPath, pixelRatio=2) {
+  if (map.hasImage(imageName)) return true;
+  const url = absUrl(relPath) + `?v=${Date.now()}`;
+  try {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) return false;
+    const blob = await res.blob();
+    const bmp = await createImageBitmap(blob);
+    if (!map.hasImage(imageName)) map.addImage(imageName, bmp, { pixelRatio });
+    return true;
+  } catch (err) {
+    console.warn("PNG load failed:", relPath, err);
+    return false;
+  }
+}
+
+    maptilersdk.config.apiKey = KEY;
+
+    const map = new maptilersdk.Map({
+      container: "map",
+      style: CUSTOM_STYLE_URL,
+      center: [START.lng, START.lat],
+      zoom: START.zoom,
+      pitch: START.pitch,
+      bearing: START.bearing,
+      geolocate: true
+    });
+
+    map.addControl(new maptilersdk.NavigationControl({ visualizePitch: true }), "top-right");
+    map.addControl(new maptilersdk.FullscreenControl(), "top-right");
+    map.addControl(new maptilersdk.GeolocateControl({ positionOptions: { enableHighAccuracy: true } }), "top-right");
+
+    // =========================
+    // IFC POINTS (your JSON -> clickable PNG points)
+    // =========================
+    // Put this PNG in the SAME folder as this HTML:
+    //   ifcpoint.png
+    const IFC_POINTS_FILE = "IFCLAGENHETPOINT.json";
+    const IFC_ICON_PNG = "./ifcpoint.png"; // you can change the filename
+
+    // Same zoom scaling as tree.png (uses ICON_SCALE_ZOOM if it exists)
+    const IFC_ICON_SCALE_ZOOM = (typeof ICON_SCALE_ZOOM !== "undefined")
+      ? ICON_SCALE_ZOOM
+      : ["interpolate", ["linear"], ["zoom"], 14, 0.0, 15, 0.05, 20, 0.2, 40, 0.6];
+
+    // ESRI JSON (EPSG:3006) -> GeoJSON (WGS84) converter (points only)
+    try {
+      if (typeof proj4 === "function") {
+        proj4.defs("EPSG:3006",
+          "+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+        );
+      }
+    } catch (_) {}
+
+    function isEsriJsonPoints(x){
+      return x && typeof x === "object" && typeof x.geometryType === "string" && Array.isArray(x.features);
+    }
+
+    function esriPointsToGeoJson(esri){
+      const wkid = esri?.spatialReference?.wkid || esri?.spatialReference?.latestWkid;
+      const needReproject = (wkid === 3006) && (typeof proj4 === "function");
+      const fc = { type:"FeatureCollection", features: [] };
+
+      for (const f of (esri.features || [])) {
+        const g = f.geometry;
+        if (!g || typeof g.x !== "number" || typeof g.y !== "number") continue;
+
+        let lonlat = [g.x, g.y];
+        if (needReproject) {
+          try { lonlat = proj4("EPSG:3006", "WGS84", [g.x, g.y]); } catch (_) {}
+        }
+
+        fc.features.push({
+          type: "Feature",
+          properties: (function(){ const p = (f.attributes || {}); if (!("ifc_url" in p) && !("ifc_link" in p) && !("link" in p) && !("website" in p)) p.ifc_url = "./ifc.html?file=ifc.ifc"; return p; })(),
+          geometry: { type:"Point", coordinates: lonlat }
+        });
+      }
+      return fc;
+    }
+
+    async function ensurePngImage(imageName, relPath, pixelRatio=2){
+      if (map.hasImage(imageName)) return true;
+      const url = new URL(relPath, window.location.href).toString() + `?v=${Date.now()}`;
+      try{
+        const res = await fetch(url, { cache:"no-store" });
+        if (!res.ok) return false;
+        const blob = await res.blob();
+        const bmp = await createImageBitmap(blob);
+        if (!map.hasImage(imageName)) map.addImage(imageName, bmp, { pixelRatio });
+        return true;
+      } catch(e){
+        console.warn("PNG load failed:", relPath, e);
+        return false;
+      }
+    }
+
+    function showIfcPointPopup(lngLat, props){
+      // Open the IFC viewer immediately (no intermediate MapTiler popup)
+      const url = props?.ifc_url || props?.ifc_link || props?.link || props?.website || "./ifc.html?file=ifc.ifc";
+      openIfcModal(url);
+    }
+
+    // Avoid stacking duplicate event handlers across style switches
+    const __ifcBoundLayers = new Set();
+
+
+    async function addIfcPointsLayer(){
+      // Load your JSON
+      const fileUrl = new URL(IFC_POINTS_FILE, window.location.href).toString();
+      const res = await fetch(fileUrl, { cache:"no-store" });
+      if (!res.ok) throw new Error(`IFC points: kunde inte ladda ${IFC_POINTS_FILE} (${res.status})`);
+      const raw = await res.json();
+
+      const geo = isEsriJsonPoints(raw) ? esriPointsToGeoJson(raw) : raw;
+
+      // Source
+      if (!map.getSource("src_ifcpoints")) {
+        map.addSource("src_ifcpoints", { type:"geojson", data: geo });
+      } else {
+        try { map.getSource("src_ifcpoints").setData(geo); } catch(_) {}
+      }
+
+      // PNG icon
+      const okIcon = await ensurePngImage("ifcPointIcon", IFC_ICON_PNG, 2);
+
+      // Layer (symbol)
+      if (okIcon && !map.getLayer("ly_ifcpoints")) {
+        map.addLayer({
+          id: "ly_ifcpoints",
+          type: "symbol",
+          source: "src_ifcpoints",
+          minzoom: 12,
+          layout: {
+            "icon-image": "ifcPointIcon",
+            "icon-size": IFC_ICON_SCALE_ZOOM,
+            "icon-allow-overlap": true,
+            "icon-ignore-placement": true,
+            "icon-anchor": "bottom",
+            "icon-pitch-alignment": "viewport",
+            "icon-rotation-alignment": "viewport"
+          },
+          paint: {
+            "icon-opacity": 0.90
+          }
+        });
+      }
+
+      // If PNG missing: fallback circle so you still see points
+      if (!okIcon && !map.getLayer("ly_ifcpoints_fallback")) {
+        map.addLayer({
+          id: "ly_ifcpoints_fallback",
+          type: "circle",
+          source: "src_ifcpoints",
+          paint: {
+            "circle-radius": ["interpolate", ["linear"], ["zoom"], 12, 3, 14, 5, 16, 8],
+            "circle-color": "#a78bfa",
+            "circle-opacity": 0.9,
+            "circle-stroke-width": 2.0,
+            "circle-stroke-color": "#ffffff"
+          }
+        });
+      }
+
+      // Click interaction
+      const clickLayer = okIcon ? "ly_ifcpoints" : "ly_ifcpoints_fallback";
+
+      if (!__ifcBoundLayers.has(clickLayer)) {
+        __ifcBoundLayers.add(clickLayer);
+        map.on("mouseenter", clickLayer, () => map.getCanvas().style.cursor = "pointer");
+        map.on("mouseleave", clickLayer, () => map.getCanvas().style.cursor = "");
+        map.on("click", clickLayer, (e) => {
+          const f = e.features?.[0]; if (!f) return;
+          showIfcPointPopup(e.lngLat, f.properties || {});
+        });
+      }
+    }
+
+    map.addControl(new maptilersdk.ScaleControl({ maxWidth: 120, unit: "metric" }));
+
+    const uiState = {
+      style: "custom",
+      terrainOn: false,
+      terrainExag: 1.0,
+      buildingsOn: false,
+      buildingBoost: 1.0,
+      atmosphere: { weather:false, wind:false, air:false },
+      visible: {
+        // Original
+        trees: false, vard: false, grund: false, gymn: false,
+        // Nya
+        parks: false, playgrounds: false, grill: false,
+        bibliotek: false, simhall: false,
+        bus: false, train: false,
+        hyres: false, bostads: false, villor: false,
+        // Extra (Edwin)
+        bryggor: false,
+        naturreservat: false,
+        storasjaar: false,
+        tagspar: false,
+        tagstationer: false,
+        tomtar: false,
+        vagbommar: false,
+        jlt1: false,
+        jlt2: false,
+        jlt3: false,
+        jlt4: false,
+        jlt11: false
+      }
+    };
+
+    // =========================
+    // NYA VARIABLER FÖR ROUTING
+    // =========================
+    let startPoint = null;
+    let endPoint = null;
+    let isSelectingStart = false;
+    let isSelectingEnd = false;
+    let startMarker = null;
+    let endMarker = null;
+
+    // OSRM endpoints - gratis och öppen källkod
+    const OSRM_ENDPOINTS = {
+      foot: 'https://routing.openstreetmap.de/routed-foot/route/v1/driving/',
+      bike: 'https://routing.openstreetmap.de/routed-bike/route/v1/driving/',
+      car: 'https://routing.openstreetmap.de/routed-car/route/v1/driving/'
+    };
+
+    
+    // =========================
+    // SNABBMÅL (närmsta polis / sjukhus / brandstation)
+    // - Geokodar adresser via MapTiler och väljer den som är närmast startpunkt (A)
+    // =========================
+    const __geocodeCache = new Map(); // address -> [lng,lat]
+
+    const QUICK_POIS = {
+      police: [
+        { name: "Polisstation Jönköping", address: "Vallgatan 3-5, 553 16 Jönköping, Sweden", website: "https://polisen.se/om-polisen/kontakt/polisstationer/jonkopings-lan/jonkoping/" }
+      ],
+      hospital: [
+        { name: "Akutmottagningen Länssjukhuset Ryhov", address: "Sjukhusgatan, 553 05 Jönköping, Sweden", website: "https://www.1177.se/hitta-vard/kontaktkort/Akutmottagningen-Lanssjukhuset-Ryhov/" }
+      ],
+      fire: [
+        { name: "Brandstation Jönköping", address: "Glansgatan 7, 554 54 Jönköping, Sweden", website: "https://www.jonkoping.se/kommun--politik/kommunens-organisation/forvaltningar/raddningstjansten" },
+        { name: "Huskvarna brandstation", address: "Stockmakaregatan 1, 561 31 Huskvarna, Sweden", website: "https://www.jonkoping.se/kommun--politik/sakerhet-och-krisberedskap/krisberedskap-vid-kriser-och-samhallsstorningar/trygghetspunkter" },
+        { name: "Bankeryds brandstation", address: "Älvgatan 1, 564 35 Bankeryd, Sweden", website: "https://www.jonkoping.se/kommun--politik/sakerhet-och-krisberedskap/krisberedskap-vid-kriser-och-samhallsstorningar/trygghetspunkter" },
+        { name: "Gränna brandstation", address: "Ödeshögsvägen 8, 563 32 Gränna, Sweden", website: "https://www.jonkoping.se/kommun--politik/sakerhet-och-krisberedskap/krisberedskap-vid-kriser-och-samhallsstorningar/trygghetspunkter" },
+        { name: "Bottnaryds brandstation", address: "Stråkenvägen 6, 560 25 Bottnaryd, Sweden", website: "https://www.jonkoping.se/kommun--politik/sakerhet-och-krisberedskap/krisberedskap-vid-kriser-och-samhallsstorningar/trygghetspunkter" }
+      ]
+    };
+
+    function haversineKm(a, b){
+      const toRad = (d)=> d*Math.PI/180;
+      const R = 6371;
+      const dLat = toRad(b[1]-a[1]);
+      const dLng = toRad(b[0]-a[0]);
+      const lat1 = toRad(a[1]);
+      const lat2 = toRad(b[1]);
+      const s = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2;
+      return 2*R*Math.asin(Math.min(1, Math.sqrt(s)));
+    }
+
+    async function geocodeAddress(address){
+      if (__geocodeCache.has(address)) return __geocodeCache.get(address);
+      const q = encodeURIComponent(address);
+      const url = `https://api.maptiler.com/geocoding/${q}.json?key=${KEY}&limit=1`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Geocode failed (${res.status})`);
+      const data = await res.json();
+      const feat = data && data.features && data.features[0];
+      const coords = feat && feat.geometry && feat.geometry.coordinates;
+      if (!coords || coords.length < 2) throw new Error("No geocode result");
+      __geocodeCache.set(address, coords);
+      return coords;
+    }
+
+    async function setNearestDestination(kind){
+      if (!startPoint) {
+        showToast('Sätt startpunkt (A) först, sen välj snabbmål.');
+        return;
+      }
+      const list = QUICK_POIS[kind] || [];
+      if (!list.length) {
+        showToast("Inga snabbmål för denna kategori.");
+        return;
+      }
+
+      $("routeStatus").textContent = "Söker närmaste…";
+
+      // geocode all candidates (in parallel)
+      const candidates = await Promise.all(list.map(async (p) => {
+        try {
+          const lngLat = await geocodeAddress(p.address);
+          const d = haversineKm(startPoint, lngLat);
+          return { ...p, lngLat, distanceKm: d };
+        } catch (e) {
+          console.warn("Geocode failed for", p, e);
+          return null;
+        }
+      }));
+
+      const ok = candidates.filter(Boolean).sort((a,b)=> a.distanceKm - b.distanceKm)[0];
+      if (!ok) {
+        $("routeStatus").textContent = "Kunde inte hitta närmaste.";
+        showToast("Kunde inte hitta närmaste – kontrollera internet/nyckel.");
+        return;
+      }
+
+      endPoint = ok.lngLat;
+      updateMarkers();
+
+      // show quick info (modal-style) + calculate route
+      $("routeStatus").textContent = `Mål satt: ${ok.name} (${ok.distanceKm.toFixed(2)} km fågelvägen)`;
+      setInfo({ name: ok.name, descr: ok.address, link: ok.website }, "Snabbmål");
+      try {
+        await calculateRoute();
+      } catch(_) {}
+
+      showToast(`Valde närmast: ${ok.name}`);
+    }
+
+// =========================
+    // ROUTING FUNKTIONER
+    // =========================
+    
+    // Uppdatera markörer
+    function updateMarkers() {
+      if (startMarker) startMarker.remove();
+      if (endMarker) endMarker.remove();
+      
+      if (startPoint) {
+        const el = document.createElement('div');
+        el.className = 'marker-start';
+        startMarker = new maptilersdk.Marker({ element: el })
+          .setLngLat(startPoint)
+          .setPopup(new maptilersdk.Popup().setHTML('Startpunkt A'))
+          .addTo(map);
+      }
+      
+      if (endPoint) {
+        const el = document.createElement('div');
+        el.className = 'marker-end';
+        endMarker = new maptilersdk.Marker({ element: el })
+          .setLngLat(endPoint)
+          .setPopup(new maptilersdk.Popup().setHTML('Målpunkt B'))
+          .addTo(map);
+      }
+    }
+
+    // Rensa rutt
+    function clearRoute() {
+      if (map.getLayer(LYR.route_line)) map.removeLayer(LYR.route_line);
+      if (map.getSource('route')) map.removeSource('route');
+      $("routeResult").style.display = "none";
+    }
+
+    // Beräkna rutt med OSRM
+    async function calculateRoute() {
+      if (!startPoint || !endPoint) {
+        showToast('Välj både start- och målpunkt först');
+        return;
+      }
+
+      const profile = $("routeProfile").value;
+      const url = OSRM_ENDPOINTS[profile];
+      
+      const start = `${startPoint[0]},${startPoint[1]}`;
+      const end = `${endPoint[0]},${endPoint[1]}`;
+      const query = `${url}${start};${end}?overview=full&geometries=polyline&steps=false`;
+      
+      $("routeStatus").textContent = "Beräknar väg...";
+      
+      try {
+        const response = await fetch(query);
+        const data = await response.json();
+        
+        if (data.code !== 'Ok' || !data.routes || !data.routes[0]) {
+          throw new Error('Ingen rutt hittades');
+        }
+        
+        const route = data.routes[0];
+        const geometry = polyline.decode(route.geometry);
+        const coordinates = geometry.map(([lat, lng]) => [lng, lat]);
+        
+        // Skapa GeoJSON för rutten
+        const geojson = {
+          type: 'Feature',
+          geometry: {
+            type: 'LineString',
+            coordinates: coordinates
+          }
+        };
+        
+        // Ta bort gammal rutt
+        clearRoute();
+        
+        // Lägg till ny source och layer
+        map.addSource('route', {
+          type: 'geojson',
+          data: geojson
+        });
+        
+        map.addLayer({
+          id: LYR.route_line,
+          type: 'line',
+          source: 'route',
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#3b82f6',
+            'line-width': 5,
+            'line-opacity': 0.8
+          }
+        });
+        
+        // Visa information
+        const distanceKm = (route.distance / 1000).toFixed(1);
+        const timeMin = Math.round(route.duration / 60);
+        
+        $("routeDistance").textContent = `${distanceKm} km`;
+        $("routeTime").textContent = `${timeMin} min`;
+        $("routeResult").style.display = "block";
+        $("routeStatus").textContent = "Rutt beräknad";
+        
+        // Zooma till rutten
+        const bounds = coordinates.reduce((bounds, coord) => {
+          return bounds.extend(coord);
+        }, new maptilersdk.LngLatBounds(coordinates[0], coordinates[0]));
+        
+        map.fitBounds(bounds, { padding: 100, duration: 800 });
+        
+      } catch (error) {
+        console.error('Routing error:', error);
+        $("routeStatus").textContent = "Kunde inte beräkna rutt";
+        showToast('Routing misslyckades - testa en annan väg eller punkter');
+      }
+    }
+
+    // orbit
+    let orbitTimer = null;
+
+    function saveView() {
+      const c = map.getCenter();
+      return { center:[c.lng,c.lat], zoom:map.getZoom(), pitch:map.getPitch(), bearing:map.getBearing() };
+    }
+    function restoreView(v){ map.jumpTo(v); }
+
+    function styleFromChoice(v){
+      if (v === "custom") return CUSTOM_STYLE_URL;
+      if (v === "streets") return maptilersdk.MapStyle.STREETS;
+      if (v === "topo") return maptilersdk.MapStyle.TOPO;
+      if (v === "satellite") return maptilersdk.MapStyle.SATELLITE;
+      return CUSTOM_STYLE_URL;
+    }
+
+    // Gör sidopanelen mörkare när kartan är ljus (Streets/Topo) så texten syns.
+    function applyUiThemeForStyle(v){
+      const isLight = (v === "streets" || v === "topo");
+      document.body.classList.toggle("lightmap", isLight);
+    }
+
+    async function fetchJsonSafe(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`${url} (${res.status})`);
+      return await res.json();
+    }
+
+    function addGeoJsonSource(id, file, clustered=false) {
+      if (map.getSource(id)) return;
+      try {
+        map.addSource(id, {
+          type:"geojson",
+          data:file,
+          ...(clustered ? { cluster:true, clusterRadius:40, clusterMaxZoom:14 } : {})
+        });
+      } catch(e) {
+        console.warn(`Kunde inte lägga till source ${id} från ${file}:`, e);
+        showToast(`Varning: Kunde inte ladda ${file}`);
+      }
+    }
+
+    function addClusterLayers(sourceId) {
+      if (!map.getLayer(LYR.trees_cluster)) {
+        map.addLayer({
+          id: LYR.trees_cluster,
+          type: "circle",
+          source: sourceId,
+          filter: ["has","point_count"],
+          paint: {
+            "circle-color":"#16a34a",
+            "circle-radius":["step",["get","point_count"],16, 50,22, 200,28],
+            "circle-stroke-width":2,
+            "circle-stroke-color":"#ffffff",
+            "circle-opacity":0.9
+          }
+        });
+      }
+      if (!map.getLayer(LYR.trees_cluster_count)) {
+        map.addLayer({
+          id: LYR.trees_cluster_count,
+          type: "symbol",
+          source: sourceId,
+          filter: ["has","point_count"],
+          layout: {
+            "text-field":"{point_count_abbreviated}",
+            "text-font":["Open Sans Bold","Arial Unicode MS Bold"],
+            "text-size":12
+          },
+          paint: { "text-color":"#0b0c0f" }
+        });
+      }
+    }
+
+    function addPointLayer(id, source, color, radius, shape = "circle") {
+      if (map.getLayer(id)) return;
+      map.addLayer({
+        id, 
+        type: "circle",
+        source,
+        paint:{
+          "circle-radius": radius,
+          "circle-color": color,
+          "circle-stroke-width": 1.5,
+          "circle-stroke-color":"#ffffff"
+        }
+      });
+    }
+
+    function addLineLayer(id, source, color, width = 3, opacity = 0.9, dasharray = null) {
+      if (map.getLayer(id)) return;
+      const paint = {
+        "line-color": color,
+        "line-width": width,
+        "line-opacity": opacity
+      };
+      if (dasharray) paint["line-dasharray"] = dasharray;
+      map.addLayer({
+        id,
+        type: "line",
+        source,
+        paint
+      });
+    }
+
+    function addFillLayer(id, source, fillColor, fillOpacity = 0.25) {
+      if (map.getLayer(id)) return;
+      map.addLayer({
+        id,
+        type: "fill",
+        source,
+        paint: {
+          "fill-color": fillColor,
+          "fill-opacity": fillOpacity
+        }
+      });
+    }
+
+function setVisible(layerId, on) {
+      if (!map.getLayer(layerId)) return;
+      map.setLayoutProperty(layerId, "visibility", on ? "visible" : "none");
+    }
+
+    
+// =========================
+// Trees as PNG (replace green dots, keep clusters)
+// =========================
+async function ensureTreePng() {
+  return ensurePngImage("treePng", TREE_PNG_PATH, 2);
+}
+
+
+    // Symbol layer for point GeoJSON using a PNG icon (instead of dots)
+    function addIconPointLayer(layerId, sourceId, iconName, sizeExpr, opacity = 0.95, minzoom = 12) {
+      if (map.getLayer(layerId)) return;
+
+      map.addLayer({
+        id: layerId,
+        type: "symbol",
+        source: sourceId,
+        minzoom,
+        filter: ["==", ["geometry-type"], "Point"],
+        layout: {
+          "icon-image": iconName,
+          "icon-size": sizeExpr,
+          "icon-allow-overlap": true,
+          "icon-ignore-placement": true,
+          "icon-anchor": "bottom",
+          "icon-offset": [0, -2],
+          "icon-pitch-alignment": "viewport",
+          "icon-rotation-alignment": "viewport"
+        },
+        paint: {
+          "icon-opacity": opacity
+        }
+      });
+    }
+
+
+async function enableTreePngLayer() {
+  const ok = await ensureTreePng();
+  if (!ok) { showToast("Hittar inte tree.png"); return false; }
+
+  // add PNG layer for non-cluster points
+  if (!map.getLayer(LYR.trees_png)) {
+    map.addLayer({
+      id: LYR.trees_png,
+      type: "symbol",
+      source: SRC.trees,
+      filter: ["!", ["has","point_count"]],
+      layout: {
+        "icon-image": "treePng",
+        "icon-size": ICON_SIZE.tree,
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true,
+        "icon-anchor": "bottom",
+        "icon-offset": [0, -2],
+        "icon-pitch-alignment": "viewport",
+        "icon-rotation-alignment": "viewport"
+      },
+      paint: { "icon-opacity": 0.75 }
+    });
+  }
+
+  // hide green dot layer (but keep clusters)
+  try { setVisible(LYR.trees_points, false); } catch(_) {}
+  try { setVisible(LYR.trees_cluster, false); setVisible(LYR.trees_cluster_count, false); } catch(_) {}
+
+  return true;
+}
+
+function setLayerGroupVisible(kind, on) {
+      // Original
+      if (kind === "trees") {
+        // Only show PNG trees (no green clusters / numbers)
+        setVisible(LYR.trees_png, on);
+        // Keep dot layer hidden
+        setVisible(LYR.trees_points, false);
+        // Ensure cluster layers stay hidden if they exist
+        setVisible(LYR.trees_cluster, false);
+        setVisible(LYR.trees_cluster_count, false);
+      } else if (kind === "vard") setVisible(LYR.vard_points, on);
+      else if (kind === "grund") setVisible(LYR.grund_points, on);
+      else if (kind === "gymn") setVisible(LYR.gymn_points, on);
+      
+      // Nya natur
+      else if (kind === "parks") setVisible(LYR.parks_points, on);
+      else if (kind === "playgrounds") setVisible(LYR.playgrounds_points, on);
+      else if (kind === "grill") setVisible(LYR.grill_points, on);
+      
+      // Nya service
+      else if (kind === "bibliotek") setVisible(LYR.bibliotek_points, on);
+      else if (kind === "simhall") setVisible(LYR.simhall_points, on);
+      
+      // Nya kollektivtrafik
+      else if (kind === "bus") setVisible(LYR.bus_points, on);
+      else if (kind === "train") setVisible(LYR.train_points, on);
+      
+      // Nya boende
+      else if (kind === "hyres") setVisible(LYR.hyres_points, on);
+      else if (kind === "bostads") setVisible(LYR.bostads_points, on);
+      else if (kind === "villor") setVisible(LYR.villor_points, on);      
+      // Extra lager (Edwin)
+      else if (kind === "bryggor") setVisible(LYR.bryggor_line, on);
+      else if (kind === "naturreservat") setVisible(LYR.naturreservat_line, on);
+      else if (kind === "storasjaar") { setVisible(LYR.storasjaar_fill, on); setVisible(LYR.storasjaar_line, on); }
+      else if (kind === "tagspar") {
+        setVisible(LYR.tagspar_line, on);
+        setVisible(LYR.tagstationer_line, on);
+        setVisible(LYR.tagstationer_points, on);
+      }
+      else if (kind === "tagstationer") {
+        setVisible(LYR.tagspar_line, on);
+        setVisible(LYR.tagstationer_line, on);
+        setVisible(LYR.tagstationer_points, on);
+      }
+      else if (kind === "tomtar") setVisible(LYR.tomtar_line, on);
+      else if (kind === "vagbommar") setVisible(LYR.vagbommar_points, on);
+      else if (kind === "jlt1") { setVisible(LYR.jlt_line_1, on); }
+      else if (kind === "jlt2") { setVisible(LYR.jlt_line_2, on); }
+      else if (kind === "jlt3") { setVisible(LYR.jlt_line_3, on); }
+      else if (kind === "jlt4") { setVisible(LYR.jlt_line_4, on); }
+      else if (kind === "jlt11") { setVisible(LYR.jlt_line_11, on); }
+      const anyJlt = !!(uiState.visible.jlt1 || uiState.visible.jlt2 || uiState.visible.jlt3 || uiState.visible.jlt4 || uiState.visible.jlt11);
+      if (map.getLayer(LYR.jlt_line_casing)) setVisible(LYR.jlt_line_casing, anyJlt);
+
+    }
+
+    
+    // ===== Modal (IFC-style) =====
+    const modal = () => document.getElementById("infoModal");
+    const modalTitle = () => document.getElementById("modalTitle");
+    const modalBody = () => document.getElementById("modalBody");
+    const modalCloseBtn = () => document.getElementById("modalClose");
+
+    function safeFileName(name){
+      return String(name || "")
+        .trim()
+        .replace(/\s+/g, "_")
+        .replace(/[^a-zA-Z0-9_\-\u00C0-\u017F]/g, "");
+    }
+
+    function openInfoModal({title, props, imageFile, website}){
+      modalTitle().textContent = title || "Info";
+      const kv = (props && Object.keys(props).length)
+        ? Object.entries(props).map(([k,v]) => `<div class="modal-kv"><b>${k}:</b> ${String(v)}</div>`).join("")
+        : "";
+      const img = imageFile
+        ? `<img class="modal-img" src="${imageFile}" alt="${title}" onerror="this.style.display='none'">`
+        : "";
+      const link = website ? `<div class="modal-kv"><b>Länk:</b> <a href="${website}" target="_blank" rel="noopener">Öppna</a></div>` : "";
+      modalBody().innerHTML = `<div class="modal-body-grid">${img}${link}${kv}</div>`;
+      modal().classList.remove("hidden");
+    }
+
+    function closeInfoModal(){
+      modal().classList.add("hidden");
+      modalBody().innerHTML = "";
+    }
+function popupHtml(p, kind) {
+      const name = p?.name ? `<strong>${p.name}</strong>` : `<strong>${kind || "Info"}</strong>`;
+      const descr = p?.descr ? `<div style="margin-top:6px">${p.descr}</div>` : "";
+      const link  = (p?.website || p?.link) ? `<div style="margin-top:8px"><a href="${p.website || p.link}" target="_blank" rel="noopener">Öppna länk</a></div>` : "";
+      const inner = `${name}${descr}${link}`;
+      // Map popup default background is white; bus text must be black for contrast
+      if ((kind || "").toLowerCase().includes("bus")) {
+        return `<div class="popup-bus">${inner}</div>`;
+      }
+      return inner;
+    }
+    function setInfo(p, kind) { $("info").innerHTML = popupHtml(p, kind); }
+
+    function wirePointInteractions(layerId, kind) {
+      if (!map.getLayer(layerId)) return;
+      map.on("mouseenter", layerId, () => map.getCanvas().style.cursor="pointer");
+      map.on("mouseleave", layerId, () => map.getCanvas().style.cursor="");
+      map.on("click", layerId, (e) => {
+        const f = e.features?.[0]; if (!f) return;
+        setInfo(f.properties, kind);
+        new maptilersdk.Popup().setLngLat(e.lngLat).setHTML(popupHtml(f.properties, kind)).addTo(map);
+      });
+    }
+
+    function wireClusterZoom() {
+      if (!map.getLayer(LYR.trees_cluster)) return;
+      map.on("click", LYR.trees_cluster, (e) => {
+        const feat = e.features?.[0]; if (!feat) return;
+        const clusterId = feat.properties.cluster_id;
+        const src = map.getSource(SRC.trees);
+        if (!src) return;
+        src.getClusterExpansionZoom(clusterId, (err, zoom) => {
+          if (err) return;
+          map.easeTo({ center: feat.geometry.coordinates, zoom, duration: 450 });
+        });
+      });
+      map.on("mouseenter", LYR.trees_cluster, () => map.getCanvas().style.cursor="pointer");
+      map.on("mouseleave", LYR.trees_cluster, () => map.getCanvas().style.cursor="");
+    }
+
+    function enableTerrain(on) {
+      uiState.terrainOn = on;
+      uiState.terrainExag = 1.0;
+/* removed terrain slider */ $("terrainStatus").textContent = uiState.terrainExag.toFixed(1);
+
+      if (!on) {
+        map.setTerrain(null);
+        if (map.getLayer(LYR.sky)) map.removeLayer(LYR.sky);
+        $("terrainStatus").textContent = "off";
+        return;
+      }
+
+      if (!map.getSource(SRC.terrain)) {
+        map.addSource(SRC.terrain, {
+          type:"raster-dem",
+          url:`https://api.maptiler.com/tiles/terrain-rgb/tiles.json?key=${KEY}`,
+          tileSize:256
+        });
+      }
+      map.setTerrain({ source: SRC.terrain, exaggeration: uiState.terrainExag });
+
+      if (!map.getLayer(LYR.sky)) {
+        map.addLayer({ id: LYR.sky, type:"sky", paint:{ "sky-type":"atmosphere", "sky-atmosphere-sun-intensity": 10 }});
+      }
+      $("terrainStatus").textContent = "on";
+    }
+
+    let buildingsBaseRef = null;
+
+    function tryEnable3DBuildings(on) {
+      uiState.buildingsOn = on;
+      uiState.buildingBoost = 1.0;
+if (!on) {
+        if (map.getLayer(LYR.bld3d)) map.removeLayer(LYR.bld3d);
+        $("buildingsStatus").textContent = "off";
+        $("buildingsDebug").textContent = "–";
+        buildingsBaseRef = null;
+        return;
+      }
+
+      const layers = map.getStyle()?.layers || [];
+      const base = layers.find(l =>
+        (l["source-layer"] && String(l["source-layer"]).toLowerCase().includes("building")) ||
+        (l.id && String(l.id).toLowerCase().includes("building"))
+      );
+
+      if (!base) {
+        $("buildingsStatus").textContent = "off";
+        $("buildingsDebug").textContent = "Ingen building-data hittades. Prova Streets/Topo.";
+        showToast("3D buildings saknas i denna style. Byt till Streets/Topo.");
+        buildingsBaseRef = null;
+        return;
+      }
+
+      buildingsBaseRef = {
+        source: base.source,
+        sourceLayer: base["source-layer"],
+        beforeId: base.id,
+        filter: base.filter || ["all"]
+      };
+
+      rebuildBuildingsLayer();
+      $("buildingsStatus").textContent = "on";
+    }
+
+    function rebuildBuildingsLayer() {
+      if (!buildingsBaseRef) return;
+      if (map.getLayer(LYR.bld3d)) map.removeLayer(LYR.bld3d);
+
+      const boost = uiState.buildingBoost;
+      const heightExpr = ["*", ["coalesce", ["get","height"], 10], boost];
+      const baseExpr   = ["*", ["coalesce", ["get","min_height"], 0], boost];
+
+      map.addLayer({
+        id: LYR.bld3d,
+        type: "fill-extrusion",
+        source: buildingsBaseRef.source,
+        ...(buildingsBaseRef.sourceLayer ? { "source-layer": buildingsBaseRef.sourceLayer } : {}),
+        minzoom: 14,
+        filter: buildingsBaseRef.filter,
+        paint: {
+          "fill-extrusion-color": "#c9c9c9",
+          "fill-extrusion-opacity": 1.0,
+          "fill-extrusion-height": [
+            "interpolate", ["linear"], ["zoom"],
+            13.5, 0,
+            15.5, heightExpr
+          ],
+          "fill-extrusion-base": baseExpr
+        }
+      }, buildingsBaseRef.beforeId);
+
+      // Ensure point symbols (e.g., trees) render below buildings so they don't "shine through" behind extrusions
+      try {
+        const treeLayers = [LYR.trees_png, LYR.trees_cluster, LYR.trees_cluster_count];
+        for (const tl of treeLayers) {
+          if (map.getLayer(tl) && map.getLayer(LYR.bld3d)) map.moveLayer(tl, LYR.bld3d);
+        }
+      } catch (e) { console.warn(e); }
+
+
+      $("buildingsDebug").textContent =
+        `OK: source=${buildingsBaseRef.source}${buildingsBaseRef.sourceLayer ? ", layer=" + buildingsBaseRef.sourceLayer : ""} • boost=${boost.toFixed(1)}×`;
+    }
+
+    async function fitToLayer(kind) {
+      const fileByKind = {
+        trees: FILES.trees,
+        vard: FILES.vard,
+        grund: FILES.grund,
+        gymn: FILES.gymn,
+        parks: FILES.parks,
+        playgrounds: FILES.playgrounds,
+        grill: FILES.grill,
+        bibliotek: FILES.bibliotek,
+        simhall: FILES.simhall,
+        bus: FILES.bus,
+        train: FILES.train,
+        hyres: FILES.hyres,
+        bostads: FILES.bostads,
+        villor: FILES.villor,
+        bryggor: FILES.bryggor,
+        naturreservat: FILES.naturreservat,
+        storasjaar: FILES.storasjaar,
+        tagspar: FILES.tagspar,
+        tagstationer: FILES.tagstationer,
+        tomtar: FILES.tomtar,
+        vagbommar: FILES.vagbommar
+      }[kind];
+      
+      if (!fileByKind) return;
+      try {
+        const fc = await fetchJsonSafe(fileByKind);
+        const coords = [];
+        const pushCoords = (c) => {
+          if (!c) return;
+          if (Array.isArray(c) && c.length === 2 && typeof c[0] === "number" && typeof c[1] === "number") {
+            coords.push(c);
+            return;
+          }
+          if (Array.isArray(c)) c.forEach(pushCoords);
+        };
+        (fc.features || []).forEach(f => pushCoords(f?.geometry?.coordinates));
+        if (!coords.length) return;
+        let minLng=coords[0][0], minLat=coords[0][1], maxLng=coords[0][0], maxLat=coords[0][1];
+        coords.forEach(([lng,lat]) => { minLng=Math.min(minLng,lng); maxLng=Math.max(maxLng,lng); minLat=Math.min(minLat,lat); maxLat=Math.max(maxLat,lat); });
+        map.fitBounds([[minLng,minLat],[maxLng,maxLat]], { padding: 80, duration: 650 });
+      } catch (e) { showToast(`Zoom misslyckades (${kind}). Kolla filnamn.`); console.error(e); }
+    }
+
+    async function fitToAll() {
+      try {
+        const urls = Object.values(FILES);
+        const pts = [];
+        for (const u of urls) {
+          try {
+            const fc = await fetchJsonSafe(u);
+            (fc.features || []).forEach(f => {
+              const c = f?.geometry?.coordinates;
+              if (Array.isArray(c) && c.length>=2) pts.push([c[0],c[1]]);
+            });
+          } catch(e) { /* skip */ }
+        }
+        if (!pts.length) return;
+        let minLng=pts[0][0], minLat=pts[0][1], maxLng=pts[0][0], maxLat=pts[0][1];
+        pts.forEach(([lng,lat]) => { minLng=Math.min(minLng,lng); maxLng=Math.max(maxLng,lng); minLat=Math.min(minLat,lat); maxLat=Math.max(maxLat,lat); });
+        map.fitBounds([[minLng,minLat],[maxLng,maxLat]], { padding: 70, duration: 700 });
+      } catch (e) { showToast("Fit all misslyckades."); console.error(e); }
+    }
+
+    const searchIndex = [];
+    async function buildSearchIndex() {
+      searchIndex.length = 0;
+      const sources = [
+        { kind:"Träd", file: FILES.trees },
+        { kind:"Vårdcentral", file: FILES.vard },
+        { kind:"Grundskola", file: FILES.grund },
+        { kind:"Gymnasieskola", file: FILES.gymn },
+        { kind:"Park", file: FILES.parks },
+        { kind:"Lekplats", file: FILES.playgrounds },
+        { kind:"Grillplats", file: FILES.grill },
+        { kind:"Bibliotek", file: FILES.bibliotek },
+        { kind:"Simhall", file: FILES.simhall },
+        { kind:"Busshållplats", file: FILES.bus },
+        { kind:"Tågstation", file: FILES.train },
+        { kind:"Hyresrätt", file: FILES.hyres },
+        { kind:"Bostadsrätt", file: FILES.bostads },
+        { kind:"Villa/Radhus", file: FILES.villor }
+      ];
+      
+      for (const s of sources) {
+        try {
+          const fc = await fetchJsonSafe(s.file);
+          (fc.features || []).forEach(f => {
+            const c = f?.geometry?.coordinates;
+            if (!Array.isArray(c) || c.length<2) return;
+            const p = f.properties || {};
+            searchIndex.push({ 
+              kind:s.kind, 
+              name:String(p.name||s.kind), 
+              descr:String(p.descr||""), 
+              lng:c[0], lat:c[1], 
+              props:p 
+            });
+          });
+        } catch (e) { 
+          console.warn(`Kan inte läsa ${s.file}:`, e); 
+        }
+      }
+    }
+
+    function renderSearch(q) {
+      const wrap = $("results");
+      wrap.innerHTML = "";
+      const qq = (q||"").trim().toLowerCase();
+      if (qq.length < 2) return;
+
+      const hits = searchIndex
+        .filter(x => (x.name + " " + x.descr + " " + x.kind).toLowerCase().includes(qq))
+        .slice(0, 15);
+
+      if (!hits.length) { wrap.innerHTML = `<div class="mono">Inga träffar.</div>`; return; }
+
+      hits.forEach(h => {
+        const div = document.createElement("div");
+        div.className = "result";
+        div.innerHTML = `<strong>${h.name}</strong><span>${h.kind}${h.descr ? " • " + h.descr.slice(0,70) + (h.descr.length>70?"…":"") : ""}</span>`;
+        div.addEventListener("click", () => {
+          map.flyTo({ center:[h.lng,h.lat], zoom: Math.max(map.getZoom(), 16), pitch: Math.max(map.getPitch(), 65), speed: 0.9 });
+          setInfo(h.props, h.kind);
+          new maptilersdk.Popup().setLngLat([h.lng,h.lat]).setHTML(popupHtml(h.props, h.kind)).addTo(map);
+        });
+        wrap.appendChild(div);
+      });
+    }
+
+    const JLT_LINE_DEFS = {
+      "1": { color:"#ef4444", name:"Linje 1", stops:["Jönköping Råslätts centrum","Jönköping Ljungarumsskolan","Jönköping Skogskyrkogården","Jönköping Strömsholm","Jönköping Kämpevägen","Jönköping Brahegatan","Jönköping Torpaplan","Jönköping Myntgatan","Jönköping Lasarettsparken","Jönköping Juneporten","Jönköping Rådhusparken","Jönköping Östra Centrum","Jönköping Stadsbiblioteket","Jönköping Östra torget","Jönköping Cigarren","Jönköping Kilallén","Jönköping Tegelbruksgatan","Jönköping Rosengården","Jönköping Rosenlundstorg","Jönköping Rosenlundsbadet","Jönköping Elmia","Jönköping Österängsskolan","Jönköping Österängens centrum","Jönköping Södra Apollovägen","Huskvarna Sandagymnasiet","Huskvarna Vårstarondellen","Huskvarna Vårdcentrum","Huskvarna Esplanaden","Huskvarna Viktoriaplan"] },
+      "2": { color:"#f59e0b", name:"Linje 2", stops:["Jönköping Hisingsängens vändplan","Jönköping Tolarpsvägen","Jönköping Hisingsängen","Jönköping Hisingstorps gård","Jönköping Hisingstorpsskolan","Jönköping Barbackavägen","Jönköping Dalvik","Jönköping Högabergsgatan","Jönköping Stadsparken","Jönköping Talavidskolan","Jönköping Tändsticksområdet","Jönköping Juneporten","Jönköping Rådhusparken","Jönköping Östra Centrum","Jönköping Stadsbiblioteket","Jönköping Östra torget","Jönköping Cigarren","Jönköping Kilallén","Jönköping Starrgatan","Jönköping Rosenlunds Vårdcentrum","Jönköping Rosenlundsskolan","Jönköping Ekhagens centrum","Jönköping Resedastigen","Jönköping Gullregnsbacken","Huskvarna Kittendorffs gata","Huskvarna Kungsporten","Huskvarna Lahagsgatan","Huskvarna Öxnehaga centrum","Huskvarna Öxnegården","Huskvarna Oxhagsskolan"] },
+      "3": { color:"#10b981", name:"Linje 3", stops:["Jönköping Tokarps vändplan","Jönköping Tokarps koloniområde","Jönköping Norra Tokarp","Jönköping Veragatan","Jönköping Gräshagens centrum","Jönköping Junegården","Jönköping Karlavägen","Jönköping Ekgatan","Jönköping Torpaplan","Jönköping Myntgatan","Jönköping Lasarettsparken","Jönköping Juneporten","Jönköping Rådhusparken","Jönköping Östra Centrum","Jönköping Stadsbiblioteket","Jönköping Östra torget","Jönköping Cigarren","Jönköping Rocksjön","Jönköping Länssjukhuset Ryhov","Jönköping M2 Center","M2 Center Eurostop västra entrén","Jönköping Gånglåten","Jönköping Ljungarums kyrka","Jönköping Ljungarum","Jönköping Smedsbo","Jönköping Sagaholmsvägen","Jönköping Råslätts centrum"] },
+      "4": { color:"#0ea5e9", name:"Linje 4", stops:["Jönköping Vätterslund","Jönköping Stigbergsliden","Jönköping Narvavägen","Jönköping Stadsparken","Jönköping Talavidskolan","Jönköping Tändsticksområdet","Jönköping Juneporten","Jönköping Rådhusparken","Jönköping Östra Centrum","Jönköping Kulturhuset Spira","Jönköping Maxi Ica","Jönköping Skiffervägen","Jönköping Granitvägen","Jönköping Länssjukhuset Ryhov","Jönköping Psykiatrivägen","Jönköping Ekhagens centrum","Jönköping S:t Göransvägen","Jönköping Glansgatan","Jönköping Rosenlundsbadet","Jönköping Elmia","Jönköping Falkgatan","Jönköping Thulevägen","Huskvarna Esplanaden","Huskvarna Viktoriaplan"] },
+      "11": { color:"#7c3aed", name:"Linje 11", stops:["Jönköping Bokgatan","Jönköping Elektravägen","Jönköping Törnrosgatan","Jönköping Ekhagens centrum","Jönköping Cigarren","Jönköping Östra torget","Jönköping Stadsbiblioteket","Jönköping Östra Centrum","Jönköping Rådhusparken","Jönköping Juneporten","Jönköping Tändsticksområdet","Jönköping Talavidskolan","Jönköping Stadsparken","Jönköping Högabergsgatan","Jönköping Dalvik","Jönköping Stattutgatan","Jönköping Sveavägen","Jönköping Runnavägen","Villekullagatan","Jönköping Mariebo vändplan"] }
+    };
+
+    let __jltBusLinesFC = { type: "FeatureCollection", features: [] };
+    const __jltLineBuildPromises = new Map();
+    let __jltStopsIndexPromise = null;
+
+    function normStopName(s){
+      return String(s || "")
+        .toLowerCase()
+        .normalize("NFKD")
+        .replace(/[̀-ͯ]/g, "")
+        .replace(/s:t/g, "st")
+        .replace(/[^a-z0-9åäö ]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    async function ensureJltStopsIndex(){
+      if (__jltStopsIndexPromise) return __jltStopsIndexPromise;
+      __jltStopsIndexPromise = (async () => {
+        const res = await fetch(FILES.bus);
+        const fc = await res.json();
+        const exact = new Map();
+        const stripped = new Map();
+        for (const f of (fc.features || [])) {
+          const name = f?.properties?.name;
+          const coords = f?.geometry?.coordinates;
+          if (!name || !Array.isArray(coords)) continue;
+          const n = normStopName(name);
+          if (!exact.has(n)) exact.set(n, []);
+          exact.get(n).push({ name, coords, feature: f });
+          const n2 = n.replace(/^(jonkoping|huskvarna|bankeryd|granna|tenhult)\s+/, "");
+          if (!stripped.has(n2)) stripped.set(n2, []);
+          stripped.get(n2).push({ name, coords, feature: f });
+        }
+        return { exact, stripped, fc };
+      })();
+      return __jltStopsIndexPromise;
+    }
+
+    function findJltStopMatch(name, idx){
+      const n = normStopName(name);
+      const candidates = idx.exact.get(n) || idx.stripped.get(n) || idx.stripped.get(n.replace(/^(jonkoping|huskvarna|bankeryd|granna|tenhult)\s+/, ""));
+      if (candidates?.length) return candidates[0];
+      const short = n.replace(/^(jonkoping|huskvarna|bankeryd|granna|tenhult)\s+/, "");
+      for (const [k, arr] of idx.exact.entries()) if (k.includes(short) || short.includes(k)) return arr[0];
+      for (const [k, arr] of idx.stripped.entries()) if (k.includes(short) || short.includes(k)) return arr[0];
+      return null;
+    }
+
+    async function routeBusSegment(a, b){
+      const base = OSRM_ENDPOINTS.car;
+      const url = `${base}${a[0]},${a[1]};${b[0]},${b[1]}?overview=full&geometries=polyline&steps=false`;
+      try {
+        const r = await fetch(url);
+        const data = await r.json();
+        if (data?.code === 'Ok' && data.routes?.[0]?.geometry) {
+          return polyline.decode(data.routes[0].geometry).map(([lat,lng]) => [lng,lat]);
+        }
+      } catch (e) {
+        console.warn('Bus segment routing failed', e);
+      }
+      return [a, b];
+    }
+
+    function upsertJltFeature(feature){
+      __jltBusLinesFC.features = (__jltBusLinesFC.features || []).filter(f => f?.properties?.lineId !== feature?.properties?.lineId);
+      __jltBusLinesFC.features.push(feature);
+      if (map.getSource(SRC.jltlines)) map.getSource(SRC.jltlines).setData(__jltBusLinesFC);
+    }
+
+    async function ensureJltLineBuilt(lineId){
+      if ((__jltBusLinesFC.features || []).some(f => f?.properties?.lineId === lineId)) return;
+      if (__jltLineBuildPromises.has(lineId)) return __jltLineBuildPromises.get(lineId);
+      const promise = (async () => {
+        const def = JLT_LINE_DEFS[lineId];
+        if (!def) return;
+        const idx = await ensureJltStopsIndex();
+        const stops = def.stops.map(name => ({ requested: name, match: findJltStopMatch(name, idx) })).filter(x => x.match);
+        const coords = [];
+        let routedSegments = 0;
+        for (let i = 0; i < stops.length - 1; i++) {
+          const a = stops[i].match.coords;
+          const b = stops[i+1].match.coords;
+          const seg = await routeBusSegment(a, b);
+          if (seg.length > 2) routedSegments++;
+          for (let j = 0; j < seg.length; j++) {
+            const c = seg[j];
+            const prev = coords[coords.length - 1];
+            if (!prev || prev[0] !== c[0] || prev[1] !== c[1]) coords.push(c);
+          }
+        }
+        if (coords.length < 2 && stops.length >= 2) {
+          for (const s of stops) coords.push(s.match.coords);
+        }
+        upsertJltFeature({
+          type: 'Feature',
+          properties: {
+            lineId,
+            lineName: def.name,
+            color: def.color,
+            stopCount: stops.length,
+            roadSegments: routedSegments,
+            segmentCount: Math.max(0, stops.length - 1),
+            mode: 'routing'
+          },
+          geometry: { type: 'LineString', coordinates: coords }
+        });
+      })();
+      __jltLineBuildPromises.set(lineId, promise);
+      try { await promise; } finally { __jltLineBuildPromises.delete(lineId); }
+    }
+
+    async function ensureJltBusLines(){
+      try {
+        if (!__jltBusLinesFC) {
+        }
+        if (!map.getSource(SRC.jltlines)) {
+          map.addSource(SRC.jltlines, { type:"geojson", data: __jltBusLinesFC });
+        } else {
+          map.getSource(SRC.jltlines).setData(__jltBusLinesFC);
+        }
+
+        const widthExpr = ["interpolate", ["linear"], ["zoom"], 10, 3.5, 13, 5.5, 16, 8.5];
+
+        if (!map.getLayer(LYR.jlt_line_casing)) {
+          map.addLayer({
+            id: LYR.jlt_line_casing,
+            type: "line",
+            source: SRC.jltlines,
+            layout: { "line-join": "round", "line-cap": "round" },
+            paint: {
+              "line-color": "#ffffff",
+              "line-width": ["+", widthExpr, 2.4],
+              "line-opacity": 0.78
+            }
+          });
+        }
+
+        const ids = ["1","2","3","4","11"];
+        for (const id of ids) {
+          const lyr = LYR[`jlt_line_${id}`];
+          const color = JLT_LINE_DEFS[id].color;
+          if (!map.getLayer(lyr)) {
+            map.addLayer({
+              id: lyr,
+              type: "line",
+              source: SRC.jltlines,
+              filter: ["==", ["get", "lineId"], id],
+              layout: { "line-join": "round", "line-cap": "round" },
+              paint: {
+                "line-color": color,
+                "line-width": widthExpr,
+                "line-opacity": 0.94
+              }
+            });
+            map.on("mouseenter", lyr, () => map.getCanvas().style.cursor = "pointer");
+            map.on("mouseleave", lyr, () => map.getCanvas().style.cursor = "");
+            map.on("click", lyr, (e) => {
+              const f = e.features?.[0]; if (!f) return;
+              openInfoModal({
+                title: `JLT ${f.properties?.lineName || ('Linje ' + id)}`,
+                props: {
+                  Linje: f.properties?.lineId || id,
+                  Typ: "Experimentell overlay",
+                  Hållplatser: f.properties?.stopCount || "-",
+                  Info: `Byggd från publika JLT-linjesidor, dina lokala hållplatser och vägnätet där vägdata finns. Vägroutade delsträckor: ${f.properties?.roadSegments || 0}/${f.properties?.segmentCount || "-"}.`
+                }
+              });
+            });
+          }
+        }
+
+        setLayerGroupVisible("jlt1", uiState.visible.jlt1);
+        setLayerGroupVisible("jlt2", uiState.visible.jlt2);
+        setLayerGroupVisible("jlt3", uiState.visible.jlt3);
+        setLayerGroupVisible("jlt4", uiState.visible.jlt4);
+        setLayerGroupVisible("jlt11", uiState.visible.jlt11);
+      } catch (err) {
+        console.warn("JLT busslinjer kunde inte byggas", err);
+      }
+    }
+
+    async function addAllOverlays() {
+      // ORIGINAL - Träd med kluster
+      addGeoJsonSource(SRC.trees, FILES.trees, false);
+      if (!map.getLayer(LYR.trees_points)) {
+        map.addLayer({
+          id: LYR.trees_points,
+          type: "circle",
+          source: SRC.trees,
+          filter: ["!", ["has", "point_count"]],
+          paint: {
+            "circle-radius": 0.01,
+            "circle-opacity": 0.0,
+            "circle-stroke-width": 0,
+            "circle-color": "#16a34a",
+            "circle-stroke-width": 2.0,
+            "circle-stroke-color": "#ffffff"
+          }
+        });
+      }
+
+      // ORIGINAL - Övriga
+      addGeoJsonSource(SRC.vard,  FILES.vard,  false);
+      addGeoJsonSource(SRC.grund, FILES.grund, false);
+      addGeoJsonSource(SRC.gymn,  FILES.gymn,  false);
+      
+      (await ensurePngImage("iconHospital", ICON_PATHS.hospital, 2))
+        ? addIconPointLayer(LYR.vard_points, SRC.vard, "iconHospital", ICON_SIZE.hospital, 0.92, 12)
+        : addPointLayer(LYR.vard_points, SRC.vard, "#e11d48", 7);
+      (await ensurePngImage("iconSchool", ICON_PATHS.school, 2))
+        ? addIconPointLayer(LYR.grund_points, SRC.grund, "iconSchool", ICON_SIZE.school, 0.92, 12)
+        : addPointLayer(LYR.grund_points, SRC.grund, "#22c55e", 6);
+      (await ensurePngImage("iconHighschool", ICON_PATHS.highschool, 2))
+        ? addIconPointLayer(LYR.gymn_points, SRC.gymn, "iconHighschool", ICON_SIZE.highschool, 0.92, 12)
+        : addPointLayer(LYR.gymn_points, SRC.gymn, "#2563eb", 6);
+      
+      wirePointInteractions(LYR.vard_points, "Vårdcentral");
+      wirePointInteractions(LYR.grund_points, "Grundskola");
+      wirePointInteractions(LYR.gymn_points, "Gymnasieskola");
+
+      // NYA NATUR
+      addGeoJsonSource(SRC.parks, FILES.parks, false);
+      addPointLayer(LYR.parks_points, SRC.parks, "#2d6a4f", 6);
+      wirePointInteractions(LYR.parks_points, "Park");
+      
+      addGeoJsonSource(SRC.playgrounds, FILES.playgrounds, false);
+      addPointLayer(LYR.playgrounds_points, SRC.playgrounds, "#f97316", 7);
+      wirePointInteractions(LYR.playgrounds_points, "Lekplats");
+      
+      addGeoJsonSource(SRC.grill, FILES.grill, false);
+      addPointLayer(LYR.grill_points, SRC.grill, "#b45309", 6);
+      wirePointInteractions(LYR.grill_points, "Grillplats");
+
+      // NYA SERVICE
+      addGeoJsonSource(SRC.bibliotek, FILES.bibliotek, false);
+      addPointLayer(LYR.bibliotek_points, SRC.bibliotek, "#7c3aed", 7);
+      wirePointInteractions(LYR.bibliotek_points, "Bibliotek");
+      
+      addGeoJsonSource(SRC.simhall, FILES.simhall, false);
+      addPointLayer(LYR.simhall_points, SRC.simhall, "#0891b2", 7);
+      wirePointInteractions(LYR.simhall_points, "Simhall/Idrott");
+
+      // NYA KOLLEKTIVTRAFIK
+      addGeoJsonSource(SRC.bus, FILES.bus, false);
+      (await ensurePngImage("iconBus", ICON_PATHS.bus, 2))
+        ? addIconPointLayer(LYR.bus_points, SRC.bus, "iconBus", ICON_SIZE.bus, 0.92, 12)
+        : addPointLayer(LYR.bus_points, SRC.bus, "#0284c7", 5);
+      wirePointInteractions(LYR.bus_points, "Busshållplats");
+      
+      addGeoJsonSource(SRC.train, FILES.train, false);
+      addPointLayer(LYR.train_points, SRC.train, "#7e22ce", 8);
+      wirePointInteractions(LYR.train_points, "Tågstation");
+
+      await ensureJltBusLines();
+      for (const id of ["1","2","3","4","11"]) {
+        if (uiState.visible[`jlt${id}`]) await ensureJltLineBuilt(id);
+      }
+
+      // NYA BOENDE
+      addGeoJsonSource(SRC.hyres, FILES.hyres, false);
+      addPointLayer(LYR.hyres_points, SRC.hyres, "#b91c1c", 6);
+      wirePointInteractions(LYR.hyres_points, "Hyresrätt");
+      
+      addGeoJsonSource(SRC.bostads, FILES.bostads, false);
+      addPointLayer(LYR.bostads_points, SRC.bostads, "#0d9488", 6);
+      wirePointInteractions(LYR.bostads_points, "Bostadsrätt");
+      
+      addGeoJsonSource(SRC.villor, FILES.villor, false);
+      addPointLayer(LYR.villor_points, SRC.villor, "#a16207", 6);
+      wirePointInteractions(LYR.villor_points, "Villa/Radhus");
+
+
+      // EXTRA LAGER (Edwin)
+      // Bryggor (linjer)
+      addGeoJsonSource(SRC.bryggor, FILES.bryggor, false);
+      addLineLayer(LYR.bryggor_line, SRC.bryggor, "#38bdf8", 4, 0.9);
+      wirePointInteractions(LYR.bryggor_line, "Brygga");
+
+      // Naturreservat (linjer)
+      addGeoJsonSource(SRC.naturreservat, FILES.naturreservat, false);
+      addLineLayer(LYR.naturreservat_line, SRC.naturreservat, "#16a34a", 4, 0.9, [1.2, 1.2]);
+      wirePointInteractions(LYR.naturreservat_line, "Naturreservat");
+
+      // Sjöar (polygon) - klick visar namn + bild (om name finns / eller via Sjö-namn punkter)
+      addGeoJsonSource(SRC.storasjaar, FILES.storasjaar, false);
+      addFillLayer(LYR.storasjaar_fill, SRC.storasjaar, "#0ea5e9", 0.22);
+      addLineLayer(LYR.storasjaar_line, SRC.storasjaar, "#0284c7", 2.5, 0.85);
+      // Sjö-namn (punkter för klick + bild per sjö)
+      addGeoJsonSource(SRC.sjoar_namn, FILES.sjoar_namn, false);
+      (await ensurePngImage("iconSjo", "Sjoar_Namn.png", 2))
+        ? addIconPointLayer(LYR.sjoar_namn_points, SRC.sjoar_namn, "iconSjo", ["interpolate", ["linear"], ["zoom"], 8, 0.25, 12, 0.45, 16, 0.75], 0.95, 8)
+        : addPointLayer(LYR.sjoar_namn_points, SRC.sjoar_namn, "#0f172a", 5);
+
+      // (Popup/modal wiring görs längre ner)
+
+      // Tågspår (linjer)
+      addGeoJsonSource(SRC.tagspar, FILES.tagspar, false);
+      addLineLayer(LYR.tagspar_line, SRC.tagspar, "#f59e0b", 3.5, 0.95);
+      wirePointInteractions(LYR.tagspar_line, "Tågspår");
+
+      // Extra tåglager 2 (linjer)
+      addGeoJsonSource(SRC.tagstationer, FILES.tagstationer, false);
+      addLineLayer(LYR.tagstationer_line, SRC.tagstationer, "#a855f7", 3.5, 0.95);
+      wirePointInteractions(LYR.tagstationer_line, "Tåglager 2");
+
+      // Tågstationer (punkter) - lägg din ikon som "Tagstationer.png"
+      addGeoJsonSource(SRC.tagstationer_points, FILES.tagstationer_points, false);
+      (await ensurePngImage("iconTagstationer", "Tagstationer.png", 2))
+        ? addIconPointLayer(LYR.tagstationer_points, SRC.tagstationer_points, "iconTagstationer", ICON_SIZE.bus, 0.95, 8)
+        : addPointLayer(LYR.tagstationer_points, SRC.tagstationer_points, "#111827", 6);
+
+      // Tomtar (linjer) - INGEN PNG, bara linjer (som du ville)
+      addGeoJsonSource(SRC.tomtar, FILES.tomtar, false);
+      addLineLayer(LYR.tomtar_line, SRC.tomtar, "#FDBA74", 2.2, 0.9);
+      wirePointInteractions(LYR.tomtar_line, "Tomtar");
+
+      // Vägbommar (punkter) - PNG om filen finns, annars fallback svart punkt
+      addGeoJsonSource(SRC.vagbommar, FILES.vagbommar, false);
+
+      const okVagbomIcon = await ensurePngImage("vagbommarPng", VAGBOMMAR_PNG_PATH, 2);
+
+      // PNG (symbol)
+      if (okVagbomIcon && !map.getLayer(LYR.vagbommar_points)) {
+        addIconPointLayer(
+          LYR.vagbommar_points,
+          SRC.vagbommar,
+          "vagbommarPng",
+          ICON_SIZE.barrier,   // skalar med zoom (du kan ändra i ICON_SIZE)
+          0.95,
+          10
+        );
+      }
+
+      // Fallback: svart punkt om PNG saknas
+      if (!okVagbomIcon && !map.getLayer(LYR.vagbommar_points)) {
+        map.addLayer({
+          id: LYR.vagbommar_points,
+          type: "circle",
+          source: SRC.vagbommar,
+          paint: {
+            "circle-color": "#000000",
+            "circle-opacity": 0.9,
+            "circle-radius": ["interpolate", ["linear"], ["zoom"], 8, 2.2, 12, 4.0, 16, 7.0],
+            "circle-stroke-color": "#ffffff",
+            "circle-stroke-width": ["interpolate", ["linear"], ["zoom"], 8, 0.8, 12, 1.0, 16, 1.4]
+          }
+        });
+      }
+
+      wirePointInteractions(LYR.vagbommar_points, "Vägbommar");
+
+      // Sätt synlighet för alla lager
+      setLayerGroupVisible("trees", uiState.visible.trees);
+      setLayerGroupVisible("vard", uiState.visible.vard);
+      setLayerGroupVisible("grund", uiState.visible.grund);
+      setLayerGroupVisible("gymn", uiState.visible.gymn);
+      setLayerGroupVisible("parks", uiState.visible.parks);
+      setLayerGroupVisible("playgrounds", uiState.visible.playgrounds);
+      setLayerGroupVisible("grill", uiState.visible.grill);
+      setLayerGroupVisible("bibliotek", uiState.visible.bibliotek);
+      setLayerGroupVisible("simhall", uiState.visible.simhall);
+      setLayerGroupVisible("bus", uiState.visible.bus);
+      setLayerGroupVisible("train", uiState.visible.train);
+      setLayerGroupVisible("hyres", uiState.visible.hyres);
+      setLayerGroupVisible("bostads", uiState.visible.bostads);
+      setLayerGroupVisible("villor", uiState.visible.villor);
+      setLayerGroupVisible("bryggor", uiState.visible.bryggor);
+      setLayerGroupVisible("naturreservat", uiState.visible.naturreservat);
+      setLayerGroupVisible("storasjaar", uiState.visible.storasjaar);
+      setLayerGroupVisible("tagspar", uiState.visible.tagspar);
+      setLayerGroupVisible("tagstationer", uiState.visible.tagstationer);
+      setLayerGroupVisible("tomtar", uiState.visible.tomtar);
+      setLayerGroupVisible("vagbommar", uiState.visible.vagbommar);
+      setLayerGroupVisible("jlt1", uiState.visible.jlt1);
+      setLayerGroupVisible("jlt2", uiState.visible.jlt2);
+      setLayerGroupVisible("jlt3", uiState.visible.jlt3);
+      setLayerGroupVisible("jlt4", uiState.visible.jlt4);
+      setLayerGroupVisible("jlt11", uiState.visible.jlt11);
+      
+      showToast("Alla lager laddade! 🗺️");
+    }
+
+    function hasOpenWeatherKey(){
+      return !!OPENWEATHER_KEY && !OPENWEATHER_KEY.includes("PUT_OPENWEATHER_API_KEY_HERE");
+    }
+
+    const ATM_SRC = {
+      weather: "src_weather_precip",
+      wind: "src_weather_wind",
+      windField: "src_weather_wind_field",
+      air: "src_air_quality_grid"
+    };
+    const ATM_LYR = {
+      weather: "ly_weather_precip",
+      wind: "ly_weather_wind",
+      windGlow: "ly_weather_wind_glow",
+      windArrows: "ly_weather_wind_arrows",
+      windLabels: "ly_weather_wind_labels",
+      airHeat: "ly_air_quality_heat",
+      airDots: "ly_air_quality_dots"
+    };
+
+    function setAtmosphereBadge(id, on){
+      const el = document.getElementById(id);
+      if (el) el.textContent = on ? "on" : "off";
+    }
+
+    function openWeatherTile(layerName){
+      return `https://tile.openweathermap.org/map/${layerName}/{z}/{x}/{y}.png?appid=${OPENWEATHER_KEY}`;
+    }
+
+    function ensureRasterLayer(sourceId, layerId, tilesUrl, opacity){
+      if (!map.getSource(sourceId)) {
+        map.addSource(sourceId, { type:"raster", tiles:[tilesUrl], tileSize:256 });
+      }
+      if (!map.getLayer(layerId)) {
+        map.addLayer({
+          id: layerId,
+          type: "raster",
+          source: sourceId,
+          layout: { visibility: "none" },
+          paint: { "raster-opacity": opacity }
+        });
+      }
+    }
+
+    function ensureWindArrowImage(){
+      if (map.hasImage("windArrowIcon")) return;
+      const canvas = document.createElement("canvas");
+      canvas.width = 128;
+      canvas.height = 128;
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, 128, 128);
+      ctx.strokeStyle = "#ffffff";
+      ctx.fillStyle = "#ffffff";
+      ctx.lineWidth = 14;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.beginPath();
+      ctx.moveTo(64, 110);
+      ctx.lineTo(64, 28);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(64, 18);
+      ctx.lineTo(92, 50);
+      ctx.lineTo(74, 50);
+      ctx.lineTo(74, 88);
+      ctx.lineTo(54, 88);
+      ctx.lineTo(54, 50);
+      ctx.lineTo(36, 50);
+      ctx.closePath();
+      ctx.fill();
+      map.addImage("windArrowIcon", canvas, { pixelRatio: 2, sdf: true });
+    }
+
+    function ensureWindLayers(){
+      ensureWindArrowImage();
+      if (!map.getSource(ATM_SRC.windField)) {
+        map.addSource(ATM_SRC.windField, { type:"geojson", data:{ type:"FeatureCollection", features:[] } });
+      }
+      if (!map.getLayer(ATM_LYR.windGlow)) {
+        map.addLayer({
+          id: ATM_LYR.windGlow,
+          type: "circle",
+          source: ATM_SRC.windField,
+          layout: { visibility: "none" },
+          paint: {
+            "circle-radius": [
+              "interpolate", ["linear"], ["zoom"],
+              8, ["interpolate", ["linear"], ["coalesce", ["get", "speed"], 0], 0, 18, 3, 24, 7, 30, 12, 38, 18, 46],
+              12, ["interpolate", ["linear"], ["coalesce", ["get", "speed"], 0], 0, 24, 3, 31, 7, 40, 12, 50, 18, 60],
+              16, ["interpolate", ["linear"], ["coalesce", ["get", "speed"], 0], 0, 30, 3, 40, 7, 52, 12, 64, 18, 78]
+            ],
+            "circle-color": [
+              "interpolate", ["linear"], ["coalesce", ["get", "speed"], 0],
+              0, "rgba(255,255,255,0.55)",
+              3, "rgba(191,219,254,0.62)",
+              7, "rgba(96,165,250,0.72)",
+              12, "rgba(59,130,246,0.82)",
+              18, "rgba(30,64,175,0.9)"
+            ],
+            "circle-stroke-width": 2.0,
+            "circle-stroke-color": "rgba(255,255,255,0.55)",
+            "circle-blur": 0.25,
+            "circle-opacity": ["interpolate", ["linear"], ["zoom"], 8, 0.92, 12, 0.96, 16, 1.0]
+          }
+        });
+      }
+      if (!map.getLayer(ATM_LYR.windArrows)) {
+        map.addLayer({
+          id: ATM_LYR.windArrows,
+          type: "symbol",
+          source: ATM_SRC.windField,
+          layout: {
+            visibility: "none",
+            "icon-image": "windArrowIcon",
+            "icon-size": [
+              "interpolate", ["linear"], ["zoom"],
+              8, ["interpolate", ["linear"], ["coalesce", ["get", "speed"], 0], 0, 0.95, 3, 1.15, 7, 1.35, 12, 1.65, 18, 1.95],
+              12, ["interpolate", ["linear"], ["coalesce", ["get", "speed"], 0], 0, 1.15, 3, 1.35, 7, 1.6, 12, 1.95, 18, 2.3],
+              16, ["interpolate", ["linear"], ["coalesce", ["get", "speed"], 0], 0, 1.35, 3, 1.6, 7, 1.95, 12, 2.35, 18, 2.8]
+            ],
+            "icon-rotate": ["coalesce", ["get", "deg"], 0],
+            "icon-allow-overlap": true,
+            "icon-ignore-placement": true,
+            "icon-rotation-alignment": "map",
+            "symbol-placement": "point"
+          },
+          paint: {
+            "icon-color": [
+              "interpolate", ["linear"], ["coalesce", ["get", "speed"], 0],
+              0, "rgba(255,255,255,1.0)",
+              3, "rgba(255,255,255,1.0)",
+              7, "rgba(219,234,254,1.0)",
+              12, "rgba(147,197,253,1.0)",
+              18, "rgba(59,130,246,1.0)"
+            ],
+            "icon-halo-color": "rgba(11,12,15,0.95)",
+            "icon-halo-width": 3.5,
+            "icon-opacity": 1.0
+          }
+        });
+      }
+      if (!map.getLayer(ATM_LYR.windLabels)) {
+        map.addLayer({
+          id: ATM_LYR.windLabels,
+          type: "symbol",
+          source: ATM_SRC.windField,
+          minzoom: 11,
+          layout: {
+            visibility: "none",
+            "text-field": ["concat", ["to-string", ["round", ["coalesce", ["get", "speed"], 0]]], " m/s"],
+            "text-size": ["interpolate", ["linear"], ["zoom"], 11, 10, 15, 12],
+            "text-offset": [0, 1.15],
+            "text-anchor": "top",
+            "text-allow-overlap": true,
+            "text-ignore-placement": true
+          },
+          paint: {
+            "text-color": "rgba(255,255,255,0.92)",
+            "text-halo-color": "rgba(11,12,15,0.55)",
+            "text-halo-width": 1.2,
+            "text-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0.0, 12, 0.72, 16, 0.9]
+          }
+        });
+      }
+      try { map.moveLayer(ATM_LYR.windGlow); } catch(_) {}
+      try { map.moveLayer(ATM_LYR.windArrows); } catch(_) {}
+      try { map.moveLayer(ATM_LYR.windLabels); } catch(_) {}
+    }
+
+    function ensureAirQualityLayers(){
+      if (!map.getSource(ATM_SRC.air)) {
+        map.addSource(ATM_SRC.air, { type:"geojson", data:{ type:"FeatureCollection", features:[] } });
+      }
+      if (!map.getLayer(ATM_LYR.airHeat)) {
+        map.addLayer({
+          id: ATM_LYR.airHeat,
+          type: "fill",
+          source: ATM_SRC.air,
+          layout: { visibility:"none" },
+          paint: {
+            "fill-color": [
+              "match", ["get", "aqi"],
+              1, "rgba(22,163,74,0.78)",
+              2, "rgba(132,204,22,0.82)",
+              3, "rgba(250,204,21,0.86)",
+              4, "rgba(249,115,22,0.90)",
+              5, "rgba(220,38,38,0.92)",
+              "rgba(22,163,74,0.78)"
+            ],
+            "fill-outline-color": "rgba(255,255,255,0.10)",
+            "fill-opacity": ["interpolate", ["linear"], ["zoom"], 8, 0.82, 11, 0.72, 14, 0.60, 17, 0.48]
+          }
+        });
+      }
+      if (!map.getLayer(ATM_LYR.airDots)) {
+        map.addLayer({
+          id: ATM_LYR.airDots,
+          type: "line",
+          source: ATM_SRC.air,
+          layout: { visibility:"none" },
+          paint: {
+            "line-color": "rgba(255,255,255,0.10)",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 8, 0.3, 14, 0.6],
+            "line-opacity": 0.18
+          }
+        });
+      }
+    }
+
+    async function ensureAtmosphereLayers(){
+      if (!hasOpenWeatherKey()) return;
+      ensureRasterLayer(ATM_SRC.weather, ATM_LYR.weather, openWeatherTile("precipitation_new"), 0.48);
+      ensureAirQualityLayers();
+      syncAtmosphereVisibility();
+      if (uiState.atmosphere.air) await refreshAirQualityGrid();
+      await refreshCenterWeatherInfo();
+    }
+
+    function syncAtmosphereVisibility(){
+      setAtmosphereBadge("weatherStatus", !!uiState.atmosphere.weather);
+      setAtmosphereBadge("airStatus", !!uiState.atmosphere.air);
+      if (map.getLayer(ATM_LYR.weather)) map.setLayoutProperty(ATM_LYR.weather, "visibility", uiState.atmosphere.weather ? "visible" : "none");
+      if (map.getLayer(ATM_LYR.airHeat)) map.setLayoutProperty(ATM_LYR.airHeat, "visibility", uiState.atmosphere.air ? "visible" : "none");
+      if (map.getLayer(ATM_LYR.airDots)) map.setLayoutProperty(ATM_LYR.airDots, "visibility", uiState.atmosphere.air ? "visible" : "none");
+      if (map.getLayer(LYR.osm_chimney)) map.setLayoutProperty(LYR.osm_chimney, "visibility", uiState.atmosphere.air ? "visible" : "none");
+    }
+
+    let __aqiRefreshTimer = null;
+    async function refreshAirQualityGrid(){
+      if (!hasOpenWeatherKey() || !uiState.atmosphere.air || !map.getSource(ATM_SRC.air)) return;
+      const b = map.getBounds();
+      if (!b) return;
+      const west = b.getWest(), east = b.getEast(), south = b.getSouth(), north = b.getNorth();
+      const cols = map.getZoom() >= 13 ? 8 : 6;
+      const rows = map.getZoom() >= 13 ? 7 : 5;
+      const cells = [];
+      const jobs = [];
+      const lonStep = (east - west) / cols;
+      const latStep = (north - south) / rows;
+      for (let ix = 0; ix < cols; ix++) {
+        for (let iy = 0; iy < rows; iy++) {
+          const minLon = west + ix * lonStep;
+          const maxLon = west + (ix + 1) * lonStep;
+          const minLat = south + iy * latStep;
+          const maxLat = south + (iy + 1) * latStep;
+          const lon = (minLon + maxLon) / 2;
+          const lat = (minLat + maxLat) / 2;
+          jobs.push(
+            fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}`)
+              .then(r => r.ok ? r.json() : null)
+              .then(d => {
+                const aqi = d && d.list && d.list[0] && d.list[0].main ? Number(d.list[0].main.aqi) : null;
+                if (!aqi) return;
+                cells.push({
+                  type:"Feature",
+                  properties:{ aqi, label:`AQI ${aqi}` },
+                  geometry:{
+                    type:"Polygon",
+                    coordinates:[[
+                      [minLon, minLat],
+                      [maxLon, minLat],
+                      [maxLon, maxLat],
+                      [minLon, maxLat],
+                      [minLon, minLat]
+                    ]]
+                  }
+                });
+              })
+              .catch(() => null)
+          );
+        }
+      }
+      await Promise.all(jobs);
+      const src = map.getSource(ATM_SRC.air);
+      if (src) src.setData({ type:"FeatureCollection", features: cells });
+    }
+
+    function scheduleAirQualityRefresh(){
+      if (__aqiRefreshTimer) clearTimeout(__aqiRefreshTimer);
+      __aqiRefreshTimer = setTimeout(() => { refreshAirQualityGrid(); }, 350);
+    }
+
+    let __windRefreshTimer = null;
+    let __windDebugEl = null;
+    function setWindDebug(msg){
+      if (!__windDebugEl){
+        __windDebugEl = document.createElement("div");
+        __windDebugEl.style.cssText = "position:fixed;right:14px;bottom:14px;z-index:40;padding:8px 10px;border-radius:10px;background:rgba(8,12,20,.82);color:#fff;font:600 12px/1.2 system-ui;border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px);pointer-events:none";
+        document.body.appendChild(__windDebugEl);
+      }
+      __windDebugEl.textContent = msg;
+      __windDebugEl.style.display = uiState.atmosphere.wind ? 'block' : 'none';
+    }
+
+    async function refreshWindField(){
+      if (!hasOpenWeatherKey() || !uiState.atmosphere.wind || !map.getSource(ATM_SRC.windField)) return;
+      const b = map.getBounds();
+      if (!b) return;
+      const west = b.getWest(), east = b.getEast(), south = b.getSouth(), north = b.getNorth();
+      const cols = map.getZoom() >= 13 ? 5 : 4;
+      const rows = map.getZoom() >= 13 ? 4 : 3;
+      const features = [];
+      const jobs = [];
+      const lonStep = (east - west) / cols;
+      const latStep = (north - south) / rows;
+      for (let ix = 0; ix < cols; ix++) {
+        for (let iy = 0; iy < rows; iy++) {
+          const lon = west + (ix + 0.5) * lonStep;
+          const lat = south + (iy + 0.5) * latStep;
+          jobs.push(
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=metric`)
+              .then(r => r.ok ? r.json() : null)
+              .then(d => {
+                const speed = d && d.wind ? Number(d.wind.speed || 0) : null;
+                const deg = d && d.wind ? Number(d.wind.deg || 0) : 0;
+                if (speed == null || Number.isNaN(speed)) return;
+                features.push({
+                  type:"Feature",
+                  properties:{
+                    speed,
+                    deg,
+                    gust: d.wind && d.wind.gust != null ? Number(d.wind.gust) : null,
+                    label: `${Math.round(speed)} m/s`
+                  },
+                  geometry:{ type:"Point", coordinates:[lon, lat] }
+                });
+              })
+              .catch(() => null)
+          );
+        }
+      }
+      await Promise.all(jobs);
+      setWindDebug(`Vind: ${features.length} pilar`);
+      const src = map.getSource(ATM_SRC.windField);
+      if (src) src.setData({ type:"FeatureCollection", features });
+    }
+
+    function scheduleWindRefresh(){
+      if (__windRefreshTimer) clearTimeout(__windRefreshTimer);
+      __windRefreshTimer = setTimeout(() => { refreshWindField(); }, 350);
+    }
+
+    let __centerWeatherTimer = null;
+    let __centerWeatherClockTimer = null;
+    let __centerWeatherState = { offsetSec: null, place: "Kartans mittpunkt", temp: null, desc: "" };
+
+    function formatTimeAtOffset(offsetSec){
+      if (offsetSec == null) return "--:--";
+      const utcMs = Date.now() + (new Date().getTimezoneOffset() * 60000);
+      const local = new Date(utcMs + offsetSec * 1000);
+      return local.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
+    }
+
+    function renderCenterWeatherInfo(){
+      const tempEl = document.getElementById('mapTemp');
+      const timeEl = document.getElementById('mapTime');
+      const placeEl = document.getElementById('mapPlace');
+      const descEl = document.getElementById('mapWeatherDesc');
+      if (tempEl) tempEl.textContent = __centerWeatherState.temp == null ? '--°C' : `${Math.round(__centerWeatherState.temp)}°C`;
+      if (timeEl) timeEl.textContent = formatTimeAtOffset(__centerWeatherState.offsetSec);
+      if (placeEl) placeEl.textContent = __centerWeatherState.place || 'Kartans mittpunkt';
+      if (descEl) descEl.textContent = __centerWeatherState.desc || 'Lokal temperatur för området du tittar på';
+    }
+
+    async function refreshCenterWeatherInfo(){
+      if (!hasOpenWeatherKey()) { renderCenterWeatherInfo(); return; }
+      const c = map && map.getCenter ? map.getCenter() : null;
+      if (!c) return;
+      try {
+        const r = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${c.lat}&lon=${c.lng}&appid=${OPENWEATHER_KEY}&units=metric`);
+        const d = r.ok ? await r.json() : null;
+        if (!d) return;
+        __centerWeatherState = {
+          offsetSec: d.timezone ?? 0,
+          place: d.name || `Lat ${c.lat.toFixed(3)}, Lon ${c.lng.toFixed(3)}`,
+          temp: d.main && d.main.temp != null ? Number(d.main.temp) : null,
+          desc: d.weather && d.weather[0] ? `${d.weather[0].description || 'Väder'}, känns som ${Math.round(d.main?.feels_like ?? d.main?.temp ?? 0)}°C` : 'Lokal temperatur för området du tittar på'
+        };
+        renderCenterWeatherInfo();
+      } catch(_) {}
+    }
+
+    function scheduleCenterWeatherInfo(){
+      if (__centerWeatherTimer) clearTimeout(__centerWeatherTimer);
+      __centerWeatherTimer = setTimeout(() => { refreshCenterWeatherInfo(); }, 250);
+    }
+
+    function startCenterWeatherClock(){
+      if (__centerWeatherClockTimer) clearInterval(__centerWeatherClockTimer);
+      __centerWeatherClockTimer = setInterval(() => { renderCenterWeatherInfo(); }, 30000);
+    }
+
+    function stopOrbit() {
+      if (orbitTimer) { clearInterval(orbitTimer); orbitTimer = null; showToast("Orbit stoppad."); }
+    }
+
+    function startOrbit() {
+      stopOrbit();
+      showToast("Orbit startad (tryck Stop för att avsluta).");
+      orbitTimer = setInterval(() => {
+        const b = map.getBearing();
+        map.setBearing(b + 0.8);
+      }, 30);
+    }
+
+    function wireUI() {
+      // reset view
+      $("btnResetView").addEventListener("click", () => {
+        stopOrbit();
+        map.easeTo({ center:[START.lng, START.lat], zoom:START.zoom, pitch:START.pitch, bearing:START.bearing, duration:650 });
+        if (document.getElementById("pitch")) if (document.getElementById("pitch")) $("pitch").value = START.pitch;
+        if (document.getElementById("bearing")) if (document.getElementById("bearing")) $("bearing").value = START.bearing;
+        if (document.getElementById("pitchVal")) if (document.getElementById("pitchVal")) $("pitchVal").textContent = `${START.pitch}°`;
+        if (document.getElementById("bearingVal")) if (document.getElementById("bearingVal")) $("bearingVal").textContent = `${START.bearing}°`;
+      });
+
+      // style
+      $("styleSelect").addEventListener("change", async (e) => {
+        stopOrbit();
+        const v = e.target.value;
+        uiState.style = v;
+        applyUiThemeForStyle(v);
+        $("styleHint").textContent = v;
+
+        const view = saveView();
+        showToast("Byter kartstil…");
+
+        map.setStyle(styleFromChoice(v));
+        map.once("styledata", async () => {
+          restoreView(view);
+          await addAllOverlays();
+          // Re-add IFC points after style switch so the logo is visible on all map styles
+          try { await addIfcPointsLayer(); } catch(e){ console.warn(e); }
+          try { if (uiState.buildingsOn) tryEnable3DBuildings(true); } catch(e){ console.warn(e); }
+
+      // Modal events
+      const mc = modalCloseBtn();
+      if (mc) mc.onclick = closeInfoModal;
+      const m = modal();
+      if (m) m.addEventListener("click", (e)=>{ if(e.target === m) closeInfoModal(); });
+
+      // Sjöar: klick på polygon eller sjö-namn punkter
+      map.on("click", LYR.storasjaar_fill, (e) => {
+        const f = e.features && e.features[0];
+        const p = f ? (f.properties || {}) : {};
+        const name = p.name || "Sjö";
+        openInfoModal({
+          title: name,
+          props: { ...p, Layer: "Sjöar" },
+          imageFile: safeFileName(name) ? `${safeFileName(name)}.png` : null
+        });
+      });
+      map.on("click", LYR.sjoar_namn_points, (e) => {
+        const f = e.features && e.features[0];
+        const p = f ? (f.properties || {}) : {};
+        const name = p.name || "Sjö";
+        openInfoModal({
+          title: name,
+          props: { ...p, Layer: "Sjö-namn" },
+          imageFile: safeFileName(name) ? `${safeFileName(name)}.png` : null
+        });
+      });
+
+      // Tågstationer: klick öppnar modal + länk (om finns)
+      map.on("click", LYR.tagstationer_points, (e) => {
+        const f = e.features && e.features[0];
+        const p = f ? (f.properties || {}) : {};
+        const name = p.name || "Tågstation";
+        const website = p.website || "";
+        openInfoModal({
+          title: name,
+          props: p,
+          website: website || null,
+          imageFile: safeFileName(name) ? `${safeFileName(name)}.png` : null
+        });
+      });
+
+          await enableTreePngLayer();
+          await addOsmDetailsAlwaysVisible();
+          try { await ensureAtmosphereLayers(); } catch(e){ console.warn(e); }
+          try { await refreshCenterWeatherInfo(); } catch(e){ console.warn(e); }
+          enableTerrain(uiState.terrainOn);
+          tryEnable3DBuildings(uiState.buildingsOn);
+          showToast("Klar.");
+        });
+      });
+
+      // 2D / 3D + terrain/buildings (förenklat UI)
+      const VIEW = { mode: "2d" }; // "2d" | "3d"
+
+      function applyViewMode(mode){
+        VIEW.mode = mode;
+        const is3d = mode === "3d";
+        // rotation är tillåten med mus/trackpad (UI-kontroller är borttagna)
+        map.dragRotate.enable();
+        map.touchZoomRotate.enableRotation();
+
+        if (is3d){
+          map.easeTo({ pitch: 85, bearing: 0, duration: 550 });
+          const b = document.getElementById("btn2D3D");
+          if (b) b.textContent = "2D";
+        } else {
+          map.easeTo({ pitch: 0, bearing: 0, duration: 450 });
+          const b = document.getElementById("btn2D3D");
+          if (b) b.textContent = "3D";
+        }
+      }
+
+      // terrain (fast multiplier 1x)
+      $("toggleTerrain").addEventListener("change", (e) => enableTerrain(e.target.checked));
+
+      // buildings (on/off)
+      $("toggleBuildings").addEventListener("change", (e) => tryEnable3DBuildings(e.target.checked));
+
+      // 2D/3D toggle button
+      const btn2D3D = document.getElementById("btn2D3D");
+      if (btn2D3D){
+        btn2D3D.addEventListener("click", () => {
+          applyViewMode(VIEW.mode === "2d" ? "3d" : "2d");
+        });
+      }
+
+      [
+        ["lyWeather", "weather"],
+        ["lyAir", "air"]
+      ].forEach(([id, key]) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.checked = !!uiState.atmosphere[key];
+        el.addEventListener("change", async (e) => {
+          if (!hasOpenWeatherKey()) {
+            e.target.checked = false;
+            uiState.atmosphere[key] = false;
+            syncAtmosphereVisibility();
+            showToast("Lägg in en OpenWeather API-nyckel först.");
+            return;
+          }
+          uiState.atmosphere[key] = e.target.checked;
+          try { await ensureAtmosphereLayers(); } catch(err){ console.warn(err); }
+          syncAtmosphereVisibility();
+          if (key === "air" && e.target.checked) scheduleAirQualityRefresh();
+        });
+      });
+
+      map.on("moveend", () => {
+        if (uiState.atmosphere.air) scheduleAirQualityRefresh();
+        scheduleCenterWeatherInfo();
+      });
+
+      // init view mode default = 2D
+      applyViewMode("2d");
+      startCenterWeatherClock();
+      scheduleCenterWeatherInfo();
+
+
+    function initLayerCheckboxStates(){
+      const layerMap = {
+        lyTrees:'trees', lyVard:'vard', lyGrund:'grund', lyGymn:'gymn',
+        lyBus:'bus', lyTrain:'train',
+        lyJlt1:'jlt1', lyJlt2:'jlt2', lyJlt3:'jlt3', lyJlt4:'jlt4', lyJlt11:'jlt11',
+        lyBryggor:'bryggor', lyNaturreservat:'naturreservat', lyStorasjaar:'storasjaar',
+        lyTagspar:'tagspar', lyTomtar:'tomtar', lyVagbommar:'vagbommar'
+      };
+      Object.entries(layerMap).forEach(([id,key]) => {
+        const el = $(id);
+        if (el) el.checked = !!uiState.visible[key];
+      });
+    }
+
+      // ALLA LAGER - checkboxes
+      // Original
+      $("lyTrees").addEventListener("change", (e) => { uiState.visible.trees = e.target.checked; setLayerGroupVisible("trees", e.target.checked); });
+      $("lyVard").addEventListener("change",  (e) => { uiState.visible.vard  = e.target.checked; setLayerGroupVisible("vard", e.target.checked); });
+      $("lyGrund").addEventListener("change", (e) => { uiState.visible.grund = e.target.checked; setLayerGroupVisible("grund", e.target.checked); });
+      $("lyGymn").addEventListener("change",  (e) => { uiState.visible.gymn  = e.target.checked; setLayerGroupVisible("gymn", e.target.checked); });
+      
+      // Nya natur
+      
+      // Nya service
+      
+      // Nya kollektivtrafik
+      $("lyBus").addEventListener("change", (e) => { uiState.visible.bus = e.target.checked; setLayerGroupVisible("bus", e.target.checked); });
+      $("lyTrain").addEventListener("change", (e) => { uiState.visible.train = e.target.checked; setLayerGroupVisible("train", e.target.checked); });
+      $("lyJlt1").addEventListener("change", async (e) => { uiState.visible.jlt1 = e.target.checked; if (e.target.checked) await ensureJltLineBuilt("1"); setLayerGroupVisible("jlt1", e.target.checked); });
+      $("lyJlt2").addEventListener("change", async (e) => { uiState.visible.jlt2 = e.target.checked; if (e.target.checked) await ensureJltLineBuilt("2"); setLayerGroupVisible("jlt2", e.target.checked); });
+      $("lyJlt3").addEventListener("change", async (e) => { uiState.visible.jlt3 = e.target.checked; if (e.target.checked) await ensureJltLineBuilt("3"); setLayerGroupVisible("jlt3", e.target.checked); });
+      $("lyJlt4").addEventListener("change", async (e) => { uiState.visible.jlt4 = e.target.checked; if (e.target.checked) await ensureJltLineBuilt("4"); setLayerGroupVisible("jlt4", e.target.checked); });
+      $("lyJlt11").addEventListener("change", async (e) => { uiState.visible.jlt11 = e.target.checked; if (e.target.checked) await ensureJltLineBuilt("11"); setLayerGroupVisible("jlt11", e.target.checked); });
+      
+      // Nya boende
+
+      // Extra lager (Edwin)
+      $("lyBryggor").addEventListener("change", (e) => { uiState.visible.bryggor = e.target.checked; setLayerGroupVisible("bryggor", e.target.checked); });
+      $("lyNaturreservat").addEventListener("change", (e) => { uiState.visible.naturreservat = e.target.checked; setLayerGroupVisible("naturreservat", e.target.checked); });
+      $("lyStorasjaar").addEventListener("change", (e) => { uiState.visible.storasjaar = e.target.checked; setLayerGroupVisible("storasjaar", e.target.checked); });
+      $("lyTagspar").addEventListener("change", (e) => {
+        uiState.visible.tagspar = e.target.checked;
+        uiState.visible.tagstationer = e.target.checked;
+        setLayerGroupVisible("tagspar", e.target.checked);
+      });
+      $("lyTomtar").addEventListener("change", (e) => { uiState.visible.tomtar = e.target.checked; setLayerGroupVisible("tomtar", e.target.checked); });
+      $("lyVagbommar").addEventListener("change", (e) => { uiState.visible.vagbommar = e.target.checked; setLayerGroupVisible("vagbommar", e.target.checked); });
+
+      // Zoom-knappar
+      document.addEventListener("click", (ev) => {
+        const btn = ev.target.closest("button[data-zoom]");
+        if (!btn) return;
+        fitToLayer(btn.dataset.zoom);
+      });
+      
+      $("btnFitAll").addEventListener("click", fitToAll);
+
+      // search
+      $("searchBox").addEventListener("input", (e) => renderSearch(e.target.value));
+
+      // =========================
+      // NYA EVENT LISTENERS FÖR ROUTING
+      // =========================
+      $("btnSetStart").addEventListener("click", () => {
+        isSelectingStart = true;
+        isSelectingEnd = false;
+        $("routeStatus").textContent = "Klicka på kartan för att välja startpunkt (A)";
+        map.getCanvas().style.cursor = "crosshair";
+      });
+      
+      $("btnSetEnd").addEventListener("click", () => {
+        isSelectingEnd = true;
+        isSelectingStart = false;
+        $("routeStatus").textContent = "Klicka på kartan för att välja målpunkt (B)";
+        map.getCanvas().style.cursor = "crosshair";
+      });
+      
+      $("btnSwapPoints").addEventListener("click", () => {
+        if (startPoint && endPoint) {
+          [startPoint, endPoint] = [endPoint, startPoint];
+          updateMarkers();
+          if (map.getLayer(LYR.route_line)) calculateRoute();
+          showToast("Start och mål har bytts");
+        }
+      });
+      
+      $("btnClearRoute").addEventListener("click", () => {
+        startPoint = null;
+        endPoint = null;
+        if (startMarker) startMarker.remove();
+        if (endMarker) endMarker.remove();
+        clearRoute();
+        $("routeStatus").textContent = "Klicka på 'Välj på kartan' för att sätta punkter";
+      });
+      
+      $("btnCalculateRoute").addEventListener("click", calculateRoute);
+      
+      
+
+      // ===== Snabbmål: välj närmaste polis / akutmottagning / brandstation från startpunkt (A) =====
+      $("btnNearestPolice").addEventListener("click", async () => {
+        await setNearestDestination("police");
+      });
+      $("btnNearestHospital").addEventListener("click", async () => {
+        await setNearestDestination("hospital");
+      });
+      $("btnNearestFire").addEventListener("click", async () => {
+        await setNearestDestination("fire");
+      });
+
+// Lyssna på kartklick för att sätta punkter
+      map.on("click", (e) => {
+        if (isSelectingStart) {
+          startPoint = [e.lngLat.lng, e.lngLat.lat];
+          isSelectingStart = false;
+          map.getCanvas().style.cursor = "";
+          updateMarkers();
+          $("routeStatus").textContent = "Startpunkt vald. Välj nu målpunkt eller beräkna väg.";
+          if (endPoint) calculateRoute();
+        } else if (isSelectingEnd) {
+          endPoint = [e.lngLat.lng, e.lngLat.lat];
+          isSelectingEnd = false;
+          map.getCanvas().style.cursor = "";
+          updateMarkers();
+          $("routeStatus").textContent = "Målpunkt vald. Beräkna väg.";
+          if (startPoint) calculateRoute();
+        }
+      });
+    }
+
+    
+// =========================
+// OSM -> GeoJSON (always-visible details)
+// =========================
+function centroid(coords) {
+  let x=0,y=0,n=0;
+  for (const c of coords || []) {
+    if (!c || !isFinite(c[0]) || !isFinite(c[1])) continue;
+    x += c[0]; y += c[1]; n++;
+  }
+  if (!n) return null;
+  return [x/n, y/n];
+}
+
+function osmToDetailsGeoJson(osmXmlText) {
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(osmXmlText, "text/xml");
+
+  const nodeById = new Map();
+  for (const n of xml.getElementsByTagName("node")) {
+    const id = n.getAttribute("id");
+    const lat = parseFloat(n.getAttribute("lat"));
+    const lon = parseFloat(n.getAttribute("lon"));
+    if (!id || !isFinite(lat) || !isFinite(lon)) continue;
+
+    const tags = {};
+    for (const t of n.getElementsByTagName("tag")) {
+      const k = t.getAttribute("k");
+      const v = t.getAttribute("v");
+      if (k) tags[k] = v ?? "";
+    }
+    nodeById.set(id, { lon, lat, tags });
+  }
+
+  const ways = [];
+  for (const w of xml.getElementsByTagName("way")) {
+    const tags = {};
+    for (const t of w.getElementsByTagName("tag")) {
+      const k = t.getAttribute("k");
+      const v = t.getAttribute("v");
+      if (k) tags[k] = v ?? "";
+    }
+    const refs = [];
+    for (const nd of w.getElementsByTagName("nd")) {
+      const r = nd.getAttribute("ref");
+      if (r) refs.push(r);
+    }
+    ways.push({ tags, refs });
+  }
+
+  function fc(){ return { type:"FeatureCollection", features: [] }; }
+
+  const out = {
+    fountain: fc(),
+    crane: fc(),
+    lamp: fc(),
+    chimney: fc(),
+    wind: fc(),
+    oil: fc(),
+    flag: fc(),
+    statue: fc()
+  };
+
+  const isFountain = (tags)=> tags.amenity === "fountain";
+  const isCrane = (tags)=> tags["man_made"] === "crane" || tags["construction"] === "crane";
+  const isLamp = (tags)=> tags.highway === "street_lamp";
+  const isChimney = (tags)=> tags["man_made"] === "chimney";
+  const isWind = (tags)=> tags.power === "generator" && tags["generator:source"] === "wind";
+  const isOil = (tags)=> tags["man_made"] === "petroleum_well";
+  const isFlag = (tags)=> tags["man_made"] === "flagpole";
+  const isStatue = (tags)=> tags.monument === "statue" || tags["artwork_type"] === "sculpture" || tags["artwork:type"] === "sculpture" || tags.statue;
+
+  // nodes
+  for (const n of nodeById.values()) {
+    const tags = n.tags || {};
+    const p = { type:"Feature", properties: tags, geometry:{ type:"Point", coordinates:[n.lon, n.lat] } };
+
+    if (isFountain(tags)) out.fountain.features.push(p);
+    if (isCrane(tags)) out.crane.features.push(p);
+    if (isLamp(tags)) out.lamp.features.push(p);
+    if (isChimney(tags)) out.chimney.features.push(p);
+    if (isWind(tags)) out.wind.features.push(p);
+    if (isOil(tags)) out.oil.features.push(p);
+    if (isFlag(tags)) out.flag.features.push(p);
+    if (isStatue(tags)) out.statue.features.push(p);
+  }
+
+  // ways -> centroid point
+  for (const w of ways) {
+    const coords = [];
+    for (const r of w.refs) {
+      const n = nodeById.get(r);
+      if (n) coords.push([n.lon, n.lat]);
+    }
+    const c = centroid(coords);
+    if (!c) continue;
+
+    const tags = w.tags || {};
+    const p = { type:"Feature", properties: tags, geometry:{ type:"Point", coordinates:c } };
+
+    if (isFountain(tags)) out.fountain.features.push(p);
+    if (isCrane(tags)) out.crane.features.push(p);
+    if (isLamp(tags)) out.lamp.features.push(p);
+    if (isChimney(tags)) out.chimney.features.push(p);
+    if (isWind(tags)) out.wind.features.push(p);
+    if (isOil(tags)) out.oil.features.push(p);
+    if (isFlag(tags)) out.flag.features.push(p);
+    if (isStatue(tags)) out.statue.features.push(p);
+  }
+
+  return out;
+}
+
+
+    // =========================
+    // POI (other OSM points) -> icons (always visible, not clickable)
+    // =========================
+    function sanitizeIconId(s){
+      return String(s || "").toLowerCase().replace(/[^a-z0-9_-]+/g, "_").replace(/^_+|_+$/g, "");
+    }
+
+    async function addPoiAlwaysVisible() {
+      // Loads poi.geojson (already merged from all your OSM extracts) and renders icons from ./poi_icons/
+      // Missing icons fall back to poi.png
+      let poi;
+      try {
+        poi = await fetchJsonSafe(POI_FILE);
+      } catch (e) {
+        console.warn("POI missing:", e);
+        return { ok:false, reason:"no poi.geojson" };
+      }
+
+      // Collect icon names
+      const rawIcons = new Set();
+      for (const f of (poi.features || [])) {
+        const ic = f?.properties?._icon;
+        if (ic) rawIcons.add(ic);
+      }
+
+      // Ensure fallback icon
+      const fallbackName = "poi_default";
+      await ensurePngImage(fallbackName, POI_DEFAULT_PNG, 2);
+
+      // Try loading each icon; build a set of which ones exist
+      const loaded = new Set([fallbackName]);
+      for (const ic of rawIcons) {
+        const id = sanitizeIconId(ic);
+        if (!id) continue;
+        const ok = await ensurePngImage(id, `${POI_ICON_DIR}${id}.png`, 2);
+        if (ok) loaded.add(id);
+      }
+
+      // Rewrite properties with a guaranteed icon id
+      for (const f of (poi.features || [])) {
+        const ic = sanitizeIconId(f?.properties?._icon);
+        f.properties = f.properties || {};
+        f.properties._icon_use = (ic && loaded.has(ic)) ? ic : fallbackName;
+      }
+
+      // Source
+      if (!map.getSource(SRC.poi)) {
+        map.addSource(SRC.poi, { type:"geojson", data: poi });
+      } else {
+        try { map.getSource(SRC.poi).setData(poi); } catch(_) {}
+      }
+
+      // Layer
+      if (!map.getLayer(LYR.poi)) {
+        map.addLayer({
+          id: LYR.poi,
+          type: "symbol",
+          source: SRC.poi,
+          minzoom: 12,
+          layout: {
+            "icon-image": ["get","_icon_use"],
+            "icon-size": ICON_SIZE.poi,            // same scale as tree.png (you can edit ICON_SIZE.poi)
+            "icon-allow-overlap": true,
+            "icon-ignore-placement": true,
+            "icon-anchor": "bottom",
+            "icon-pitch-alignment": "viewport",
+            "icon-rotation-alignment": "viewport"
+          },
+          paint: {
+            "icon-opacity": 0.78
+          }
+        });
+      }
+
+      // Put POI under trees so trees stay visually on top
+      try {
+        if (map.getLayer(LYR.trees_png)) map.moveLayer(LYR.poi, LYR.trees_png);
+      } catch(_) {}
+
+      return { ok:true, count:(poi.features||[]).length, iconsLoaded: loaded.size };
+    }
+
+async function addOsmDetailsAlwaysVisible() {
+  // Läs map.osm + map(1).osm .. map(20).osm (de som finns) och slå ihop till ett dataset
+  const texts = [];
+
+  // map.osm
+  try {
+    const t0 = await fetchText(OSM_MAIN);
+    if (t0) texts.push(t0);
+  } catch (_) {}
+
+  // map(1)..map(20)
+  for (let i = OSM_RANGE.start; i <= OSM_RANGE.end; i++) {
+    const p = `./map(${i}).osm`;
+    try {
+      const t = await fetchText(p);
+      if (t) texts.push(t);
+    } catch (_) {}
+  }
+
+  if (!texts.length) {
+    showToast("Inga OSM-filer hittades (map.osm / map(n).osm).");
+    return { ok:false, reason:"no osm files" };
+  }
+
+  // Merge all details
+  const det = {
+    fountain: { type:"FeatureCollection", features: [] },
+    crane: { type:"FeatureCollection", features: [] },
+    lamp: { type:"FeatureCollection", features: [] },
+    chimney: { type:"FeatureCollection", features: [] },
+    wind: { type:"FeatureCollection", features: [] },
+    oil: { type:"FeatureCollection", features: [] },
+    flag: { type:"FeatureCollection", features: [] },
+    statue: { type:"FeatureCollection", features: [] }
+  };
+
+  for (const txt of texts) {
+    try {
+      const one = osmToDetailsGeoJson(txt);
+      det.fountain.features.push(...(one.fountain?.features || []));
+      det.crane.features.push(...(one.crane?.features || []));
+      det.lamp.features.push(...(one.lamp?.features || []));
+      det.chimney.features.push(...(one.chimney?.features || []));
+      det.wind.features.push(...(one.wind?.features || []));
+      det.oil.features.push(...(one.oil?.features || []));
+      det.flag.features.push(...(one.flag?.features || []));
+      det.statue.features.push(...(one.statue?.features || []));
+    } catch (e) {
+      console.warn("OSM parse failed:", e);
+    }
+  }
+
+// load icons (only add layers if PNG exists)
+  const ok = {};
+  ok.fountain = await ensurePngImage("iconFountain", ICON_PATHS.fountain, 2);
+  ok.crane    = await ensurePngImage("iconCrane",    ICON_PATHS.crane, 2);
+  ok.lamp     = await ensurePngImage("iconLamp",     ICON_PATHS.lamp, 2);
+  ok.chimney  = await ensurePngImage("iconChimney",  ICON_PATHS.chimney, 2);
+  ok.wind     = await ensurePngImage("iconWind",     ICON_PATHS.wind, 2);
+  ok.oil      = await ensurePngImage("iconOil",      ICON_PATHS.oil, 2);
+  ok.flag     = await ensurePngImage("iconFlag",     ICON_PATHS.flag, 2);
+  ok.statue   = await ensurePngImage("iconStatue",   ICON_PATHS.statue, 2);
+
+  function addOrUpdateSource(id, data){
+    const s = map.getSource(id);
+    if (!s) map.addSource(id, { type:"geojson", data });
+    else { try { s.setData(data); } catch(_) {} }
+  }
+
+  addOrUpdateSource(SRC.osm_fountain, det.fountain);
+  addOrUpdateSource(SRC.osm_crane, det.crane);
+  addOrUpdateSource(SRC.osm_lamp, det.lamp);
+  addOrUpdateSource(SRC.osm_chimney, det.chimney);
+  addOrUpdateSource(SRC.osm_wind, det.wind);
+  addOrUpdateSource(SRC.osm_oil, det.oil);
+  addOrUpdateSource(SRC.osm_flag, det.flag);
+  addOrUpdateSource(SRC.osm_statue, det.statue);
+
+  function addSymbolLayer(layerId, sourceId, iconName, sizeExpr, opacity, visible=true){
+    if (map.getLayer(layerId)) return;
+    map.addLayer({
+      id: layerId,
+      type: "symbol",
+      source: sourceId,
+      minzoom: 12,
+      layout: {
+        "visibility": visible ? "visible" : "none",
+        "icon-image": iconName,
+        "icon-size": sizeExpr,
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true,
+        "icon-anchor": "bottom",
+        "icon-pitch-alignment": "viewport",
+        "icon-rotation-alignment": "viewport"
+      },
+      paint: { "icon-opacity": opacity }
+    });
+  }
+
+  // Add layers (always visible, not clickable)
+  if (ok.fountain) addSymbolLayer(LYR.osm_fountain, SRC.osm_fountain, "iconFountain", ICON_SIZE.fountain, 0.92);
+  if (ok.crane)    addSymbolLayer(LYR.osm_crane,    SRC.osm_crane,    "iconCrane",    ICON_SIZE.crane,    0.92);
+  if (ok.lamp)     addSymbolLayer(LYR.osm_lamp,     SRC.osm_lamp,     "iconLamp",     ICON_SIZE.lamp,     0.85);
+  if (ok.chimney)  addSymbolLayer(LYR.osm_chimney,  SRC.osm_chimney,  "iconChimney",  ICON_SIZE.chimney,  0.90, false);
+  if (ok.wind)     addSymbolLayer(LYR.osm_wind,     SRC.osm_wind,     "iconWind",     ICON_SIZE.wind,     0.92);
+  if (ok.oil)      addSymbolLayer(LYR.osm_oil,      SRC.osm_oil,      "iconOil",      ICON_SIZE.oil,      0.92);
+  if (ok.flag)     addSymbolLayer(LYR.osm_flag,     SRC.osm_flag,     "iconFlag",     ICON_SIZE.flag,     0.90);
+  if (ok.statue)   addSymbolLayer(LYR.osm_statue,   SRC.osm_statue,   "iconStatue",   ICON_SIZE.statue,   0.90);
+
+  return { ok:true, counts:{
+    fountain: det.fountain.features.length,
+    crane: det.crane.features.length,
+    lamp: det.lamp.features.length,
+    chimney: det.chimney.features.length,
+    wind: det.wind.features.length,
+    oil: det.oil.features.length,
+    flag: det.flag.features.length,
+    statue: det.statue.features.length
+  }, okIcons: ok };
+}
+
+map.on("load", async () => {
+      // Sätt UI-kontrast direkt utifrån aktuell kartstil
+      try { applyUiThemeForStyle(uiState.style); } catch(e){}
+      try { await addIfcPointsLayer(); } catch(e){ console.warn(e); }
+          try { if (uiState.buildingsOn) tryEnable3DBuildings(true); } catch(e){ console.warn(e); }
+
+      // UI init
+      if (document.getElementById("pitch")) $("pitch").value = START.pitch;
+      if (document.getElementById("bearing")) $("bearing").value = START.bearing;
+      if (document.getElementById("pitchVal")) $("pitchVal").textContent = `${START.pitch}°`;
+      if (document.getElementById("bearingVal")) $("bearingVal").textContent = `${START.bearing}°`;
+      wireUI();
+      await addAllOverlays();
+      try { await ensureAtmosphereLayers(); } catch(e){ console.warn(e); }
+      // Trees PNG + OSM details (non-clickable, always visible)
+      await enableTreePngLayer();
+      await addOsmDetailsAlwaysVisible();
+
+      await buildSearchIndex();
+
+      enableTerrain(false);
+      tryEnable3DBuildings(false);
+
+      await ensureBuildingsPickLayer();
+
+      showToast("✅ Redo! 14+ lager + navigering laddade.");
+    });
+
+    window.addEventListener("error", (e) => {
+      console.error(e.error || e.message);
+      showToast("JS-fel: öppna Console (F12) och kopiera felet.");
+    });
+  
+    // =========================
+    // Building IDs + optional GLB replacement (per-building)
+    // - Uses buildings.geojson (must have properties.osm_id)
+    // - If a file "<osm_id>.glb" exists in the SAME folder, it will be shown when you click that building.
+    // =========================
+    const BUILDINGS_PICK_GEOJSON = "buildings.geojson"; // keep this name
+    const BUILDING_PICK_SRC = "src_buildings_pick";
+    const BUILDING_PICK_LYR = "ly_buildings_pick_invisible";
+
+    // Models: put "<osm_id>.glb" in the same folder as this HTML
+    const MODEL_FILE_FOR_ID = (id) => `./${id}.glb`;
+
+    // You can tune this default model height (meters) later
+    const MODEL_DEFAULT_HEIGHT_M = 18;
+
+    // Keep a cache so we don't reload the same model many times
+    const __modelCache = new Map();   // id -> gltf
+    const __modelLayers = new Map();  // id -> customLayerId
+
+    function polyCentroidLngLat(feature) {
+      // returns [lng,lat]
+      const g = feature && feature.geometry;
+      if (!g) return null;
+
+      function centroidOfRing(ring){
+        // ring: [[lng,lat],...]
+        let area = 0, cx = 0, cy = 0;
+        const n = ring.length;
+        if (n < 3) return null;
+        for (let i=0;i<n-1;i++){
+          const [x1,y1]=ring[i], [x2,y2]=ring[i+1];
+          const a = x1*y2 - x2*y1;
+          area += a;
+          cx += (x1+x2)*a;
+          cy += (y1+y2)*a;
+        }
+        area *= 0.5;
+        if (Math.abs(area) < 1e-12) {
+          // fallback: average
+          let sx=0, sy=0, c=0;
+          for (let i=0;i<n;i++){ sx += ring[i][0]; sy += ring[i][1]; c++; }
+          return [sx/c, sy/c];
+        }
+        cx /= (6*area);
+        cy /= (6*area);
+        return [cx, cy];
+      }
+
+      if (g.type === "Polygon") {
+        const ring = g.coordinates && g.coordinates[0];
+        if (!ring) return null;
+        return centroidOfRing(ring);
+      }
+      if (g.type === "MultiPolygon") {
+        // pick the biggest outer ring
+        let best=null, bestArea=0;
+        for (const poly of (g.coordinates||[])) {
+          const ring = poly && poly[0];
+          if (!ring) continue;
+          // approximate area
+          let a=0;
+          for (let i=0;i<ring.length-1;i++){
+            const [x1,y1]=ring[i], [x2,y2]=ring[i+1];
+            a += (x1*y2 - x2*y1);
+          }
+          a = Math.abs(a*0.5);
+          if (a>bestArea){
+            bestArea=a;
+            best=centroidOfRing(ring);
+          }
+        }
+        return best;
+      }
+      return null;
+    }
+
+    async function ensureBuildingsPickLayer() {
+      try {
+        const bld = await fetchJson(BUILDINGS_PICK_GEOJSON);
+        if (!map.getSource(BUILDING_PICK_SRC)) {
+          map.addSource(BUILDING_PICK_SRC, { type:"geojson", data: bld });
+        } else {
+          map.getSource(BUILDING_PICK_SRC).setData(bld);
+        }
+
+        if (!map.getLayer(BUILDING_PICK_LYR)) {
+          map.addLayer({
+            id: BUILDING_PICK_LYR,
+            type: "fill-extrusion",
+            source: BUILDING_PICK_SRC,
+            paint: {
+              "fill-extrusion-height": ["coalesce", ["to-number", ["get","height_m"]], 10],
+              "fill-extrusion-base": 0,
+              // invisible but clickable
+              "fill-extrusion-opacity": 0.0
+            }
+          });
+        }
+
+        // Click handler: show osm_id and try load model
+        map.on("click", BUILDING_PICK_LYR, async (e) => {
+          const f = e.features && e.features[0];
+          if (!f) return;
+          const id = (f.properties && (f.properties.osm_id || f.properties.id || f.id)) ?? null;
+
+          const center = polyCentroidLngLat(f) || [e.lngLat.lng, e.lngLat.lat];
+
+          // Popup with ID (so you can name your GLB exactly)
+          const html = `
+            <div style="font:12px/1.35 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; padding:10px 12px;">
+              <div style="font-weight:700; margin-bottom:6px;">Building ID</div>
+              <div style="font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+                          background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+                          padding:6px 8px; border-radius:10px;">
+                ${id ? String(id) : "(missing id)"}
+              </div>
+              <div style="margin-top:8px; color:rgba(255,255,255,0.70);">
+                Lägg en fil i mappen: <b>${id ? String(id)+".glb" : "ID.glb"}</b><br>
+                Klicka igen för att ladda modellen.
+              </div>
+            </div>
+          `;
+          new maptilersdk.Popup({ closeButton:true, closeOnClick:true, maxWidth:"340px" })
+            .setLngLat(center)
+            .setHTML(html)
+            .addTo(map);
+
+          if (!id) return;
+
+          // If already added, do nothing
+          if (__modelLayers.has(String(id))) return;
+
+          // check file exists (HEAD)
+          const url = absUrl(MODEL_FILE_FOR_ID(String(id)));
+          let ok=false;
+          try {
+            const head = await fetch(url, { method:"HEAD", cache:"no-store" });
+            ok = head.ok;
+          } catch(_) { ok=false; }
+
+          if (!ok) {
+            showToast(`Hittar ingen modell: ${String(id)}.glb`);
+            return;
+          }
+
+          try {
+            await addGlbModelOnMap(String(id), center, MODEL_DEFAULT_HEIGHT_M);
+            showToast(`Laddade modell: ${String(id)}.glb`);
+          } catch (err) {
+            console.error(err);
+            showToast("Kunde inte ladda GLB. Kolla Console.");
+          }
+        });
+
+        map.on("mouseenter", BUILDING_PICK_LYR, ()=> map.getCanvas().style.cursor="pointer");
+        map.on("mouseleave", BUILDING_PICK_LYR, ()=> map.getCanvas().style.cursor="");
+
+      } catch (err) {
+        console.warn("Buildings pick layer failed:", err);
+      }
+    }
+
+    async function addGlbModelOnMap(id, lngLat, targetHeightM) {
+      const key = String(id);
+      if (__modelLayers.has(key)) return;
+
+      // Load GLB (cached)
+      let gltf = __modelCache.get(key);
+      if (!gltf) {
+        gltf = await new Promise((resolve, reject) => {
+          const loader = new THREE.GLTFLoader();
+          loader.load(absUrl(MODEL_FILE_FOR_ID(key)) + `?v=${Date.now()}`, resolve, undefined, reject);
+        });
+        __modelCache.set(key, gltf);
+      }
+
+      // Create a custom layer per model
+      const layerId = `glb_${key}`;
+      const origin = maptilersdk.MercatorCoordinate.fromLngLat({ lng: lngLat[0], lat: lngLat[1] }, 0);
+      const unitsPerMeter = origin.meterInMercatorCoordinateUnits();
+
+      // Find model bbox to scale to target height
+      const modelScene = gltf.scene.clone(true);
+      const box = new THREE.Box3().setFromObject(modelScene);
+      const size = new THREE.Vector3();
+      box.getSize(size);
+      const h = Math.max(size.y, 1e-6);
+      const scaleMeters = targetHeightM / h;
+
+      // Convert meters -> mercator units
+      const scale = scaleMeters * unitsPerMeter;
+
+      const customLayer = {
+        id: layerId,
+        type: "custom",
+        renderingMode: "3d",
+        onAdd: function(map, gl) {
+          this.camera = new THREE.Camera();
+          this.scene = new THREE.Scene();
+
+          // Light
+          const light = new THREE.DirectionalLight(0xffffff, 0.9);
+          light.position.set(0, 50, 50);
+          this.scene.add(light);
+          this.scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+
+          modelScene.scale.set(scale, scale, scale);
+          modelScene.rotation.x = Math.PI / 2; // convert from glTF Y-up to map Z-up-ish
+          modelScene.position.set(origin.x, origin.y, origin.z);
+          this.scene.add(modelScene);
+
+          this.renderer = new THREE.WebGLRenderer({
+            canvas: map.getCanvas(),
+            context: gl,
+            antialias: true
+          });
+          this.renderer.autoClear = false;
+        },
+        render: function(gl, matrix) {
+          const m = new THREE.Matrix4().fromArray(matrix);
+          this.camera.projectionMatrix = m;
+          this.renderer.state.reset();
+          this.renderer.render(this.scene, this.camera);
+          map.triggerRepaint();
+        }
+      };
+
+      map.addLayer(customLayer);
+      __modelLayers.set(key, layerId);
+    }
+
+</script>
+
+  <!-- IFC Viewer Modal -->
+  <div id="ifcModal" class="ifc-modal" aria-hidden="true">
+    <div class="ifc-modal__backdrop" id="ifcModalBackdrop"></div>
+    <div class="ifc-modal__panel" role="dialog" aria-modal="true" aria-label="IFC Viewer">
+      <div class="ifc-modal__topbar">
+        <div class="ifc-modal__title">
+          <strong>IFC Viewer</strong>
+          <span id="ifcModalFile" class="ifc-modal__subtitle"></span>
+        </div>
+        <button id="ifcModalClose" class="pill" type="button" aria-label="Close IFC viewer">✕</button>
+      </div>
+      <iframe id="ifcModalFrame" class="ifc-modal__frame" title="IFC Viewer" loading="lazy"></iframe>
+    </div>
+  </div>
+
+
+<script>
+  // ---------- IFC Modal Overlay (in-page viewer) ----------
+  const ifcModal = document.getElementById("ifcModal");
+  const ifcModalFrame = document.getElementById("ifcModalFrame");
+  const ifcModalFile = document.getElementById("ifcModalFile");
+  const ifcModalClose = document.getElementById("ifcModalClose");
+  const ifcModalBackdrop = document.getElementById("ifcModalBackdrop");
+
+  function openIfcModal(url) {
+    let finalUrl = url || "./ifc.html?file=ifc.ifc";
+    // if someone passes just ifc.html, ensure it has a file param
+    if (finalUrl.endsWith("ifc.html")) finalUrl += "?file=ifc.ifc";
+
+    ifcModalFile.textContent = finalUrl;
+    ifcModalFrame.src = finalUrl;
+
+    ifcModal.classList.add("is-open");
+    ifcModal.setAttribute("aria-hidden", "false");
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeIfcModal() {
+    ifcModal.classList.remove("is-open");
+    ifcModal.setAttribute("aria-hidden", "true");
+    ifcModalFrame.src = "about:blank";
+
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  }
+
+  ifcModalClose && ifcModalClose.addEventListener("click", closeIfcModal);
+  ifcModalBackdrop && ifcModalBackdrop.addEventListener("click", closeIfcModal);
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && ifcModal.classList.contains("is-open")) closeIfcModal();
+  });
+
+  // Event delegation: any link/button with .open-ifc-modal will open the modal instead of navigating away
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest(".open-ifc-modal");
+    if (!a) return;
+
+    e.preventDefault();
+    const url = a.getAttribute("data-ifc-url") || a.getAttribute("href");
+    openIfcModal(url);
+  });
+</script>
+
+
+  <!-- Modal popup (IFC-style) -->
+  <div id="infoModal" class="modal hidden">
+    <div class="modal-card">
+      <button id="modalClose" class="modal-close" aria-label="Close">✕</button>
+      <h3 id="modalTitle"></h3>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+</body>
+</html>

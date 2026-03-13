@@ -1,0 +1,7373 @@
+{
+  "type": "FeatureCollection",
+  "name": "BusStops_Jonkoping_bbox",
+  "bbox": [
+    14.02,
+    57.68,
+    14.32,
+    57.86
+  ],
+  "generated_utc": "2026-02-17T07:45:29.470667+00:00",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.128050966277,
+          57.853805570053
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Aspåsen",
+        "stop_id": "1511",
+        "gtfs_stop_id": "7439811",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.123582218983,
+          57.859682368143
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Attarpsvägen",
+        "stop_id": "1504",
+        "gtfs_stop_id": "7424007",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.135362328195,
+          57.846161048618
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Borstingevägen",
+        "stop_id": "1513",
+        "gtfs_stop_id": "7439813",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.112229482862,
+          57.857825078375
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Ebbarpsvägen",
+        "stop_id": "1498",
+        "gtfs_stop_id": "7439801",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.126875354527,
+          57.857346212134
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Floragatan",
+        "stop_id": "1514",
+        "gtfs_stop_id": "7439814",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.130598195624,
+          57.850103431521
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Hovagärdet",
+        "stop_id": "1512",
+        "gtfs_stop_id": "7439812",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.139685640114,
+          57.850645182375
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Höjdhoppsvägen",
+        "stop_id": "1522",
+        "gtfs_stop_id": "7439822",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.113595732613,
+          57.848818087855
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Kyrkskolan",
+        "stop_id": "1496",
+        "gtfs_stop_id": "7439799",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.131056686732,
+          57.859089767754
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Nyarpsgatan",
+        "stop_id": "1515",
+        "gtfs_stop_id": "7439815",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.113183611878,
+          57.859750617638
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Pilgatan",
+        "stop_id": "1499",
+        "gtfs_stop_id": "7439802",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.112231759171,
+          57.844507287415
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Prinseryd",
+        "stop_id": "1510",
+        "gtfs_stop_id": "7439810",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.112986867816,
+          57.855329677938
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Prinsfors",
+        "stop_id": "1497",
+        "gtfs_stop_id": "7439800",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.128050966277,
+          57.853805570053
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Aspåsen",
+        "stop_id": "1511",
+        "gtfs_stop_id": "7439811",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.123582218983,
+          57.859682368143
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Attarpsvägen",
+        "stop_id": "1504",
+        "gtfs_stop_id": "7424007",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.135362328195,
+          57.846161048618
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Borstingevägen",
+        "stop_id": "1513",
+        "gtfs_stop_id": "7439813",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.112229482862,
+          57.857825078375
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Ebbarpsvägen",
+        "stop_id": "1498",
+        "gtfs_stop_id": "7439801",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.126875354527,
+          57.857346212134
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Floragatan",
+        "stop_id": "1514",
+        "gtfs_stop_id": "7439814",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.130598195624,
+          57.850103431521
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Hovagärdet",
+        "stop_id": "1512",
+        "gtfs_stop_id": "7439812",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.139685640114,
+          57.850645182375
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Höjdhoppsvägen",
+        "stop_id": "1522",
+        "gtfs_stop_id": "7439822",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.113595732613,
+          57.848818087855
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Kyrkskolan",
+        "stop_id": "1496",
+        "gtfs_stop_id": "7439799",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.131056686732,
+          57.859089767754
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Nyarpsgatan",
+        "stop_id": "1515",
+        "gtfs_stop_id": "7439815",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.113183611878,
+          57.859750617638
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Pilgatan",
+        "stop_id": "1499",
+        "gtfs_stop_id": "7439802",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.112231759171,
+          57.844507287415
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Prinseryd",
+        "stop_id": "1510",
+        "gtfs_stop_id": "7439810",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.112986867816,
+          57.855329677938
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Prinsfors",
+        "stop_id": "1497",
+        "gtfs_stop_id": "7439800",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.142964276062,
+          57.858078953832
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Snöbollsvägen",
+        "stop_id": "1519",
+        "gtfs_stop_id": "7439819",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.139220546413,
+          57.853054765729
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Stavhoppsvägen",
+        "stop_id": "1521",
+        "gtfs_stop_id": "7439821",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.140380191345,
+          57.855665290845
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Störtloppsvägen",
+        "stop_id": "1520",
+        "gtfs_stop_id": "7439820",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.138649781075,
+          57.842082348677
+        ]
+      },
+      "properties": {
+        "name": "Bankeryd Torps gård",
+        "stop_id": "1628",
+        "gtfs_stop_id": "7439922",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.184117401305,
+          57.698888406755
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Björkvägen",
+        "stop_id": "1547",
+        "gtfs_stop_id": "7439847",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.176924288736,
+          57.71488886802
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Dammhagsvägen",
+        "stop_id": "1553",
+        "gtfs_stop_id": "7439853",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.168068425244,
+          57.706620386809
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Idrottsplatsen",
+        "stop_id": "1551",
+        "gtfs_stop_id": "7439851",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.184309651991,
+          57.685581930213
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Jonsbo",
+        "stop_id": "1543",
+        "gtfs_stop_id": "7439843",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.170298757946,
+          57.705526680212
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Kronhedsvägen",
+        "stop_id": "1550",
+        "gtfs_stop_id": "7439850",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.185547148222,
+          57.694667981379
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Lunden",
+        "stop_id": "1545",
+        "gtfs_stop_id": "7439845",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.185372721985,
+          57.688810533235
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Nybygget",
+        "stop_id": "1544",
+        "gtfs_stop_id": "7439844",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.177308067934,
+          57.717551996959
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Odensjö",
+        "stop_id": "1554",
+        "gtfs_stop_id": "7439854",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.175561482971,
+          57.720564879804
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Odenslid",
+        "stop_id": "1555",
+        "gtfs_stop_id": "7439855",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.172067760584,
+          57.710201374299
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Skogsåsvägen",
+        "stop_id": "1558",
+        "gtfs_stop_id": "7439858",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.184686182346,
+          57.697045735994
+        ]
+      },
+      "properties": {
+        "name": "Barnarp Torsviksvägen",
+        "stop_id": "1546",
+        "gtfs_stop_id": "7439846",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.178134703238,
+          57.705870177779
+        ]
+      },
+      "properties": {
+        "name": "Barnarps kyrka",
+        "stop_id": "1549",
+        "gtfs_stop_id": "7439849",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.181680169155,
+          57.703122830692
+        ]
+      },
+      "properties": {
+        "name": "Barnarps Södergård",
+        "stop_id": "1548",
+        "gtfs_stop_id": "7439848",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.17420087049,
+          57.712015988964
+        ]
+      },
+      "properties": {
+        "name": "Barnarpsskolan",
+        "stop_id": "1552",
+        "gtfs_stop_id": "7439852",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.315240584106,
+          57.730117345252
+        ]
+      },
+      "properties": {
+        "name": "Bogla",
+        "stop_id": "1163",
+        "gtfs_stop_id": "7439530",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.200737695894,
+          57.766757951691
+        ]
+      },
+      "properties": {
+        "name": "City Gross",
+        "stop_id": "1813",
+        "gtfs_stop_id": "7445045",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.200737695894,
+          57.766757951691
+        ]
+      },
+      "properties": {
+        "name": "City Gross",
+        "stop_id": "1813",
+        "gtfs_stop_id": "7445045",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.027918034408,
+          57.850088905184
+        ]
+      },
+      "properties": {
+        "name": "Domnaryd",
+        "stop_id": "1627",
+        "gtfs_stop_id": "7439921",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.027918034408,
+          57.850088905184
+        ]
+      },
+      "properties": {
+        "name": "Domnaryd",
+        "stop_id": "1627",
+        "gtfs_stop_id": "7439921",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.077745147689,
+          57.747349463512
+        ]
+      },
+      "properties": {
+        "name": "Flygledarevägen",
+        "stop_id": "1785",
+        "gtfs_stop_id": "7439933",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.167925486715,
+          57.760653414413
+        ]
+      },
+      "properties": {
+        "name": "Fridhem Herkulesvägen",
+        "stop_id": "1351",
+        "gtfs_stop_id": "7438856",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.272563864735,
+          57.836435063361
+        ]
+      },
+      "properties": {
+        "name": "Gisebo",
+        "stop_id": "1131",
+        "gtfs_stop_id": "7439502",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.278206316713,
+          57.840759680252
+        ]
+      },
+      "properties": {
+        "name": "Gisebo Frälsegården",
+        "stop_id": "1132",
+        "gtfs_stop_id": "7439503",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.272563864735,
+          57.836435063361
+        ]
+      },
+      "properties": {
+        "name": "Gisebo",
+        "stop_id": "1131",
+        "gtfs_stop_id": "7439502",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.278206316713,
+          57.840759680252
+        ]
+      },
+      "properties": {
+        "name": "Gisebo Frälsegården",
+        "stop_id": "1132",
+        "gtfs_stop_id": "7439503",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.126588945634,
+          57.73646668706
+        ]
+      },
+      "properties": {
+        "name": "Hovslätt Grästorpsvägen",
+        "stop_id": "1359",
+        "gtfs_stop_id": "7439681",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.123324342481,
+          57.735175065554
+        ]
+      },
+      "properties": {
+        "name": "Hovslätt station",
+        "stop_id": "1360",
+        "gtfs_stop_id": "7401084",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.118440118871,
+          57.729730767739
+        ]
+      },
+      "properties": {
+        "name": "Hovslätt Söderfors",
+        "stop_id": "1567",
+        "gtfs_stop_id": "7439867",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.114175223839,
+          57.727590380733
+        ]
+      },
+      "properties": {
+        "name": "Hovslätt Ängsfors",
+        "stop_id": "1568",
+        "gtfs_stop_id": "7439868",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.12103134221,
+          57.733213775521
+        ]
+      },
+      "properties": {
+        "name": "Hovslättsrondellen",
+        "stop_id": "1566",
+        "gtfs_stop_id": "7439866",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.115602238398,
+          57.719670693238
+        ]
+      },
+      "properties": {
+        "name": "Hulufors",
+        "stop_id": "1570",
+        "gtfs_stop_id": "7439870",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.112856571065,
+          57.722759212146
+        ]
+      },
+      "properties": {
+        "name": "Huluäng",
+        "stop_id": "1569",
+        "gtfs_stop_id": "7439869",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.275398047769,
+          57.788659435061
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Alfred Dalinskolan",
+        "stop_id": "1433",
+        "gtfs_stop_id": "7425510",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.283966268786,
+          57.790828035482
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Bergsgatan",
+        "stop_id": "1463",
+        "gtfs_stop_id": "7439771",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.282938938195,
+          57.78408063242
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Brunnsgatan",
+        "stop_id": "1806",
+        "gtfs_stop_id": "7439744",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.271598656933,
+          57.821121387783
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Brunstorps gård",
+        "stop_id": "1130",
+        "gtfs_stop_id": "7439501",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.269219265992,
+          57.822062422457
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Brunstorpsbadet",
+        "stop_id": "1476",
+        "gtfs_stop_id": "7439501",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.286471547576,
+          57.772430960879
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Bråneryd",
+        "stop_id": "1435",
+        "gtfs_stop_id": "7439746",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.288883714934,
+          57.767413051085
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Bråneryds kyrkogård",
+        "stop_id": "1159",
+        "gtfs_stop_id": "7439526",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.295387977471,
+          57.758537613633
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Bäckadal",
+        "stop_id": "1160",
+        "gtfs_stop_id": "7439527",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.314925062441,
+          57.784272412204
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Ekeberg",
+        "stop_id": "1451",
+        "gtfs_stop_id": "7439760",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.27640480336,
+          57.79149133768
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Esplanaden",
+        "stop_id": "1247",
+        "gtfs_stop_id": "7420990",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.308094018833,
+          57.788861480093
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Fagerslätt vändplan",
+        "stop_id": "1452",
+        "gtfs_stop_id": "7434726",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.289711542376,
+          57.79136385912
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Fagerslättsvägen",
+        "stop_id": "1458",
+        "gtfs_stop_id": "7439766",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.27372197348,
+          57.77940763583
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Faktorigatan",
+        "stop_id": "1426",
+        "gtfs_stop_id": "7439740",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.280306116402,
+          57.795076509325
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Floragatan",
+        "stop_id": "1464",
+        "gtfs_stop_id": "7439772",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.262335586741,
+          57.783481127167
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Folkets Park",
+        "stop_id": "1611",
+        "gtfs_stop_id": "7439906",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.275567877905,
+          57.809270772545
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Gripenbergsgatan",
+        "stop_id": "1809",
+        "gtfs_stop_id": "7439784",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.270690603446,
+          57.781517193515
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Gråbogatan",
+        "stop_id": "1424",
+        "gtfs_stop_id": "7439738",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.274866948407,
+          57.809136588898
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Grännavägen",
+        "stop_id": "1478",
+        "gtfs_stop_id": "7439784",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.292728267988,
+          57.777947767537
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Göransbergsvägen",
+        "stop_id": "1438",
+        "gtfs_stop_id": "7439749",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.269493531163,
+          57.816013181436
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Harrvägen",
+        "stop_id": "1431",
+        "gtfs_stop_id": "7439783",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.302108713124,
+          57.788036279164
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Hemtrevnadsvägen",
+        "stop_id": "1482",
+        "gtfs_stop_id": "7410655",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.287772388667,
+          57.77667617729
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Hjärttorp",
+        "stop_id": "1436",
+        "gtfs_stop_id": "7439747",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.304802634837,
+          57.745421854475
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Hyltan östra",
+        "stop_id": "1161",
+        "gtfs_stop_id": "7439528",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.273813692972,
+          57.782003996231
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Häradsvägen",
+        "stop_id": "1425",
+        "gtfs_stop_id": "7439739",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.263226301479,
+          57.779154571928
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Hästhagsgatan",
+        "stop_id": "1412",
+        "gtfs_stop_id": "7439726",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.276198255847,
+          57.806701100523
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Höganäsgatan",
+        "stop_id": "1470",
+        "gtfs_stop_id": "7439784",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.278739753692,
+          57.792345661581
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Hörnan",
+        "stop_id": "1409",
+        "gtfs_stop_id": "7420990",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.276432685403,
+          57.78367899162
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Idrottsgatan",
+        "stop_id": "1807",
+        "gtfs_stop_id": "7439739",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.304374300654,
+          57.784902165142
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Jutaholm",
+        "stop_id": "1454",
+        "gtfs_stop_id": "7425511",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.302564303909,
+          57.786380375215
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Jutegården",
+        "stop_id": "1455",
+        "gtfs_stop_id": "7439763",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.267867239374,
+          57.77121867416
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Kalvhagsgatan",
+        "stop_id": "1419",
+        "gtfs_stop_id": "7439733",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.273957868074,
+          57.798439314635
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Kidrons park",
+        "stop_id": "1444",
+        "gtfs_stop_id": "7439755",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.251476240823,
+          57.781884626223
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Kittendorffs gata",
+        "stop_id": "1399",
+        "gtfs_stop_id": "7439715",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.264050266266,
+          57.771657208875
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Kohagsgatan",
+        "stop_id": "1418",
+        "gtfs_stop_id": "7439732",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.313741015713,
+          57.781187304237
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Korsvägen",
+        "stop_id": "1170",
+        "gtfs_stop_id": "7425495",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.272424932941,
+          57.800477218624
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Kroatorpet",
+        "stop_id": "1443",
+        "gtfs_stop_id": "7439754",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.261281454559,
+          57.781788998893
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Kungsporten",
+        "stop_id": "1018",
+        "gtfs_stop_id": "7439409",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.245360898295,
+          57.782958925204
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Kungsängen",
+        "stop_id": "1398",
+        "gtfs_stop_id": "7439714",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.314518374101,
+          57.78842538002
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Kyrkvärdsringen",
+        "stop_id": "1814",
+        "gtfs_stop_id": "7456924",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.290896836481,
+          57.779533318409
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Kärrebacken",
+        "stop_id": "1437",
+        "gtfs_stop_id": "7439748",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.268380446126,
+          57.774960636587
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Lahagsgatan",
+        "stop_id": "1413",
+        "gtfs_stop_id": "7439727",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.273704544466,
+          57.793703746134
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Linnégatan",
+        "stop_id": "1467",
+        "gtfs_stop_id": "7439773",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.267118074627,
+          57.786457827043
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Lärlingen",
+        "stop_id": "1612",
+        "gtfs_stop_id": "7439907",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.269349960981,
+          57.769943525882
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Lövhagen",
+        "stop_id": "1228",
+        "gtfs_stop_id": "7439580",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.270087399607,
+          57.763657393409
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Lövhagsgatan",
+        "stop_id": "1422",
+        "gtfs_stop_id": "7439736",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.265157052272,
+          57.783551382876
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Majgatan",
+        "stop_id": "1448",
+        "gtfs_stop_id": "7400620",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.27431815863,
+          57.794303848344
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Mjölkafållan",
+        "stop_id": "1466",
+        "gtfs_stop_id": "7425513",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.275742817847,
+          57.803552578751
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Munkgatan",
+        "stop_id": "1469",
+        "gtfs_stop_id": "7439777",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.299110339886,
+          57.774853854849
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Nordskogens skola",
+        "stop_id": "1440",
+        "gtfs_stop_id": "7439751",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.273637686511,
+          57.81273172573
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Norrängen",
+        "stop_id": "1477",
+        "gtfs_stop_id": "7439783",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.274332954576,
+          57.80427191943
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Norrängsskolan",
+        "stop_id": "1471",
+        "gtfs_stop_id": "7439777",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.28563566187,
+          57.782721099095
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Nygatan",
+        "stop_id": "1430",
+        "gtfs_stop_id": "7439743",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.268707855084,
+          57.792565632355
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Odengatan",
+        "stop_id": "1333",
+        "gtfs_stop_id": "7439661",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.289683993965,
+          57.794425731382
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Olstorpsgatan",
+        "stop_id": "1459",
+        "gtfs_stop_id": "7439767",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.260612084494,
+          57.7773895525
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Oxhagsskolan",
+        "stop_id": "1420",
+        "gtfs_stop_id": "7439734",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.297618262194,
+          57.777179901288
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Petersberg",
+        "stop_id": "1439",
+        "gtfs_stop_id": "7439750",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.259407106352,
+          57.771762262344
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Rishagsgatan",
+        "stop_id": "1417",
+        "gtfs_stop_id": "7439731",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.277402419668,
+          57.777045415763
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Rogbergavägen",
+        "stop_id": "1427",
+        "gtfs_stop_id": "7439741",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.261945228648,
+          57.786323071369
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Sandagymnasiet",
+        "stop_id": "1410",
+        "gtfs_stop_id": "7425509",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.281940188947,
+          57.78105131505
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Sandgatan",
+        "stop_id": "1428",
+        "gtfs_stop_id": "7439742",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.291278628429,
+          57.790484589737
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Skolgatan",
+        "stop_id": "1457",
+        "gtfs_stop_id": "7439765",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.294620170345,
+          57.788988888869
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Solhemsgatan",
+        "stop_id": "1456",
+        "gtfs_stop_id": "7439764",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.284496413296,
+          57.785024288777
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Stampaplan",
+        "stop_id": "1432",
+        "gtfs_stop_id": "7439744",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.26540382092,
+          57.782494728619
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna station",
+        "stop_id": "1609",
+        "gtfs_stop_id": "7400620",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.271580199325,
+          57.766890369916
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Stekelvägen",
+        "stop_id": "1229",
+        "gtfs_stop_id": "7439581",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.305642273275,
+          57.772982690272
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Stensholm",
+        "stop_id": "1446",
+        "gtfs_stop_id": "7439756",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.304668417957,
+          57.778628593201
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Stensholmsskolan",
+        "stop_id": "1449",
+        "gtfs_stop_id": "7439758",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.289897186116,
+          57.796960658375
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Stjärnstigen",
+        "stop_id": "1460",
+        "gtfs_stop_id": "7439768",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.271922280842,
+          57.808750771067
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Strandvägen",
+        "stop_id": "1472",
+        "gtfs_stop_id": "7439784",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.298344934041,
+          57.787973603656
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Svarvaregatan",
+        "stop_id": "1224",
+        "gtfs_stop_id": "7439579",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.276084376813,
+          57.796677960664
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Sylviaplan",
+        "stop_id": "1465",
+        "gtfs_stop_id": "7425512",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.285435486539,
+          57.780285093997
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Tenhultsvägen",
+        "stop_id": "1434",
+        "gtfs_stop_id": "7439745",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.301601188385,
+          57.772351071984
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Trekanten",
+        "stop_id": "1441",
+        "gtfs_stop_id": "7439752",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.278639582392,
+          57.789542667597
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Viktoriaplan",
+        "stop_id": "1246",
+        "gtfs_stop_id": "7420269",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.305310228276,
+          57.774909471379
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Vipevägen",
+        "stop_id": "1447",
+        "gtfs_stop_id": "7439757",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.273417156939,
+          57.790566218784
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Vårdcentrum",
+        "stop_id": "1010",
+        "gtfs_stop_id": "7439401",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.272163445397,
+          57.789994287162
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Vårdcentrum Närtrafik",
+        "stop_id": "1429",
+        "gtfs_stop_id": "7439401",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.266595560727,
+          57.787672776984
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Vårstarondellen",
+        "stop_id": "1009",
+        "gtfs_stop_id": "7439400",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.291447100402,
+          57.786463533081
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Ådalsvägen",
+        "stop_id": "1462",
+        "gtfs_stop_id": "7439770",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.259518551634,
+          57.775445481663
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Öxnegården",
+        "stop_id": "1415",
+        "gtfs_stop_id": "7439729",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.263148073265,
+          57.775471765183
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Öxnehaga centrum",
+        "stop_id": "1414",
+        "gtfs_stop_id": "7439728",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.256530591615,
+          57.773783573598
+        ]
+      },
+      "properties": {
+        "name": "Huskvarna Öxnehaga idrottsplats",
+        "stop_id": "1416",
+        "gtfs_stop_id": "7439730",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.201556346604,
+          57.772928777626
+        ]
+      },
+      "properties": {
+        "name": "Jönköping A6 Center",
+        "stop_id": "1377",
+        "gtfs_stop_id": "7439696",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.202002265886,
+          57.774622710391
+        ]
+      },
+      "properties": {
+        "name": "Jönköping A6 Kaserngården",
+        "stop_id": "1371",
+        "gtfs_stop_id": "7439690",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.069461939796,
+          57.776467778026
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Axamo gård",
+        "stop_id": "1791",
+        "gtfs_stop_id": "7439937",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.065939452256,
+          57.775961448672
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Axamobadet",
+        "stop_id": "1792",
+        "gtfs_stop_id": "7439938",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.082250294062,
+          57.773373494296
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Axamovägen",
+        "stop_id": "1790",
+        "gtfs_stop_id": "7410053",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.250066756822,
+          57.783384974246
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Banérvägen",
+        "stop_id": "1405",
+        "gtfs_stop_id": "7439721",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.130807666778,
+          57.789731450942
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Barbackavägen",
+        "stop_id": "1265",
+        "gtfs_stop_id": "7439606",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.165909439673,
+          57.761390658285
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Barnhemsgatan",
+        "stop_id": "1343",
+        "gtfs_stop_id": "7425504",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.25118803915,
+          57.7858503151
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Bastugatan",
+        "stop_id": "1404",
+        "gtfs_stop_id": "7439720",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.142402790237,
+          57.792820747814
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Berghemsgatan övre",
+        "stop_id": "1271",
+        "gtfs_stop_id": "7439612",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.201556346604,
+          57.772928777626
+        ]
+      },
+      "properties": {
+        "name": "Jönköping A6 Center",
+        "stop_id": "1377",
+        "gtfs_stop_id": "7439696",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.202002265886,
+          57.774622710391
+        ]
+      },
+      "properties": {
+        "name": "Jönköping A6 Kaserngården",
+        "stop_id": "1371",
+        "gtfs_stop_id": "7439690",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.069461939796,
+          57.776467778026
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Axamo gård",
+        "stop_id": "1791",
+        "gtfs_stop_id": "7439937",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.065939452256,
+          57.775961448672
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Axamobadet",
+        "stop_id": "1792",
+        "gtfs_stop_id": "7439938",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.082250294062,
+          57.773373494296
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Axamovägen",
+        "stop_id": "1790",
+        "gtfs_stop_id": "7410053",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.250066756822,
+          57.783384974246
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Banérvägen",
+        "stop_id": "1405",
+        "gtfs_stop_id": "7439721",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.130807666778,
+          57.789731450942
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Barbackavägen",
+        "stop_id": "1265",
+        "gtfs_stop_id": "7439606",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.165909439673,
+          57.761390658285
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Barnhemsgatan",
+        "stop_id": "1343",
+        "gtfs_stop_id": "7425504",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.25118803915,
+          57.7858503151
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Bastugatan",
+        "stop_id": "1404",
+        "gtfs_stop_id": "7439720",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.142402790237,
+          57.792820747814
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Berghemsgatan övre",
+        "stop_id": "1271",
+        "gtfs_stop_id": "7439612",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.133372007001,
+          57.77174170737
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Birkedalsgatan",
+        "stop_id": "1481",
+        "gtfs_stop_id": "7439787",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.245935998467,
+          57.790670975969
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Bivägen",
+        "stop_id": "1330",
+        "gtfs_stop_id": "7439658",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.14456949474,
+          57.796171891044
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Björnebergsvägen",
+        "stop_id": "1277",
+        "gtfs_stop_id": "7439618",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.130445732615,
+          57.739481322345
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Blåmesvägen",
+        "stop_id": "1357",
+        "gtfs_stop_id": "7439680",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.228922554383,
+          57.770919529593
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Bokgatan",
+        "stop_id": "1392",
+        "gtfs_stop_id": "7439708",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.231099560096,
+          57.77264386517
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Bondberget",
+        "stop_id": "1391",
+        "gtfs_stop_id": "7439707",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.15084172114,
+          57.769384778069
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Brahegatan",
+        "stop_id": "1302",
+        "gtfs_stop_id": "7439637",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.145469436558,
+          57.777315983727
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Bäckadalsgymnasiet",
+        "stop_id": "1295",
+        "gtfs_stop_id": "7425502",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.152741917856,
+          57.810539471896
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Ceciliagården",
+        "stop_id": "1250",
+        "gtfs_stop_id": "7439594",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.185732196086,
+          57.781366443737
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Cigarren",
+        "stop_id": "1323",
+        "gtfs_stop_id": "7404234",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.13004213725,
+          57.787745648942
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Dalvik",
+        "stop_id": "1275",
+        "gtfs_stop_id": "7439616",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.170605670541,
+          57.767153875421
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Djursjukhuset",
+        "stop_id": "1336",
+        "gtfs_stop_id": "7425503",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.141298951331,
+          57.787211499169
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Dunkehalla",
+        "stop_id": "1276",
+        "gtfs_stop_id": "7439617",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.242245833365,
+          57.783459336165
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Duvgatan",
+        "stop_id": "1407",
+        "gtfs_stop_id": "7439723",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.148174995491,
+          57.770732888305
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Ekgatan",
+        "stop_id": "1303",
+        "gtfs_stop_id": "7439638",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.222959397213,
+          57.77775992924
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Ekhagens centrum",
+        "stop_id": "1386",
+        "gtfs_stop_id": "7425508",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.224261672438,
+          57.771813333304
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Elektravägen",
+        "stop_id": "1393",
+        "gtfs_stop_id": "7439709",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.23075897579,
+          57.785481302967
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Elmia",
+        "stop_id": "1241",
+        "gtfs_stop_id": "7421191",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.241247692446,
+          57.789041656417
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Falkgatan",
+        "stop_id": "1329",
+        "gtfs_stop_id": "7439657",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.115384485843,
+          57.82035629897
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Flasarp",
+        "stop_id": "1621",
+        "gtfs_stop_id": "7439915",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.0701471051,
+          57.750280977597
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Flygplatsen",
+        "stop_id": "1787",
+        "gtfs_stop_id": "7426044",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.169552602933,
+          57.761455732188
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Fridhem Solåsvägen",
+        "stop_id": "1342",
+        "gtfs_stop_id": "7439669",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.179615669468,
+          57.761863712152
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Fältspatsvägen",
+        "stop_id": "1340",
+        "gtfs_stop_id": "7439667",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.163200951117,
+          57.756281669549
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Företagsbyn",
+        "stop_id": "1345",
+        "gtfs_stop_id": "7439671",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.222313779764,
+          57.782906499302
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Glansgatan",
+        "stop_id": "1450",
+        "gtfs_stop_id": "7439759",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.174465545677,
+          57.761680745872
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Godsterminalen Solåsen",
+        "stop_id": "1341",
+        "gtfs_stop_id": "7439668",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.144701747277,
+          57.82694915261
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Granbäck",
+        "stop_id": "1532",
+        "gtfs_stop_id": "7439832",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.176959072675,
+          57.76638259661
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Granitvägen",
+        "stop_id": "1338",
+        "gtfs_stop_id": "7439665",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.155581384386,
+          57.750956050017
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Grenadjärgatan",
+        "stop_id": "1352",
+        "gtfs_stop_id": "7439675",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.135443155101,
+          57.762923349781
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Gräshagens centrum",
+        "stop_id": "1308",
+        "gtfs_stop_id": "7439643",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.234790786838,
+          57.780529392515
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Gullregnsbacken",
+        "stop_id": "1397",
+        "gtfs_stop_id": "7439713",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.180658860063,
+          57.759587121683
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Gånglåten",
+        "stop_id": "1372",
+        "gtfs_stop_id": "7439691",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.138094414744,
+          57.744772972933
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Hagaberg",
+        "stop_id": "1355",
+        "gtfs_stop_id": "7439678",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.257126578438,
+          57.755938301956
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Hallandsberg",
+        "stop_id": "1119",
+        "gtfs_stop_id": "7439493",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.099320586493,
+          57.766393266006
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Hedenstorp industri",
+        "stop_id": "1442",
+        "gtfs_stop_id": "7439753",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.167559294253,
+          57.723829211185
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Hellstorpshammar",
+        "stop_id": "1556",
+        "gtfs_stop_id": "7439856",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.211946011489,
+          57.777065092309
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Hermansplan",
+        "stop_id": "1236",
+        "gtfs_stop_id": "7439586",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.128487392596,
+          57.796247450293
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Hisingstorps gård",
+        "stop_id": "1262",
+        "gtfs_stop_id": "7439603",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.131440599069,
+          57.792766197775
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Hisingstorpsskolan",
+        "stop_id": "1263",
+        "gtfs_stop_id": "7439604",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.129736626854,
+          57.799047888048
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Hisingsängen",
+        "stop_id": "1261",
+        "gtfs_stop_id": "7439602",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.128246109623,
+          57.797097391441
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Hisingsängens förskola",
+        "stop_id": "1019",
+        "gtfs_stop_id": "7439410",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.136681514649,
+          57.803090884385
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Hisingsängens vändplan",
+        "stop_id": "1260",
+        "gtfs_stop_id": "7439601",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.14349283268,
+          57.77460493855
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Humlevägen",
+        "stop_id": "1299",
+        "gtfs_stop_id": "7439785",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.146207445526,
+          57.821293322622
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Häggeberg",
+        "stop_id": "1533",
+        "gtfs_stop_id": "7439833",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.140289192096,
+          57.78686595892
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Högabergsgatan",
+        "stop_id": "1273",
+        "gtfs_stop_id": "7439614",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.162840945484,
+          57.779751591378
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Högskolan",
+        "stop_id": "1219",
+        "gtfs_stop_id": "7425498",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.154195107285,
+          57.775445371572
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Idas park",
+        "stop_id": "1015",
+        "gtfs_stop_id": "7439406",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.164462344592,
+          57.752176042262
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Industrigatan",
+        "stop_id": "1348",
+        "gtfs_stop_id": "7425506",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.16952434084,
+          57.756507204063
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Inre Ljungarumsvägen",
+        "stop_id": "1400",
+        "gtfs_stop_id": "7439716",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.138491129082,
+          57.766061738448
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Junegården",
+        "stop_id": "1307",
+        "gtfs_stop_id": "7439642",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.16147624202,
+          57.783514602401
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Juneporten",
+        "stop_id": "1242",
+        "gtfs_stop_id": "7420260",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.226712655914,
+          57.768413466282
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Järabacken",
+        "stop_id": "1117",
+        "gtfs_stop_id": "7439491",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.163949315567,
+          57.753857698429
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kabelvägen",
+        "stop_id": "1346",
+        "gtfs_stop_id": "7439672",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.149948387704,
+          57.80064263518
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kaptensbo",
+        "stop_id": "1253",
+        "gtfs_stop_id": "7425501",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.140909793942,
+          57.767548370584
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Karlavägen",
+        "stop_id": "1306",
+        "gtfs_stop_id": "7439641",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.151957068089,
+          57.771455844028
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Katolska kyrkan",
+        "stop_id": "1014",
+        "gtfs_stop_id": "7439405",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.198592917817,
+          57.781368577407
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kilallén",
+        "stop_id": "1007",
+        "gtfs_stop_id": "7425486",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.232270851485,
+          57.778172255797
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Klöverstigen",
+        "stop_id": "1389",
+        "gtfs_stop_id": "7439705",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.146665621441,
+          57.81828193892
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kortebo",
+        "stop_id": "1534",
+        "gtfs_stop_id": "7439834",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.165684991954,
+          57.748177664633
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kraftgatan",
+        "stop_id": "1347",
+        "gtfs_stop_id": "7425505",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.149327917124,
+          57.778219620399
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kristinedalsgatan",
+        "stop_id": "1318",
+        "gtfs_stop_id": "7439652",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.250057171437,
+          57.757818325772
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kroneken",
+        "stop_id": "1118",
+        "gtfs_stop_id": "7439492",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.143176626244,
+          57.796836132185
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Krönleinstigen övre",
+        "stop_id": "1021",
+        "gtfs_stop_id": "7439412",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.174726387271,
+          57.777884580567
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kulturhuset Spira",
+        "stop_id": "1334",
+        "gtfs_stop_id": "7439662",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.154735527613,
+          57.779071490997
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kungsgatan",
+        "stop_id": "1317",
+        "gtfs_stop_id": "7423267",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.153240485638,
+          57.764333211763
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kämpevägen",
+        "stop_id": "1610",
+        "gtfs_stop_id": "7439905",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.142757056683,
+          57.749297551191
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Kättilstorp",
+        "stop_id": "1354",
+        "gtfs_stop_id": "7439677",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.157092159582,
+          57.779739781072
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Lasarettsparken",
+        "stop_id": "1293",
+        "gtfs_stop_id": "7439631",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.272561727507,
+          57.752453209828
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Lidhultsvägen",
+        "stop_id": "1120",
+        "gtfs_stop_id": "7439494",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.194406019796,
+          57.781387243577
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Liljeholmsgatan",
+        "stop_id": "1006",
+        "gtfs_stop_id": "7439398",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.170933214784,
+          57.753211653699
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Ljungarum",
+        "stop_id": "1023",
+        "gtfs_stop_id": "7439414",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.178294293046,
+          57.756126280538
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Ljungarums kyrka",
+        "stop_id": "1373",
+        "gtfs_stop_id": "7439692",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.153172879304,
+          57.754040833054
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Ljungarumsskolan",
+        "stop_id": "1350",
+        "gtfs_stop_id": "7439674",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.152748302887,
+          57.732805661871
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Lockebo",
+        "stop_id": "1370",
+        "gtfs_stop_id": "7439689",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.048718111972,
+          57.773020639328
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Lomsjö",
+        "stop_id": "1205",
+        "gtfs_stop_id": "7439565",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.19389124628,
+          57.766536316638
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Länssjukhuset Ryhov",
+        "stop_id": "1380",
+        "gtfs_stop_id": "7424008",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.19219000886,
+          57.760973823839
+        ]
+      },
+      "properties": {
+        "name": "Jönköping M2 Center",
+        "stop_id": "1231",
+        "gtfs_stop_id": "7439582",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.125322682839,
+          57.773521076562
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Mariebo vändplan",
+        "stop_id": "1319",
+        "gtfs_stop_id": "7439653",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.128780834091,
+          57.77433921252
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Marielundsgatan",
+        "stop_id": "1483",
+        "gtfs_stop_id": "7439788",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.162200771403,
+          57.759438757204
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Materialvägen",
+        "stop_id": "1344",
+        "gtfs_stop_id": "7439670",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.175244481318,
+          57.77235938421
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Maxi Ica",
+        "stop_id": "1020",
+        "gtfs_stop_id": "7439411",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.072821536193,
+          57.747749169172
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Meteorologvägen",
+        "stop_id": "1473",
+        "gtfs_stop_id": "7439779",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.158085033691,
+          57.774921278725
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Munkplan",
+        "stop_id": "1218",
+        "gtfs_stop_id": "7439575",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.15561281561,
+          57.777529321897
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Myntgatan",
+        "stop_id": "1016",
+        "gtfs_stop_id": "7439407",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.145636284317,
+          57.797479036574
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Mäster Gudmunds väg",
+        "stop_id": "1255",
+        "gtfs_stop_id": "7439596",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.142873996028,
+          57.794640959929
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Narvavägen",
+        "stop_id": "1022",
+        "gtfs_stop_id": "7439413",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.136664446072,
+          57.785983093335
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Nedre Kvarngatan",
+        "stop_id": "1266",
+        "gtfs_stop_id": "7439607",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.250370092149,
+          57.791183461905
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Norra Apollov",
+        "stop_id": "1331",
+        "gtfs_stop_id": "7439659",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.128237048644,
+          57.757071676844
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Norra Tokarp",
+        "stop_id": "1310",
+        "gtfs_stop_id": "7439645",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.143579508061,
+          57.79465919527
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Onkel Adamsstigen",
+        "stop_id": "1269",
+        "gtfs_stop_id": "7439610",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.247565763198,
+          57.783291383071
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Polstjärnevägen",
+        "stop_id": "1406",
+        "gtfs_stop_id": "7439722",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.193896436526,
+          57.76943701109
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Psykiatrivägen",
+        "stop_id": "1379",
+        "gtfs_stop_id": "7439697",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.236654848989,
+          57.78793419171
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Racketcentrum",
+        "stop_id": "1495",
+        "gtfs_stop_id": "7439798",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.14668682611,
+          57.813792065426
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Ramnåsvägen",
+        "stop_id": "1535",
+        "gtfs_stop_id": "7439835",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.163894386742,
+          57.784318265151
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Resecentrum",
+        "stop_id": "1001",
+        "gtfs_stop_id": "7400090",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.229879584966,
+          57.779812852103
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Resedastigen",
+        "stop_id": "1017",
+        "gtfs_stop_id": "7439408",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.137679701729,
+          57.74210930792
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Ringarna",
+        "stop_id": "1356",
+        "gtfs_stop_id": "7439679",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.19860733919,
+          57.774992781859
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Rocksjön",
+        "stop_id": "1234",
+        "gtfs_stop_id": "7439584",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.215462938296,
+          57.78271294029
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Rosengården",
+        "stop_id": "1240",
+        "gtfs_stop_id": "7439590",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.206148910924,
+          57.777396145631
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Rosenlunds Vårdcentrum",
+        "stop_id": "1385",
+        "gtfs_stop_id": "7439702",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.227440415715,
+          57.784856300075
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Rosenlundsbadet",
+        "stop_id": "1328",
+        "gtfs_stop_id": "7439656",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.216006416588,
+          57.778382316034
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Rosenlundsskolan",
+        "stop_id": "1237",
+        "gtfs_stop_id": "7439587",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.221146003214,
+          57.783466633813
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Rosenlundstorg",
+        "stop_id": "1327",
+        "gtfs_stop_id": "7439655",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.119297157048,
+          57.788474202443
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Runnavägen",
+        "stop_id": "1784",
+        "gtfs_stop_id": "7421357",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.193019578841,
+          57.76347192732
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Ryhov södra infarten",
+        "stop_id": "1381",
+        "gtfs_stop_id": "7439698",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.168100329725,
+          57.78277419898
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Rådhusparken",
+        "stop_id": "1320",
+        "gtfs_stop_id": "7424006",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.151684850849,
+          57.736240245558
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Råslätt syd",
+        "stop_id": "1368",
+        "gtfs_stop_id": "7435704",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.153863865962,
+          57.739268144215
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Råslätt övre",
+        "stop_id": "1011",
+        "gtfs_stop_id": "7439402",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.151863924937,
+          57.739304899314
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Råslätts centrum",
+        "stop_id": "1365",
+        "gtfs_stop_id": "7439686",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.151863924937,
+          57.739304899314
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Råslätts centrum",
+        "stop_id": "1365",
+        "gtfs_stop_id": "7439686",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.155783128498,
+          57.748004136476
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Röde Påle",
+        "stop_id": "1012",
+        "gtfs_stop_id": "7439403",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.097865254687,
+          57.758776176206
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Rödjorna",
+        "stop_id": "1486",
+        "gtfs_stop_id": "7439791",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.222476790123,
+          57.773425438241
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Rönngatan",
+        "stop_id": "1394",
+        "gtfs_stop_id": "7439710",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.220118974103,
+          57.780050287969
+        ]
+      },
+      "properties": {
+        "name": "Jönköping S:t Göransvägen",
+        "stop_id": "1421",
+        "gtfs_stop_id": "7439735",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.167236025451,
+          57.742854431762
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Sagaholmsvägen",
+        "stop_id": "1282",
+        "gtfs_stop_id": "7439622",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.119766632904,
+          57.772279804846
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Sandserydsvägen",
+        "stop_id": "1484",
+        "gtfs_stop_id": "7439789",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.197217580111,
+          57.772227185216
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Shell A6",
+        "stop_id": "1378",
+        "gtfs_stop_id": "7425507",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.17311806688,
+          57.767338945895
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Skiffervägen",
+        "stop_id": "1337",
+        "gtfs_stop_id": "7439664",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.151732907872,
+          57.756877793426
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Skogskyrkogården",
+        "stop_id": "1349",
+        "gtfs_stop_id": "7439673",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.099135554566,
+          57.771383907931
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Skogslund",
+        "stop_id": "1788",
+        "gtfs_stop_id": "7439935",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.13386989274,
+          57.784239983217
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Skänkeberg",
+        "stop_id": "1285",
+        "gtfs_stop_id": "7439625",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.173973041985,
+          57.746892779241
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Smedsbo",
+        "stop_id": "1024",
+        "gtfs_stop_id": "7439415",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.158511017093,
+          57.781805749345
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Sofiakyrkan",
+        "stop_id": "1291",
+        "gtfs_stop_id": "7439629",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.184326217488,
+          57.762858049734
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Solåsen",
+        "stop_id": "1339",
+        "gtfs_stop_id": "7439666",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.175769892587,
+          57.780466373472
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Stadsbiblioteket",
+        "stop_id": "1004",
+        "gtfs_stop_id": "7439397",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.145220835685,
+          57.786023665011
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Stadsparken",
+        "stop_id": "1286",
+        "gtfs_stop_id": "7439626",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.203090540955,
+          57.779270287835
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Starrgatan",
+        "stop_id": "1235",
+        "gtfs_stop_id": "7439585",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.126621094432,
+          57.788634323083
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Stattutgatan",
+        "stop_id": "1783",
+        "gtfs_stop_id": "7421350",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.143240114628,
+          57.799477182645
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Stigbergsliden",
+        "stop_id": "1256",
+        "gtfs_stop_id": "7439597",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.154113545757,
+          57.730111399615
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Stillefors",
+        "stop_id": "1557",
+        "gtfs_stop_id": "7439857",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.221076445696,
+          57.77546439919
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Stockrosgatan",
+        "stop_id": "1395",
+        "gtfs_stop_id": "7439711",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.151684559072,
+          57.814890104096
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Strandängens vändplan",
+        "stop_id": "1248",
+        "gtfs_stop_id": "7439592",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.151075148999,
+          57.753259091865
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Stridslyckegatan",
+        "stop_id": "1353",
+        "gtfs_stop_id": "7439676",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.152144317844,
+          57.759271943122
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Strömsholm",
+        "stop_id": "1013",
+        "gtfs_stop_id": "7439404",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.120452823538,
+          57.790375458819
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Sveavägen",
+        "stop_id": "1281",
+        "gtfs_stop_id": "7470409",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.24965321738,
+          57.787133597762
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Södra Apollovägen",
+        "stop_id": "1403",
+        "gtfs_stop_id": "7439719",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.151494327785,
+          57.78671638188
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Talavidskolan",
+        "stop_id": "1288",
+        "gtfs_stop_id": "7439627",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.140871312672,
+          57.774956671662
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Tallbacken",
+        "stop_id": "1479",
+        "gtfs_stop_id": "7439785",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.205400259259,
+          57.781778027263
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Tegelbruksgatan",
+        "stop_id": "1008",
+        "gtfs_stop_id": "7439399",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.258317911666,
+          57.791325659
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Thulevägen",
+        "stop_id": "1332",
+        "gtfs_stop_id": "7439660",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.125506779047,
+          57.754000102631
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Tokarps koloniområde",
+        "stop_id": "1311",
+        "gtfs_stop_id": "7439646",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.127834691636,
+          57.752342646561
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Tokarps vändplan",
+        "stop_id": "1312",
+        "gtfs_stop_id": "7439647",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.13288679385,
+          57.800759850653
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Tolarpsvägen",
+        "stop_id": "1239",
+        "gtfs_stop_id": "7439589",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.155740502129,
+          57.771415374243
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Torpagatan",
+        "stop_id": "1217",
+        "gtfs_stop_id": "7439574",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.152617786025,
+          57.773179713905
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Torpaplan",
+        "stop_id": "1300",
+        "gtfs_stop_id": "7439635",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.149850715636,
+          57.772676598606
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Torpaskolan",
+        "stop_id": "1301",
+        "gtfs_stop_id": "7439635",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.1494799049,
+          57.789213541942
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Trollhättegatan nedre",
+        "stop_id": "1278",
+        "gtfs_stop_id": "7439619",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.141476630754,
+          57.789925897983
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Trollhättegatan övre",
+        "stop_id": "1272",
+        "gtfs_stop_id": "7439613",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.125872425996,
+          57.782311191399
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Trökhagen",
+        "stop_id": "1270",
+        "gtfs_stop_id": "7439611",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.186887338367,
+          57.780348476509
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Tullportsgatan",
+        "stop_id": "1304",
+        "gtfs_stop_id": "7439639",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.233907018848,
+          57.775723013164
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Tulpanstigen",
+        "stop_id": "1390",
+        "gtfs_stop_id": "7439706",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.157654720994,
+          57.784362986884
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Tändsticksområdet",
+        "stop_id": "1289",
+        "gtfs_stop_id": "7439628",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.22132758687,
+          57.774336033332
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Törnrosgatan",
+        "stop_id": "1388",
+        "gtfs_stop_id": "7439704",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.094182961754,
+          57.754927724989
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Ulfstorps gård",
+        "stop_id": "1487",
+        "gtfs_stop_id": "7439792",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.13134770031,
+          57.783155975736
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Vaddgatan",
+        "stop_id": "1284",
+        "gtfs_stop_id": "7439624",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.13594794511,
+          57.771281765151
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Vattenledningsvägen",
+        "stop_id": "1480",
+        "gtfs_stop_id": "7439786",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.133481115878,
+          57.761020558651
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Veragatan",
+        "stop_id": "1309",
+        "gtfs_stop_id": "7439644",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.1479612821,
+          57.809489210537
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Vilhelmsro",
+        "stop_id": "1251",
+        "gtfs_stop_id": "7425499",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.152298396273,
+          57.812509353103
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Vilhelmsro äldreboende",
+        "stop_id": "1249",
+        "gtfs_stop_id": "7439593",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.175709599627,
+          57.773972843553
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Vinterviken",
+        "stop_id": "1335",
+        "gtfs_stop_id": "7439663",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.093262525867,
+          57.771538145927
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Västersjövägen",
+        "stop_id": "1789",
+        "gtfs_stop_id": "7439936",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.142806994741,
+          57.802309284764
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Vätterslund",
+        "stop_id": "1257",
+        "gtfs_stop_id": "7439598",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.147539516029,
+          57.798886921586
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Vätterslundsgatan",
+        "stop_id": "1254",
+        "gtfs_stop_id": "7439595",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.14994896398,
+          57.805034015669
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Åbolid",
+        "stop_id": "1252",
+        "gtfs_stop_id": "7425500",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.111567172,
+          57.771505866686
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Åsens gård",
+        "stop_id": "1485",
+        "gtfs_stop_id": "7439790",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.242628812273,
+          57.787433291622
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Österängens centrum",
+        "stop_id": "1402",
+        "gtfs_stop_id": "7439718",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.237491310408,
+          57.786094631812
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Österängsskolan",
+        "stop_id": "1401",
+        "gtfs_stop_id": "7439717",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.236288984789,
+          57.784355553231
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Österängsvägen",
+        "stop_id": "1408",
+        "gtfs_stop_id": "7439724",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.172484068414,
+          57.781007780166
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Östra Centrum",
+        "stop_id": "1003",
+        "gtfs_stop_id": "7424353",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.181125122025,
+          57.780633934969
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Östra torget",
+        "stop_id": "1322",
+        "gtfs_stop_id": "7439654",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.124180240807,
+          57.781462549372
+        ]
+      },
+      "properties": {
+        "name": "Jönköping Övratorpsvägen",
+        "stop_id": "1283",
+        "gtfs_stop_id": "7439623",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.305443351147,
+          57.85188768217
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen affären",
+        "stop_id": "1489",
+        "gtfs_stop_id": "7401139",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.31883761492,
+          57.852216001315
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Alängsvägen",
+        "stop_id": "1493",
+        "gtfs_stop_id": "7439796",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.318474842453,
+          57.850801898995
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Brunkullavägen",
+        "stop_id": "1492",
+        "gtfs_stop_id": "7439795",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.308338958178,
+          57.85841439655
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Hunnerydsbadet",
+        "stop_id": "1137",
+        "gtfs_stop_id": "7439506",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.306522700353,
+          57.855501403781
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Hunnerydsvägen",
+        "stop_id": "1136",
+        "gtfs_stop_id": "7439505",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.314898947412,
+          57.850517466262
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Kullgatan",
+        "stop_id": "1491",
+        "gtfs_stop_id": "7439794",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.296964155701,
+          57.847216311437
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Missionskyrkan",
+        "stop_id": "1134",
+        "gtfs_stop_id": "7425492",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.31591289343,
+          57.854920567985
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Nyodlingsvägen",
+        "stop_id": "1494",
+        "gtfs_stop_id": "7439797",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.309070998194,
+          57.852550149387
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Pingstkyrkan",
+        "stop_id": "1490",
+        "gtfs_stop_id": "7439793",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.286143836348,
+          57.842606128632
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Ruduvägen",
+        "stop_id": "1133",
+        "gtfs_stop_id": "7439504",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.305443351147,
+          57.85188768217
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen affären",
+        "stop_id": "1489",
+        "gtfs_stop_id": "7401139",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.31883761492,
+          57.852216001315
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Alängsvägen",
+        "stop_id": "1493",
+        "gtfs_stop_id": "7439796",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.318474842453,
+          57.850801898995
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Brunkullavägen",
+        "stop_id": "1492",
+        "gtfs_stop_id": "7439795",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.308338958178,
+          57.85841439655
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Hunnerydsbadet",
+        "stop_id": "1137",
+        "gtfs_stop_id": "7439506",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.306522700353,
+          57.855501403781
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Hunnerydsvägen",
+        "stop_id": "1136",
+        "gtfs_stop_id": "7439505",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.314898947412,
+          57.850517466262
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Kullgatan",
+        "stop_id": "1491",
+        "gtfs_stop_id": "7439794",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.296964155701,
+          57.847216311437
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Missionskyrkan",
+        "stop_id": "1134",
+        "gtfs_stop_id": "7425492",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.31591289343,
+          57.854920567985
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Nyodlingsvägen",
+        "stop_id": "1494",
+        "gtfs_stop_id": "7439797",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.309070998194,
+          57.852550149387
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Pingstkyrkan",
+        "stop_id": "1490",
+        "gtfs_stop_id": "7439793",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.286143836348,
+          57.842606128632
+        ]
+      },
+      "properties": {
+        "name": "Kaxholmen Ruduvägen",
+        "stop_id": "1133",
+        "gtfs_stop_id": "7439504",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.188509628497,
+          57.680130710074
+        ]
+      },
+      "properties": {
+        "name": "Lovsjö Konungsövägen",
+        "stop_id": "1541",
+        "gtfs_stop_id": "7439841",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.186998065367,
+          57.760225075107
+        ]
+      },
+      "properties": {
+        "name": "M2 Center Eurostop västra entrén",
+        "stop_id": "1233",
+        "gtfs_stop_id": "7439583",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.186998065367,
+          57.760225075107
+        ]
+      },
+      "properties": {
+        "name": "M2 Center Eurostop västra entrén",
+        "stop_id": "1233",
+        "gtfs_stop_id": "7439583",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.316840162683,
+          57.704264451754
+        ]
+      },
+      "properties": {
+        "name": "Mjälaryd vändplan",
+        "stop_id": "1049",
+        "gtfs_stop_id": "7412540",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.103785457904,
+          57.827205822837
+        ]
+      },
+      "properties": {
+        "name": "Månseryd",
+        "stop_id": "1622",
+        "gtfs_stop_id": "7439916",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.148581574018,
+          57.795236578924
+        ]
+      },
+      "properties": {
+        "name": "Mäster Gudmunds park",
+        "stop_id": "1838",
+        "gtfs_stop_id": "7464318",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.116787270419,
+          57.706125962916
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Barnarpsvägen",
+        "stop_id": "1574",
+        "gtfs_stop_id": "7439873",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.108013828857,
+          57.694998434125
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Brodalsskolan",
+        "stop_id": "1602",
+        "gtfs_stop_id": "7432995",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.126207996305,
+          57.70303633201
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Flahultsskolan",
+        "stop_id": "1604",
+        "gtfs_stop_id": "7439900",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.115176324982,
+          57.699656444452
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Folkets Hus",
+        "stop_id": "1576",
+        "gtfs_stop_id": "7439874",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.101140454646,
+          57.696360866378
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Fältgatan",
+        "stop_id": "1596",
+        "gtfs_stop_id": "7439892",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.118015219654,
+          57.694521566435
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Getstigen",
+        "stop_id": "1613",
+        "gtfs_stop_id": "7439908",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.110664263784,
+          57.693552183236
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Kolaregatan",
+        "stop_id": "1608",
+        "gtfs_stop_id": "7439904",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.119216116046,
+          57.696468390469
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Kyrkogården",
+        "stop_id": "1606",
+        "gtfs_stop_id": "7439902",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.123676614474,
+          57.700829427991
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Kärrgatan",
+        "stop_id": "1605",
+        "gtfs_stop_id": "7439901",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.132353131938,
+          57.704375012718
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Ringblommevägen",
+        "stop_id": "1603",
+        "gtfs_stop_id": "7439900",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.121869776476,
+          57.71156402846
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Slätten",
+        "stop_id": "1573",
+        "gtfs_stop_id": "7420994",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.12018372352,
+          57.709934075904
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Slättenskolan",
+        "stop_id": "1572",
+        "gtfs_stop_id": "7439872",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.114463025045,
+          57.693010306521
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Smedjehov",
+        "stop_id": "1607",
+        "gtfs_stop_id": "7439903",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.116787270419,
+          57.706125962916
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Barnarpsvägen",
+        "stop_id": "1574",
+        "gtfs_stop_id": "7439873",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.108013828857,
+          57.694998434125
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Brodalsskolan",
+        "stop_id": "1602",
+        "gtfs_stop_id": "7432995",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.126207996305,
+          57.70303633201
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Flahultsskolan",
+        "stop_id": "1604",
+        "gtfs_stop_id": "7439900",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.115176324982,
+          57.699656444452
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Folkets Hus",
+        "stop_id": "1576",
+        "gtfs_stop_id": "7439874",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.101140454646,
+          57.696360866378
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Fältgatan",
+        "stop_id": "1596",
+        "gtfs_stop_id": "7439892",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.118015219654,
+          57.694521566435
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Getstigen",
+        "stop_id": "1613",
+        "gtfs_stop_id": "7439908",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.110664263784,
+          57.693552183236
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Kolaregatan",
+        "stop_id": "1608",
+        "gtfs_stop_id": "7439904",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.119216116046,
+          57.696468390469
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Kyrkogården",
+        "stop_id": "1606",
+        "gtfs_stop_id": "7439902",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.123676614474,
+          57.700829427991
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Kärrgatan",
+        "stop_id": "1605",
+        "gtfs_stop_id": "7439901",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.132353131938,
+          57.704375012718
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Ringblommevägen",
+        "stop_id": "1603",
+        "gtfs_stop_id": "7439900",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.121869776476,
+          57.71156402846
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Slätten",
+        "stop_id": "1573",
+        "gtfs_stop_id": "7420994",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.12018372352,
+          57.709934075904
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Slättenskolan",
+        "stop_id": "1572",
+        "gtfs_stop_id": "7439872",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.114463025045,
+          57.693010306521
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Smedjehov",
+        "stop_id": "1607",
+        "gtfs_stop_id": "7439903",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.116364896512,
+          57.703668646561
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar station",
+        "stop_id": "1575",
+        "gtfs_stop_id": "7400533",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.123732678964,
+          57.715172013087
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Tallhöjden",
+        "stop_id": "1642",
+        "gtfs_stop_id": "7470971",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.108778291954,
+          57.693356271089
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Thunbergsgatan",
+        "stop_id": "1614",
+        "gtfs_stop_id": "7439909",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.110928522822,
+          57.69794720246
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Viadukten",
+        "stop_id": "1577",
+        "gtfs_stop_id": "7439875",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.091186241979,
+          57.692274915446
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Åsabadet",
+        "stop_id": "1594",
+        "gtfs_stop_id": "7439890",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.095287884204,
+          57.696694988117
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar Åsavallen",
+        "stop_id": "1595",
+        "gtfs_stop_id": "7439891",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.120211853622,
+          57.714020573548
+        ]
+      },
+      "properties": {
+        "name": "Norrahammar, Nordhamra",
+        "stop_id": "1571",
+        "gtfs_stop_id": "7439871",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.307642778428,
+          57.740911556635
+        ]
+      },
+      "properties": {
+        "name": "Rogberga Klevarp",
+        "stop_id": "1162",
+        "gtfs_stop_id": "7439529",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.28135860904,
+          57.731833221933
+        ]
+      },
+      "properties": {
+        "name": "Rogberga kyrka",
+        "stop_id": "1778",
+        "gtfs_stop_id": "7425515",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.288302871553,
+          57.726366911818
+        ]
+      },
+      "properties": {
+        "name": "Rogberga Store backe",
+        "stop_id": "1123",
+        "gtfs_stop_id": "7439497",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.213115499039,
+          57.778372950833
+        ]
+      },
+      "properties": {
+        "name": "Rosenlundsskolan skoltur",
+        "stop_id": "1839",
+        "gtfs_stop_id": "7470977",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.307642778428,
+          57.740911556635
+        ]
+      },
+      "properties": {
+        "name": "Rogberga Klevarp",
+        "stop_id": "1162",
+        "gtfs_stop_id": "7439529",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.28135860904,
+          57.731833221933
+        ]
+      },
+      "properties": {
+        "name": "Rogberga kyrka",
+        "stop_id": "1778",
+        "gtfs_stop_id": "7425515",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.288302871553,
+          57.726366911818
+        ]
+      },
+      "properties": {
+        "name": "Rogberga Store backe",
+        "stop_id": "1123",
+        "gtfs_stop_id": "7439497",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.213115499039,
+          57.778372950833
+        ]
+      },
+      "properties": {
+        "name": "Rosenlundsskolan skoltur",
+        "stop_id": "1839",
+        "gtfs_stop_id": "7470977",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.116728060805,
+          57.782279430586
+        ]
+      },
+      "properties": {
+        "name": "Samset",
+        "stop_id": "1781",
+        "gtfs_stop_id": "7437279",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.056301039317,
+          57.841395308489
+        ]
+      },
+      "properties": {
+        "name": "Sjövik",
+        "stop_id": "1625",
+        "gtfs_stop_id": "7439919",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.116728060805,
+          57.782279430586
+        ]
+      },
+      "properties": {
+        "name": "Samset",
+        "stop_id": "1781",
+        "gtfs_stop_id": "7437279",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.056301039317,
+          57.841395308489
+        ]
+      },
+      "properties": {
+        "name": "Sjövik",
+        "stop_id": "1625",
+        "gtfs_stop_id": "7439919",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.047100701557,
+          57.842893536106
+        ]
+      },
+      "properties": {
+        "name": "Skirebo",
+        "stop_id": "1626",
+        "gtfs_stop_id": "7439920",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.079504630899,
+          57.835804131851
+        ]
+      },
+      "properties": {
+        "name": "Svinhaga",
+        "stop_id": "1624",
+        "gtfs_stop_id": "7439918",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.086552974147,
+          57.685647230735
+        ]
+      },
+      "properties": {
+        "name": "Taberg Hamiltonvägen",
+        "stop_id": "1592",
+        "gtfs_stop_id": "7439888",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.120903728434,
+          57.683244610882
+        ]
+      },
+      "properties": {
+        "name": "Taberg Målön",
+        "stop_id": "1600",
+        "gtfs_stop_id": "7439896",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.084101306822,
+          57.688550542733
+        ]
+      },
+      "properties": {
+        "name": "Taberg Sågen",
+        "stop_id": "1593",
+        "gtfs_stop_id": "7439889",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.088386531071,
+          57.684459756407
+        ]
+      },
+      "properties": {
+        "name": "Taberg Tabergsskolan",
+        "stop_id": "1591",
+        "gtfs_stop_id": "7439887",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.088441431806,
+          57.681173605233
+        ]
+      },
+      "properties": {
+        "name": "Tabergstoppen",
+        "stop_id": "1630",
+        "gtfs_stop_id": "7439923",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.313787041131,
+          57.702225921052
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Backsvalevägen",
+        "stop_id": "1066",
+        "gtfs_stop_id": "7439448",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.317493770215,
+          57.725941165567
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Häljaryd",
+        "stop_id": "1164",
+        "gtfs_stop_id": "7439531",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.317742590848,
+          57.701895330896
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Högalund",
+        "stop_id": "1065",
+        "gtfs_stop_id": "7439447",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.31757768677,
+          57.712454022939
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Macken",
+        "stop_id": "1125",
+        "gtfs_stop_id": "7414479",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.086552974147,
+          57.685647230735
+        ]
+      },
+      "properties": {
+        "name": "Taberg Hamiltonvägen",
+        "stop_id": "1592",
+        "gtfs_stop_id": "7439888",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.120903728434,
+          57.683244610882
+        ]
+      },
+      "properties": {
+        "name": "Taberg Målön",
+        "stop_id": "1600",
+        "gtfs_stop_id": "7439896",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.084101306822,
+          57.688550542733
+        ]
+      },
+      "properties": {
+        "name": "Taberg Sågen",
+        "stop_id": "1593",
+        "gtfs_stop_id": "7439889",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.088386531071,
+          57.684459756407
+        ]
+      },
+      "properties": {
+        "name": "Taberg Tabergsskolan",
+        "stop_id": "1591",
+        "gtfs_stop_id": "7439887",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.088441431806,
+          57.681173605233
+        ]
+      },
+      "properties": {
+        "name": "Tabergstoppen",
+        "stop_id": "1630",
+        "gtfs_stop_id": "7439923",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.313787041131,
+          57.702225921052
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Backsvalevägen",
+        "stop_id": "1066",
+        "gtfs_stop_id": "7439448",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.317493770215,
+          57.725941165567
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Häljaryd",
+        "stop_id": "1164",
+        "gtfs_stop_id": "7439531",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.317742590848,
+          57.701895330896
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Högalund",
+        "stop_id": "1065",
+        "gtfs_stop_id": "7439447",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.31757768677,
+          57.712454022939
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Macken",
+        "stop_id": "1125",
+        "gtfs_stop_id": "7414479",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.314931074166,
+          57.704592200672
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Mjälaryd",
+        "stop_id": "1067",
+        "gtfs_stop_id": "7439449",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.29972354174,
+          57.720558443803
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Sekebo",
+        "stop_id": "1124",
+        "gtfs_stop_id": "7439498",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.319858854365,
+          57.711654654377
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Tullen",
+        "stop_id": "1056",
+        "gtfs_stop_id": "7439441",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.318924563233,
+          57.720525015015
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Uppegåren",
+        "stop_id": "1165",
+        "gtfs_stop_id": "7439532",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.313410121551,
+          57.713015599154
+        ]
+      },
+      "properties": {
+        "name": "Tenhult Verkstadsvägen",
+        "stop_id": "1053",
+        "gtfs_stop_id": "7439439",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.170839305384,
+          57.694281214746
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Brukslunden",
+        "stop_id": "1559",
+        "gtfs_stop_id": "7439859",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.156188766415,
+          57.690427031273
+        ]
+      },
+      "properties": {
+        "name": "Torsvik bussterminalen",
+        "stop_id": "1560",
+        "gtfs_stop_id": "7439860",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.153576656149,
+          57.682975087941
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Dila",
+        "stop_id": "1589",
+        "gtfs_stop_id": "7439886",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.159279941465,
+          57.685869310234
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Electrolux",
+        "stop_id": "1616",
+        "gtfs_stop_id": "7439911",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.127781597264,
+          57.688966810131
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Flahult försöksgård",
+        "stop_id": "1641",
+        "gtfs_stop_id": "7437264",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.150796082748,
+          57.687330188228
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Frysvägen",
+        "stop_id": "1562",
+        "gtfs_stop_id": "7439862",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.150942505129,
+          57.692208492798
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Gammavägen",
+        "stop_id": "1644",
+        "gtfs_stop_id": "7470973",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.148674777565,
+          57.683844939283
+        ]
+      },
+      "properties": {
+        "name": "Torsvik IKEA Norra",
+        "stop_id": "1639",
+        "gtfs_stop_id": "7439931",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.163786800512,
+          57.680018755747
+        ]
+      },
+      "properties": {
+        "name": "Torsvik IKEA Södra",
+        "stop_id": "1563",
+        "gtfs_stop_id": "7439863",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.14531614261,
+          57.694954642673
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Kraftvärmeverket",
+        "stop_id": "1643",
+        "gtfs_stop_id": "7470972",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.162658193126,
+          57.689765841687
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Momarken 1",
+        "stop_id": "1631",
+        "gtfs_stop_id": "7439924",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.162944137121,
+          57.687524445792
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Momarken 2",
+        "stop_id": "1632",
+        "gtfs_stop_id": "7439925",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.167181822499,
+          57.687256108975
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Momarken 3",
+        "stop_id": "1633",
+        "gtfs_stop_id": "7439926",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.168947248037,
+          57.689380382741
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Momarken 4",
+        "stop_id": "1634",
+        "gtfs_stop_id": "7439927",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.163586966055,
+          57.689993431201
+        ]
+      },
+      "properties": {
+        "name": "Torsvik Momarken 5",
+        "stop_id": "1635",
+        "gtfs_stop_id": "7439928",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.161666073728,
+          57.691306568204
+        ]
+      },
+      "properties": {
+        "name": "Torsvik östra",
+        "stop_id": "1561",
+        "gtfs_stop_id": "7439861",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.159386713479,
+          57.691276927195
+        ]
+      },
+      "properties": {
+        "name": "Torsviksmotet",
+        "stop_id": "1717",
+        "gtfs_stop_id": "7423277",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.089075869024,
+          57.772280744801
+        ]
+      },
+      "properties": {
+        "name": "Trafikövningsplats Axamo",
+        "stop_id": "1786",
+        "gtfs_stop_id": "7439934",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.14297451832,
+          57.834478939192
+        ]
+      },
+      "properties": {
+        "name": "Trånghalla",
+        "stop_id": "1524",
+        "gtfs_stop_id": "7439824",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.146657373307,
+          57.84738691863
+        ]
+      },
+      "properties": {
+        "name": "Trånghalla Berghalla",
+        "stop_id": "1528",
+        "gtfs_stop_id": "7439828",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.147944148037,
+          57.841377986292
+        ]
+      },
+      "properties": {
+        "name": "Trånghalla Dalstigen",
+        "stop_id": "1527",
+        "gtfs_stop_id": "7439827",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.148196989699,
+          57.839540336087
+        ]
+      },
+      "properties": {
+        "name": "Trånghalla Fjällhyddevägen nedre",
+        "stop_id": "1526",
+        "gtfs_stop_id": "7439826",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.141286071563,
+          57.839692296376
+        ]
+      },
+      "properties": {
+        "name": "Trånghalla Fjällhyddevägen övre",
+        "stop_id": "1523",
+        "gtfs_stop_id": "7439823",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.147645227096,
+          57.857403836673
+        ]
+      },
+      "properties": {
+        "name": "Trånghalla Kleven",
+        "stop_id": "1531",
+        "gtfs_stop_id": "7439831",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.14729111807,
+          57.844593364442
+        ]
+      },
+      "properties": {
+        "name": "Trånghalla Myrvägen",
+        "stop_id": "1529",
+        "gtfs_stop_id": "7439829",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.147803903601,
+          57.853221114618
+        ]
+      },
+      "properties": {
+        "name": "Trånghalla Sjöhagsvägen",
+        "stop_id": "1530",
+        "gtfs_stop_id": "7439830",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.148567337143,
+          57.836976818631
+        ]
+      },
+      "properties": {
+        "name": "Trånghalla torg",
+        "stop_id": "1525",
+        "gtfs_stop_id": "7439825",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.144763589473,
+          57.834017448436
+        ]
+      },
+      "properties": {
+        "name": "Trånghalla Trånghallavägen",
+        "stop_id": "1619",
+        "gtfs_stop_id": "7439914",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.092412271684,
+          57.770682485507
+        ]
+      },
+      "properties": {
+        "name": "TTC östra",
+        "stop_id": "1793",
+        "gtfs_stop_id": "7439939",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.115266446179,
+          57.785492884957
+        ]
+      },
+      "properties": {
+        "name": "Villekullagatan",
+        "stop_id": "1782",
+        "gtfs_stop_id": "7437330",
+        "type": "0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.155999701397,
+          57.780102735229
+        ]
+      },
+      "properties": {
+        "name": "Västra torget",
+        "stop_id": "1259",
+        "gtfs_stop_id": "7437261",
+        "type": "0"
+      }
+    }
+  ]
+}

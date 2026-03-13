@@ -1,0 +1,60 @@
+{
+  "displayFieldName": "",
+  "fieldAliases": {
+    "OBJECTID": "OBJECTID",
+    "DETALJTYP": "DETALJTYP",
+    "SRIKT": "SRIKT",
+    "ADAT": "ADAT",
+    "XYFEL": "XYFEL"
+  },
+  "geometryType": "esriGeometryPoint",
+  "spatialReference": {
+    "wkid": 3006,
+    "latestWkid": 3006
+  },
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID"
+    },
+    {
+      "name": "DETALJTYP",
+      "type": "esriFieldTypeString",
+      "alias": "DETALJTYP",
+      "length": 10
+    },
+    {
+      "name": "SRIKT",
+      "type": "esriFieldTypeSingle",
+      "alias": "SRIKT"
+    },
+    {
+      "name": "ADAT",
+      "type": "esriFieldTypeString",
+      "alias": "ADAT",
+      "length": 16
+    },
+    {
+      "name": "XYFEL",
+      "type": "esriFieldTypeInteger",
+      "alias": "XYFEL"
+    }
+  ],
+  "features": [
+    {
+      "attributes": {
+        "OBJECTID": 1,
+        "DETALJTYP": " ",
+        "SRIKT": 0,
+        "ADAT": " ",
+        "XYFEL": 0,
+        "ifc_url": "./ifc.html"
+      },
+      "geometry": {
+        "x": 455864.0647,
+        "y": 6403862.9893
+      }
+    }
+  ]
+}

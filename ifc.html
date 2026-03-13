@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IFC Viewer</title>
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --panel:#111827;
+      --panel-2:#0f172a;
+      --border:rgba(255,255,255,.10);
+      --text:#e5eefc;
+      --muted:rgba(229,238,252,.68);
+      --accent:#60a5fa;
+      --accent-2:#38bdf8;
+      --chip:#172033;
+      --danger:#ef4444;
+      --success:#22c55e;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text)}
+    .app{display:grid;grid-template-columns:minmax(0,1fr) 360px;height:100vh;width:100vw}
+    #viewer{position:relative;min-width:0;min-height:0;background:var(--bg)}
+    .panel{border-left:1px solid var(--border);background:linear-gradient(180deg,rgba(17,24,39,.98),rgba(11,15,25,.98));display:flex;flex-direction:column;min-height:0}
+    .panel__head{padding:14px 14px 10px;border-bottom:1px solid var(--border)}
+    .panel__title{font-size:16px;font-weight:800;letter-spacing:.2px}
+    .panel__sub{font-size:12px;color:var(--muted);margin-top:3px;word-break:break-all}
+    .toolbar{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;border-bottom:1px solid var(--border)}
+    button{
+      appearance:none;border:1px solid var(--border);background:linear-gradient(180deg,#1b2436,#151d2d);color:var(--text);
+      border-radius:12px;padding:10px 12px;font-weight:700;cursor:pointer;transition:.15s ease;box-shadow:0 1px 0 rgba(255,255,255,.04) inset;
+    }
+    button:hover{transform:translateY(-1px);border-color:rgba(96,165,250,.35)}
+    button:active{transform:none}
+    button.active{border-color:rgba(56,189,248,.55);box-shadow:0 0 0 1px rgba(56,189,248,.2) inset;background:linear-gradient(180deg,#1b2a44,#132338)}
+    button.danger{border-color:rgba(239,68,68,.26)}
+    button.wide{grid-column:1/-1}
+    .section{padding:12px;border-bottom:1px solid var(--border)}
+    .section h3{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    .badgeRow{display:flex;flex-wrap:wrap;gap:8px}
+    .badge{background:var(--chip);border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--text)}
+    .badge.ok{color:#dcfce7;border-color:rgba(34,197,94,.25);background:rgba(34,197,94,.10)}
+    .badge.warn{color:#fef3c7;border-color:rgba(250,204,21,.22);background:rgba(250,204,21,.10)}
+    .meta{display:grid;grid-template-columns:92px 1fr;gap:8px 10px;align-items:start}
+    .meta dt{color:var(--muted)}
+    .meta dd{margin:0;word-break:break-word}
+    .props{flex:1;min-height:0;overflow:auto;padding:12px}
+    .empty{padding:14px;border:1px dashed var(--border);border-radius:14px;color:var(--muted);background:rgba(255,255,255,.02)}
+    .propcard{border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.03);overflow:hidden}
+    .propcard + .propcard{margin-top:10px}
+    .propcard__head{padding:10px 12px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02);font-weight:800}
+    .propcard__body{padding:10px 12px}
+    .kv{display:grid;grid-template-columns:130px 1fr;gap:8px 10px}
+    .kv div:nth-child(odd){color:var(--muted)}
+    .footerHint{padding:10px 12px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+    .sectionCtl{display:grid;gap:10px}
+    .sectionCtl label{display:grid;gap:6px}
+    .sectionCtl span{font-size:12px;color:var(--muted);font-weight:700}
+    .sectionCtl input[type="range"]{width:100%}
+    .toast{position:fixed;left:18px;bottom:18px;z-index:40;max-width:420px;background:rgba(15,23,42,.95);border:1px solid var(--border);color:var(--text);padding:11px 13px;border-radius:14px;box-shadow:0 12px 38px rgba(0,0,0,.35);display:none}
+    .tag{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;font-size:11px;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.22);color:#bfdbfe;vertical-align:middle}
+    @media (max-width: 900px){
+      .app{grid-template-columns:1fr}
+      .panel{position:absolute;right:0;top:0;bottom:0;width:min(92vw,380px);z-index:10;box-shadow:-20px 0 60px rgba(0,0,0,.35)}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div id="viewer"></div>
+
+    <aside class="panel">
+      <div class="panel__head">
+        <div class="panel__title">IFC Viewer <span class="tag">Properties</span></div>
+        <div class="panel__sub" id="fileLabel"></div>
+      </div>
+
+      <div class="toolbar">
+        <button id="btnFit">Fit model</button>
+        <button id="btnShowAll">Show all</button>
+        <button id="btnClipToggle">Clip mode: Off</button>
+        <button id="btnClipClear" class="danger">Clear clips</button>
+        <button id="btnIsolate" class="wide">Isolate selected</button>
+      </div>
+
+      <div class="section">
+        <h3>Sections</h3>
+        <div class="sectionCtl">
+          <label><span>X section</span><input id="secX" type="range" min="0" max="100" step="1" value="0" /></label>
+          <label><span>Y section</span><input id="secY" type="range" min="0" max="100" step="1" value="0" /></label>
+          <label><span>Z section</span><input id="secZ" type="range" min="0" max="100" step="1" value="0" /></label>
+        </div>
+        <div class="toolbar" style="padding:10px 0 0;border:0;grid-template-columns:1fr 1fr;">
+          <button id="btnSectionOn">Sections: On</button>
+          <button id="btnSectionReset">Reset sections</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Status</h3>
+        <div class="badgeRow">
+          <span class="badge" id="statusLoad">Loading…</span>
+          <span class="badge" id="statusPick">Nothing selected</span>
+          <span class="badge warn" id="statusClip">Clipping off</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Selected element</h3>
+        <dl class="meta">
+          <dt>Type</dt><dd id="selType">—</dd>
+          <dt>Express ID</dt><dd id="selId">—</dd>
+          <dt>Model ID</dt><dd id="selModel">—</dd>
+        </dl>
+      </div>
+
+      <div class="props" id="propsWrap">
+        <div class="empty" id="emptyState">
+          Click any wall, roof, slab, window, beam, or other IFC element to see its data here. Use <strong>Clip mode</strong>, then double-click in the scene to create clipping planes.
+        </div>
+      </div>
+
+      <div class="footerHint">
+        Click = select. Mouse move = pre-highlight. Double-click while clip mode is on = create clipping plane.
+      </div>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+    import { Box3, Color, Plane, Vector3 } from "https://esm.sh/three@0.179.1";
+    import { IfcViewerAPI } from "https://esm.sh/web-ifc-viewer@1.0.213";
+
+    const $ = (id) => document.getElementById(id);
+    const container = $("viewer");
+    const params = new URLSearchParams(location.search);
+    const file = params.get("file") || "ifc.ifc";
+    $("fileLabel").textContent = file;
+
+    const viewer = new IfcViewerAPI({
+      container,
+      backgroundColor: new Color(0x0b0f19),
+    });
+
+    const wasmBase = "https://cdn.jsdelivr.net/npm/web-ifc@0.0.35/";
+    try {
+      const ifcAPI = viewer?.IFC?.loader?.ifcManager?.ifcAPI;
+      if (ifcAPI && typeof ifcAPI.SetWasmPath === "function") {
+        ifcAPI.SetWasmPath(wasmBase, true);
+      } else {
+        viewer.IFC.setWasmPath(wasmBase, true);
+      }
+    } catch (e) {
+      viewer.IFC.setWasmPath(wasmBase, true);
+    }
+
+    let model = null;
+    let clipMode = false;
+    let selected = null;
+    let sectionEnabled = false;
+    let sectionBounds = null;
+    let sectionPlanes = {
+      x: new Plane(new Vector3(-1, 0, 0), 1e9),
+      y: new Plane(new Vector3(0, -1, 0), 1e9),
+      z: new Plane(new Vector3(0, 0, -1), 1e9),
+    };
+
+    function getThreeRenderer(){
+      return viewer?.context?.renderer?.renderer || viewer?.context?.renderer?.three || viewer?.context?.getRenderer?.() || null;
+    }
+
+    function applyGlobalClipping(){
+      const renderer = getThreeRenderer();
+      if (!renderer) return;
+      renderer.localClippingEnabled = !!sectionEnabled;
+      renderer.clippingPlanes = sectionEnabled ? [sectionPlanes.x, sectionPlanes.y, sectionPlanes.z] : [];
+    }
+
+    function setSectionButton(){
+      const btn = $("btnSectionOn");
+      btn.textContent = `Sections: ${sectionEnabled ? "On" : "Off"}`;
+      btn.classList.toggle("active", sectionEnabled);
+    }
+
+    function resetSectionPlanes(){
+      if (!sectionBounds) return;
+      $("secX").value = 0;
+      $("secY").value = 0;
+      $("secZ").value = 0;
+      updateSectionPlane("x", 0);
+      updateSectionPlane("y", 0);
+      updateSectionPlane("z", 0);
+    }
+
+    function updateSectionPlane(axis, sliderValue){
+      if (!sectionBounds) return;
+      const min = sectionBounds.min[axis];
+      const max = sectionBounds.max[axis];
+      const t = Math.max(0, Math.min(100, Number(sliderValue))) / 100;
+      const cut = min + (max - min) * t;
+      if (axis === "x") sectionPlanes.x.constant = cut;
+      if (axis === "y") sectionPlanes.y.constant = cut;
+      if (axis === "z") sectionPlanes.z.constant = cut;
+      applyGlobalClipping();
+    }
+
+    function toast(msg){
+      const el = $("toast");
+      el.textContent = msg;
+      el.style.display = "block";
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => { el.style.display = "none"; }, 2600);
+    }
+
+    function setStatus(loadText, pickText, clipText, clipIsOn=false){
+      if (loadText != null) $("statusLoad").textContent = loadText;
+      if (pickText != null) $("statusPick").textContent = pickText;
+      if (clipText != null) {
+        const el = $("statusClip");
+        el.textContent = clipText;
+        el.className = "badge " + (clipIsOn ? "ok" : "warn");
+      }
+    }
+
+    function flattenProps(obj, prefix="", out=[]){
+      if (!obj || typeof obj !== "object") return out;
+      for (const [key, value] of Object.entries(obj)) {
+        const name = prefix ? `${prefix}.${key}` : key;
+        if (value == null) {
+          out.push([name, "null"]);
+        } else if (typeof value === "object") {
+          if (Array.isArray(value)) {
+            out.push([name, value.map(v => typeof v === "object" ? JSON.stringify(v) : String(v)).join(", ")]);
+          } else if ("value" in value && Object.keys(value).length <= 3) {
+            out.push([name, String(value.value)]);
+          } else {
+            flattenProps(value, name, out);
+          }
+        } else {
+          out.push([name, String(value)]);
+        }
+      }
+      return out;
+    }
+
+    function makeCard(title, rows){
+      if (!rows || !rows.length) return "";
+      const body = rows.map(([k,v]) => `<div>${escapeHtml(k)}</div><div>${escapeHtml(v)}</div>`).join("");
+      return `<section class="propcard"><div class="propcard__head">${escapeHtml(title)}</div><div class="propcard__body"><div class="kv">${body}</div></div></section>`;
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+    }
+
+    async function showSelectedData(found){
+      if (!found) return;
+      selected = found;
+      const { modelID, id } = found;
+      $("selId").textContent = id;
+      $("selModel").textContent = modelID;
+      setStatus(null, `Selected #${id}`, null);
+
+      let props = {};
+      let psets = {};
+      let mats = {};
+      let typeName = "IFC element";
+
+      try {
+        props = await viewer.IFC.getProperties(modelID, id, true, false) || {};
+      } catch (e) {
+        console.warn("getProperties failed", e);
+      }
+      try {
+        psets = await viewer.IFC.getPropertySets(modelID, id, true) || {};
+      } catch (e) {
+        console.warn("getPropertySets failed", e);
+      }
+      try {
+        mats = await viewer.IFC.getMaterialsProperties(modelID, id, true) || {};
+      } catch (e) {
+        console.warn("getMaterialsProperties failed", e);
+      }
+
+      typeName = props?.type || props?.constructor?.name || props?.ObjectType?.value || props?.PredefinedType?.value || typeName;
+      $("selType").textContent = typeName;
+
+      const basicRows = flattenProps(props).slice(0, 120);
+      const psetRows = flattenProps(psets).slice(0, 200);
+      const matRows = flattenProps(mats).slice(0, 120);
+
+      const html = [
+        makeCard("Element", basicRows),
+        makeCard("Property sets", psetRows),
+        makeCard("Materials", matRows)
+      ].filter(Boolean).join("") || `<div class="empty">No readable properties returned for this element.</div>`;
+
+      $("emptyState")?.remove();
+      $("propsWrap").innerHTML = html;
+    }
+
+    async function pickItem(){
+      try {
+        const found = await viewer.IFC.selector.pickIfcItem(true);
+        if (found) await showSelectedData(found);
+      } catch (e) {
+        console.warn("pickIfcItem failed", e);
+      }
+    }
+
+    async function prepickItem(){
+      try {
+        await viewer.IFC.selector.prePickIfcItem();
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    async function isolateSelected(){
+      if (!selected) { toast("Select an element first."); return; }
+      try {
+        await viewer.IFC.selector.isolateIfcItemsByID(selected.modelID, [selected.id]);
+        toast("Selected element isolated.");
+      } catch (e) {
+        console.warn("isolate failed", e);
+        toast("Could not isolate this element in the current viewer build.");
+      }
+    }
+
+    async function showAll(){
+      try {
+        if (viewer.IFC.selector?.unpickIfcItems) await viewer.IFC.selector.unpickIfcItems();
+      } catch(e){ console.warn(e); }
+      try {
+        if (viewer.IFC.selector?.unPrepickIfcItems) await viewer.IFC.selector.unPrepickIfcItems();
+      } catch(e){ console.warn(e); }
+      try {
+        if (viewer.IFC.loader?.ifcManager?.removeSubset) {
+          // no-op fallback point for older builds
+        }
+      } catch(e){ console.warn(e); }
+      try {
+        if (viewer.IFC.selector?.showAllItems) await viewer.IFC.selector.showAllItems();
+      } catch(e){ console.warn(e); }
+      try {
+        if (model?.modelID != null && viewer.IFC.loader?.ifcManager?.createSubset) {
+          // keep model visible; some builds need no action here
+        }
+      } catch(e){ console.warn(e); }
+      toast("All elements shown.");
+    }
+
+    function setClipMode(on){
+      clipMode = !!on;
+      $("btnClipToggle").classList.toggle("active", clipMode);
+      $("btnClipToggle").textContent = `Clip mode: ${clipMode ? "On" : "Off"}`;
+      setStatus(null, null, clipMode ? "Clipping on" : "Clipping off", clipMode);
+      try {
+        viewer.clipper.active = clipMode;
+      } catch (e) {
+        console.warn("clipper.active failed", e);
+      }
+      toast(clipMode ? "Clip mode enabled. Double-click to place a plane." : "Clip mode disabled.");
+    }
+
+    async function createClipPlane(){
+      try {
+        await viewer.clipper.createPlane();
+      } catch (e) {
+        console.warn("createPlane failed", e);
+        toast("Could not create a clipping plane here.");
+      }
+    }
+
+    async function clearClips(){
+      try {
+        if (viewer.clipper?.deleteAllPlanes) viewer.clipper.deleteAllPlanes();
+        else if (viewer.clipper?.planes) viewer.clipper.planes.length = 0;
+        toast("Clipping planes cleared.");
+      } catch (e) {
+        console.warn("clear clips failed", e);
+      }
+    }
+
+    $("btnFit").addEventListener("click", () => viewer.context.fitToFrame());
+    $("btnShowAll").addEventListener("click", showAll);
+    $("btnSectionOn").addEventListener("click", () => { sectionEnabled = !sectionEnabled; setSectionButton(); applyGlobalClipping(); });
+    $("btnSectionReset").addEventListener("click", () => { resetSectionPlanes(); toast("Sections reset."); });
+    $("secX").addEventListener("input", (e) => updateSectionPlane("x", e.target.value));
+    $("secY").addEventListener("input", (e) => updateSectionPlane("y", e.target.value));
+    $("secZ").addEventListener("input", (e) => updateSectionPlane("z", e.target.value));
+    $("btnIsolate").addEventListener("click", isolateSelected);
+    $("btnClipToggle").addEventListener("click", () => setClipMode(!clipMode));
+    $("btnClipClear").addEventListener("click", clearClips);
+
+    container.addEventListener("mousemove", prepickItem);
+    container.addEventListener("click", pickItem);
+    container.addEventListener("dblclick", async (e) => {
+      if (!clipMode) return;
+      e.preventDefault();
+      await createClipPlane();
+    });
+
+    async function main() {
+      try {
+        viewer.axes.setAxes();
+        viewer.grid.setGrid();
+      } catch (e) {
+        console.warn("axes/grid setup skipped", e);
+      }
+
+      try {
+        model = await viewer.IFC.loadIfcUrl(file);
+        viewer.context.fitToFrame();
+        const bbox = new Box3().setFromObject(model.mesh || model);
+        sectionBounds = { min: bbox.min.clone(), max: bbox.max.clone() };
+        setSectionButton();
+        resetSectionPlanes();
+        applyGlobalClipping();
+        setStatus("Model loaded", "Nothing selected", "Clipping off", false);
+      } catch (err) {
+        console.error("Failed to load IFC:", err);
+        setStatus("Load failed", "Nothing selected", "Clipping off", false);
+        $("propsWrap").innerHTML = `<div class="empty">Could not load <strong>${escapeHtml(file)}</strong>. Check that the IFC file is in the same folder and that the URL is correct.</div>`;
+      }
+    }
+
+    main();
+  </script>
+</body>
+</html>

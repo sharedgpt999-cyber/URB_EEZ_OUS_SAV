@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.263609027225389, 57.774105036959185]
+      },
+      "properties": {
+        "OBJECTID": 1,
+        "category": "Grundskola",
+        "name": "Öxnehagaskolan F-6",
+        "descr": "Förskoleklass till årskurs 6",
+        "address": "Oxhagsgatan 65, 561 50 Huskvarna",
+        "phone": "036-10 37 73",
+        "email": "oxnehaga.skolors.utbildningsenhet@jonkoping.se",
+        "website": "https://www.jonkoping.se/barn-utbildning/grundskola-anpassad-grundskola-och-fritidshem/grundskolor-och-anpassade-grundskolor-a-o/oxnehagaskolan-f-6",
+        "link": "https://www.jonkoping.se/barn-utbildning/grundskola-anpassad-grundskola-och-fritidshem/grundskolor-och-anpassade-grundskolor-a-o/oxnehagaskolan-f-6"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.262013510833391, 57.777518776749261]
+      },
+      "properties": {
+        "OBJECTID": 2,
+        "category": "Grundskola",
+        "name": "Oxhagsskolan F-6",
+        "descr": "Kommunal grundskola",
+        "address": "Oxhagsgatan 161, 561 50 Huskvarna",
+        "phone": "036-10 66 60",
+        "email": "utbildningsenhet.oxnehaga@jonkoping.se",
+        "website": "https://www.jonkoping.se/barn-utbildning/grundskola-anpassad-grundskola-och-fritidshem/grundskolor-och-anpassade-grundskolor-a-o/oxhagsskolan-anpassad-grundskola-1-6",
+        "link": "https://www.jonkoping.se/barn-utbildning/grundskola-anpassad-grundskola-och-fritidshem/grundskolor-och-anpassade-grundskolor-a-o/oxhagsskolan-anpassad-grundskola-1-6"
+      }
+    }
+  ]
+}
